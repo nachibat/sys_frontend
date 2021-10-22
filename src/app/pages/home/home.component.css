@@ -1,0 +1,179 @@
+/**** Main design ****/
+
+.card-box {
+    position: relative;
+    width: 100%;
+    padding: 20px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+}
+
+.card-box .card {
+    position: relative;
+    background: var(--white);
+    padding: 30px;
+    border-radius: 20px;
+    display: flex;
+    justify-content: space-between;
+    cursor: pointer;
+    box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08);
+    transition: 0.2s;
+}
+
+.card-box .card .numbers {
+    position: relative;
+    font-weight: 500;
+    font-size: 2.0em;
+    color: var(--blue);
+}
+
+.card-box .card .card-name {
+    color: var(--black2);
+    font-size: 1.0em;
+    margin-top: 5px;
+}
+
+.card-box .card .icon-box {
+    font-size: 2.3em;
+    color: var(--black2);
+}
+
+.card-box .card:hover {
+    background: var(--blue);
+    transform: scale(1.05);
+}
+
+.card-box .card:hover .numbers,
+.card-box .card:hover .card-name,
+.card-box .card:hover .icon-box {
+    color: var(--white);
+}
+
+.details {
+    position: relative;
+    width: 100%;
+    padding: 20px;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 30px;
+}
+
+.details .card-graphic,
+.details .card-stock {
+    position: relative;
+    min-height: 500px;
+    background: var(--white);
+    padding: 20px;
+    box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08);
+    border-radius: 20px;
+}
+
+.details .card-graphic {
+    min-width: 600px;
+}
+
+.details .card-graphic .graphic {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.card-header h2 {
+    font-weight: 600;
+    color: var(--blue);
+}
+
+.details table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+.details table thead td {
+    font-weight: 600;
+}
+
+.details .card-stock table tr {
+    color: var(--black1);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.details .card-stock table tr:last-child {
+    border-bottom: none;
+}
+
+.details .card-stock table tbody tr:hover {
+    background: var(--blue);
+    color: var(--white);
+}
+
+.details .card-stock table tr td {
+    padding: 10px;
+}
+
+.details .card-stock table tr td:last-child {
+    text-align: end;
+}
+
+.details .card-stock table tr td:nth-child(2) {
+    text-align: center;
+}
+
+.status {
+    padding: 2px 4px;
+    color: var(--white);
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 500;
+    white-space: nowrap;
+}
+
+.status.no-stock {    
+    background: var(--danger);
+}
+
+.status.minimo {
+    background: var(--warning);
+}
+
+.status.stock {
+    background: var(--success);
+}
+
+/**** Responsive design ****/
+
+@media (max-width: 1024px) {
+    .card-box {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .details {
+        display: block;
+    }
+    .details .card-graphic {
+        min-width: auto;
+    }
+    .details .card-stock {
+        margin-top: 20px;
+    }
+}
+
+@media (max-width: 991px) {
+}
+
+@media (max-width: 480px) {
+    .card-box {
+        grid-template-columns: repeat(1, 1fr);
+    }
+    .details .card-stock {
+        overflow-x: auto;
+    }
+}

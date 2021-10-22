@@ -1,0 +1,118 @@
+<app-navbar></app-navbar>
+<div class="main" [ngClass]="{'wide-main': isOpen}">
+    <app-topbar></app-topbar>
+    <div class="card-box">
+        <div class="card">
+            <div>
+                <div class="numbers">30</div>
+                <div class="card-name">Ventas Diarias</div>
+            </div>
+            <div class="icon-box">
+                <fa-icon [icon]="icons[0]"></fa-icon>
+            </div>
+        </div>
+        <div class="card">
+            <div>
+                <div class="numbers">$1000</div>
+                <div class="card-name">Ganancias Diarias</div>
+            </div>
+            <div class="icon-box">
+                <fa-icon [icon]="icons[1]"></fa-icon>
+            </div>
+        </div>
+        <div class="card">
+            <div>
+                <div class="numbers">80</div>
+                <div class="card-name">Ventas Mensuales</div>
+            </div>
+            <div class="icon-box">
+                <fa-icon [icon]="icons[2]"></fa-icon>
+            </div>
+        </div>
+        <div class="card">
+            <div>
+                <div class="numbers">$10000</div>
+                <div class="card-name">Ganancias Mensuales</div>
+            </div>
+            <div class="icon-box">
+                <fa-icon [icon]="icons[3]"></fa-icon>
+            </div>
+        </div>
+    </div>
+
+    <div class="details">
+        <div class="card-graphic">
+            <div class="card-header">
+                <h2>Ventas diarias</h2>
+            </div>
+            <div class="graphic">Grafico</div>
+        </div>
+        <div class="card-stock">
+            <div class="card-header">
+                <h2>Stock mínimo</h2>
+                <a href="#" class="link-btn">Ver todos</a>
+            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <td>Descripción</td>
+                        <td>Cantidad</td>
+                        <td>Estado</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Alfajor Tita Negro</td>
+                        <td>0</td>
+                        <td><span class="status no-stock">Sin stock</span></td>
+                    </tr>
+                    <tr>
+                        <td>Cigarrillo Marlboro Común</td>
+                        <td>0</td>
+                        <td><span class="status no-stock">Sin stock</span></td>
+                    </tr>
+                    <tr>
+                        <td>Gaseosa Coca Cola 500ml</td>
+                        <td>3</td>
+                        <td><span class="status minimo">Stock mínimo</span></td>
+                    </tr>
+                    <tr>
+                        <td>Gomitas Mogul Bolsita</td>
+                        <td>4</td>
+                        <td><span class="status minimo">Stock mínimo</span></td>
+                    </tr>
+                    <tr>
+                        <td>Energizante Speed</td>
+                        <td>4</td>
+                        <td><span class="status minimo">Stock mínimo</span></td>
+                    </tr>
+                    <tr>
+                        <td>Jugo Baggio Manzana 1L</td>
+                        <td>5</td>
+                        <td><span class="status stock">Stock</span></td>
+                    </tr>
+                    <tr>
+                        <td>Chupetin Pico Dulce</td>
+                        <td>5</td>
+                        <td><span class="status stock">Stock</span></td>
+                    </tr>
+                    <tr>
+                        <td>Caramelos Media Hora</td>
+                        <td>5</td>
+                        <td><span class="status stock">Stock</span></td>
+                    </tr>
+                    <tr>
+                        <td>Jugo Tang Sobre</td>
+                        <td>6</td>
+                        <td><span class="status stock">Stock</span></td>
+                    </tr>
+                    <tr>
+                        <td>Galletita Oreo</td>
+                        <td>6</td>
+                        <td><span class="status stock">Stock</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

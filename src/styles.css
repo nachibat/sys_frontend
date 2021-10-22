@@ -1,1 +1,68 @@
 /* You can add global styles to this file, and also import other style files */
+
+/**** Main design ****/
+
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap');
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Ubuntu', sans-serif;
+}
+
+:root {
+    --blue: #287bff;
+    --white: #ffffff;
+    --grey: #f5f5f5;
+    --black1: #222222;
+    --black2: #999999;
+    --success: #8de02c;
+    --warning: #f9ca3f;
+    --danger: #ff0000;
+}
+
+body {
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+.main {
+    position: absolute;
+    width: calc(100% - 300px);
+    left: 300px;
+    min-width: 100vh;
+    background-color: var(--white);
+    transition: 0.5s;
+}
+
+.main.wide-main {
+    width: calc(100% - 80px);
+    left: 80px;
+}
+
+.link-btn {
+    position: relative;
+    padding: 5px 10px;
+    background: var(--blue);
+    text-decoration: none;
+    color: var(--white);
+    border-radius: 5px;
+}
+
+/**** Responsive design ****/
+
+@media (max-width: 1024px) {
+    .main {        
+        min-width: auto;
+    }
+}
+
+@media (max-width: 991px) {
+    .main {
+        width: 100%;
+        left: 0;
+    }
+    .main.wide-main {
+        left: 300px;
+    }
+}

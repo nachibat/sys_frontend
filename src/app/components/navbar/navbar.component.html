@@ -1,0 +1,48 @@
+<div class="container">
+    <div class="navigation" [ngClass]="{'short-menu': isOpen}">
+        <ul>
+            <li>
+                <a href="#">
+                    <span class="icon"><fa-icon [icon]="icons[0]"></fa-icon></span>
+                    <span class="title">S&S Kiosko</span>
+                </a>
+            </li>
+            <li>
+                <a [routerLink]="['/home']" routerLinkActive="active" >
+                    <span class="icon"><fa-icon [icon]="icons[1]"></fa-icon></span>
+                    <span class="title">Inicio</span>
+                </a>
+            </li>
+            <li>
+                <a [routerLink]="['/products']" routerLinkActive="active" >
+                    <span class="icon"><fa-icon [icon]="icons[2]"></fa-icon></span>
+                    <span class="title">Productos</span>
+                </a>
+            </li>
+            <li>
+                <a [routerLink]="['/sales']" routerLinkActive="active" >
+                    <span class="icon"><fa-icon [icon]="icons[3]"></fa-icon></span>
+                    <span class="title">Ventas</span>
+                </a>
+            </li>
+            <li>
+                <a [routerLink]="['/reports']" routerLinkActive="active" >
+                    <span class="icon"><fa-icon [icon]="icons[4]"></fa-icon></span>
+                    <span class="title">Informes</span>
+                </a>
+            </li>
+            <li>
+                <a [routerLink]="['/profile']" routerLinkActive="active" >
+                    <span class="icon"><fa-icon [icon]="icons[5]"></fa-icon></span>
+                    <span class="title">Perfil</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <span class="icon"><fa-icon [icon]="icons[6]"></fa-icon></span>
+                    <span class="title">Cerrar Sesión</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
