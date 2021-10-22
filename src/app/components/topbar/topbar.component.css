@@ -76,3 +76,9 @@
         width: auto;
     }
 }
+
+@media (max-width: 375px) {
+    .search {
+        width: 170px;
+    }
+}
