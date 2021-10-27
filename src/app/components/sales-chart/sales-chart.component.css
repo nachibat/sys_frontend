@@ -1,0 +1,26 @@
+/**** Main design ****/
+
+canvas {
+    width: 850px;
+}
+
+/**** Responsive design ****/
+
+@media (max-width: 1650px) {
+    canvas {
+        width: 650px !important;
+    }
+}
+
+@media (max-width: 1024px) {
+    canvas {
+        margin-top: 60px
+    }
+}
+
+@media (max-width: 630px) {
+    canvas {
+        width: 100% !important; 
+        height: 300px !important;
+    }
+}

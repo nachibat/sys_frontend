@@ -9,7 +9,11 @@ import { ProductsComponent } from './products/products.component';
 import { SalesComponent } from './sales/sales.component';
 import { ReportsComponent } from './reports/reports.component';
 import { ProfileComponent } from './profile/profile.component';
+
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
+import { ToastrModule } from 'ngx-toastr';
 
 
 
@@ -25,7 +29,11 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
   imports: [
     CommonModule,
     ComponentsModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    FormsModule,
+    ReactiveFormsModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot()
   ]
 })
 export class PagesModule { }

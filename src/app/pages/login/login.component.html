@@ -1,1 +1,21 @@
-<p>login works!</p>
+<div class="container">
+    <div class="login">
+        <div class="title">Bienvenido</div>
+        <form [formGroup]="formLogin" (ngSubmit)="login()">
+            <label [class.error]="validate.user" for="username">
+                <input (focus)="cleanError()" type="text" formControlName="username" name="username" placeholder="Usuario">
+                <fa-icon [icon]="icons[0]"></fa-icon>
+            </label>
+            <label [class.error]="validate.pass || validate.len" for="password">
+                <input (focus)="cleanError()" type="password" formControlName="password" name="password" placeholder="Contraseña">
+                <fa-icon [icon]="icons[1]"></fa-icon>
+            </label>
+            <button [class.disabledBtn]="btnLogin" [disabled]="btnLogin"><fa-icon [icon]="icons[2]"></fa-icon> Ingresar</button>            
+        </form>
+        <div class="footer">
+            <div *ngIf="validate.user" class="required">El usuario es obligatorio</div>
+            <div *ngIf="validate.pass" class="required">La contraseña es obligatoria</div>
+            <div *ngIf="validate.len" class="lenght">La contraseña debe tener mínimo 6 caractares</div>
+        </div>
+    </div>
+</div>

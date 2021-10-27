@@ -1,0 +1,114 @@
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+    min-width: 100vw;
+    min-height: 100vh;
+    background-color: #0f4c75;
+    /* background-color: var(--blue); */
+}
+
+.login  {
+    width: 400px;
+    height: 500px;
+    background-color: #3282b8;
+    /* background-color: var(--blue); */
+    box-shadow: 0  0 5px 5px rgba(0, 0, 0, 0.15);
+    border-radius: 10px;
+    padding: 15px;
+}
+
+.title {
+    font-size: 250%;
+    color: #bbe1fa;
+    text-align: center;
+    margin-top: 50px;
+    margin-bottom: 40px;
+}
+
+form {
+    padding: 20px 10px;
+}
+
+form label {
+    position: relative;
+    display: block;
+    margin-bottom: 30px;
+}
+
+form label input {
+    width: 100%;
+    height: 50px;
+    border-radius: 40px;
+    padding: 5px 20px;
+    padding-left: 45px;
+    font-size: 16px;
+    outline: none;
+    border: 1px solid var(--black2);
+}
+
+form label fa-icon {
+    position: absolute;
+    top: 12px;
+    left: 10px;
+    font-size: 1.4em;
+    color: var(--black2);
+}
+
+form button {
+    font-size: 110%;
+    color: #1b262c;
+    width: 100%;
+    height: 50px;
+    border-radius: 40px;
+    outline: none;
+    border: 1px solid #bbe1fa;
+    background-color: #bbe1fa;
+    transition: 0.20s;
+    cursor: pointer;
+}
+
+form button:hover {
+    background-color: #0f4c75;
+    color: #bbe1fa;
+    border: 1px solid #0f4c75;
+}
+
+.disabledBtn {
+    cursor: not-allowed !important;
+    border: 1px solid #0566a7 !important;
+    background-color: #0566a7 !important;
+    color: #bbe1fa !important;
+}
+
+.disabledBtn:hover {
+    border: 1px solid #0566a7 !important;
+    background-color: #0566a7 !important;
+    color: #bbe1fa !important;
+}
+
+.footer {
+    padding-left: 10px;
+    color: var(--danger);
+    font-weight: 600;
+}
+
+.error input {
+    border: 2px solid var(--danger) !important;    
+}
+
+.error input::placeholder {
+    color: var(--danger) !important;
+}
+
+.error fa-icon {
+    color: var(--danger) !important;
+}
+
+@media (max-width: 450px) {
+    .container {
+        padding: 0 20px;
+    }
+}

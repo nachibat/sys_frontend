@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { UserGuard } from './guards/user.guard';
 import { HomeComponent } from './pages/home/home.component';
 import { LoginComponent } from './pages/login/login.component';
 import { ProductsComponent } from './pages/products/products.component';
@@ -10,7 +11,8 @@ import { SalesComponent } from './pages/sales/sales.component';
 const routes: Routes = [
   {
     path: 'home',
-    component: HomeComponent
+    component: HomeComponent,
+    canActivate: [UserGuard]
   },
   {
     path: 'login',
@@ -18,19 +20,23 @@ const routes: Routes = [
   },
   {
     path: 'products',
-    component: ProductsComponent
+    component: ProductsComponent,
+    canActivate: [UserGuard]
   },
   {
     path: 'sales',
-    component: SalesComponent
+    component: SalesComponent,
+    canActivate: [UserGuard]
   },
   {
     path: 'reports',
-    component: ReportsComponent
+    component: ReportsComponent,
+    canActivate: [UserGuard]
   },
   {
     path: 'profile',
-    component: ProfileComponent
+    component: ProfileComponent,
+    canActivate: [UserGuard]
   },
   {
     path: '**',

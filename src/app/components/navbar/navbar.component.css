@@ -93,6 +93,10 @@
     color: var(--blue);
 }
 
+.logout {
+    cursor: pointer;
+}
+
 /*------Curve outside------*/
 
 /* .navigation ul li:hover a::before, */
