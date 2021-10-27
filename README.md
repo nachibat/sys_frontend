@@ -1,4 +1,4 @@
-# S&S - Frontend
+# S&S Kiosko - Frontend
 
 Basic frontend for stock control system.
 
