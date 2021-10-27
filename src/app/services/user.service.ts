@@ -11,7 +11,8 @@ import { LoginResponse, User, UserResponse } from '../interfaces/user.response';
 })
 export class UserService {
 
-  private url = environment.URL;
+  private url: string = environment.URL;
+  private validated: boolean = false;
   public user!: User;
 
   constructor(private http: HttpClient,
@@ -26,6 +27,10 @@ export class UserService {
   }
 
   validateToken(): Promise<boolean> {
+    if (this.validated) {
+      console.log('salteo verificacion');
+      return Promise.resolve(true);
+    }
     const token = this.getToken();
     if (token === '') {
       this.router.navigate(['/login']);
@@ -37,7 +42,9 @@ export class UserService {
       });
       this.http.get<UserResponse>(`${this.url}/user`, { headers }).subscribe(resp => {
         if (resp.ok) {
+          this.validated = true;
           this.user = resp.user;
+          console.log('verifico correctamente');
           resolve(true);
         } else {
           resolve(false);
