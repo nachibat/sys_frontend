@@ -16,7 +16,7 @@
     --grey: #f5f5f5;
     --black1: #222222;
     --black2: #999999;
-    --success: #8de02c;
+    --success: #71bd1b;
     --warning: #f9ca3f;
     --danger: #ff0000;
 }
@@ -24,6 +24,19 @@
 body {
     min-height: 100vh;
     overflow-x: hidden;
+}
+
+/* Remove arrows/spinners */
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
 }
 
 .main {
@@ -47,6 +60,18 @@ body {
     text-decoration: none;
     color: var(--white);
     border-radius: 5px;
+    cursor: pointer;
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.card-header h2 {
+    font-weight: 600;
+    color: var(--blue);
 }
 
 /**** Responsive design ****/

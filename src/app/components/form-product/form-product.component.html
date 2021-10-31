@@ -1,0 +1,31 @@
+<div id="modal" class="modal closed">
+    <div id="container" class="container">
+        <div class="header">
+            <h2>Agregar producto</h2>
+        </div>
+        <form [formGroup]="formProduct" (ngSubmit)="formSubmit()">
+            <label [class.error]="validate.code" for="barcode">Código<input (focus)="validate.code=false" type="text" name="barcode" formControlName="barcode"></label>
+            <label [class.error]="validate.desc" for="description">Descripción<input (focus)="validate.desc=false" type="text" name="description" formControlName="description"></label>
+            <label for="category">
+                Categoría
+                <select name="category" formControlName="category">
+                    <option value="kiosko">Kiosko</option>
+                    <option value="libreria">Librería</option>
+                    <option value="electronica">Electrónica</option>
+                </select>
+            </label>
+            <label [class.error]="validate.quan" for="quantity">Cantidad<input (focus)="validate.quan=false" type="number" name="quantity" formControlName="quantity"></label>
+            <label [class.error]="validate.cost" for="cost_price">Precio Costo $<input (focus)="validate.cost=false" type="number" name="cost_price" formControlName="cost_price"></label>
+            <label [class.error]="validate.prof" for="percent_profit">Ganancia %<input (focus)="validate.prof=false" type="number" name="percent_profit" formControlName="percent_profit"><span>(1 - 100)</span></label>
+            <label [class.error]="validate.pric" for="price">
+                Precio final $
+                <input (focus)="validate.pric=false" type="number" name="price" formControlName="price">
+                <button [class.disabledBtn]="disBtn" [disabled]="disBtn" type="button" (click)="calculatePrice()"><fa-icon [icon]="icons[0]"></fa-icon> Calcular</button>
+            </label>
+            <div class="buttons">
+                <button [class.disabledBtn]="disBtn" [disabled]="disBtn" type="submit"><fa-icon [icon]="icons[1]"></fa-icon> Guardar</button>
+                <button [class.disabledBtn]="disBtn" [disabled]="disBtn" type="button" (click)="closeModal()"><fa-icon [icon]="icons[2]"></fa-icon> Cancelar</button>                
+            </div>
+        </form>
+    </div>
+</div>

@@ -81,17 +81,6 @@
     align-items: center;
 }
 
-.card-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-}
-
-.card-header h2 {
-    font-weight: 600;
-    color: var(--blue);
-}
-
 .details table {
     width: 100%;
     border-collapse: collapse;

@@ -1,5 +1,180 @@
 <app-navbar></app-navbar>
 <div class="main" [ngClass]="{'wide-main': isOpen}">
     <app-topbar></app-topbar>
-    <p>products works!</p>
+    <div class="container">
+        <div class="actions"></div>
+        <div class="tables">
+            <div class="list">
+                <div class="card-header">
+                    <h2>Listado de productos</h2>
+                    <a (click)="addProduct()" class="link-btn" [ngClass]="{'cursor-denied': !admin}"><fa-icon [icon]="icons[0]"></fa-icon> Agregar</a>
+                </div>
+                <table>
+                    <thead>
+                        <tr>
+                            <td>Código</td>
+                            <td>Descripción</td>
+                            <td>Categoria</td>
+                            <td>Cantidad</td>
+                            <td>Costo</td>
+                            <td>Ganancia %</td>
+                            <td>Precio final</td>
+                            <td>Acciones</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr title="Alfajor Blanco y negro">
+                            <td>1293045837</td>
+                            <td>Alfajor Blanco y negro</td>
+                            <td>Kiosko</td>
+                            <td>10</td>
+                            <td>10</td>
+                            <td>60</td>
+                            <td>16</td>
+                            <td>
+                                <button><fa-icon [icon]="icons[1]"></fa-icon> Editar</button>
+                                <button><fa-icon [icon]="icons[2]"></fa-icon> Borrar</button>
+                            </td>
+                        </tr>
+                        <tr title="Alfajor Blanco y negro">
+                            <td>1293045837</td>
+                            <td>Alfajor Blanco y negro</td>
+                            <td>Kiosko</td>
+                            <td>10</td>
+                            <td>10</td>
+                            <td>60</td>
+                            <td>16</td>
+                            <td>
+                                <button><fa-icon [icon]="icons[1]"></fa-icon> Editar</button>
+                                <button><fa-icon [icon]="icons[2]"></fa-icon> Borrar</button>
+                            </td>
+                        </tr>
+                        <tr title="Alfajor Blanco y negro">
+                            <td>1293045837</td>
+                            <td>Alfajor Blanco y negro</td>
+                            <td>Kiosko</td>
+                            <td>10</td>
+                            <td>10</td>
+                            <td>60</td>
+                            <td>16</td>
+                            <td>
+                                <button><fa-icon [icon]="icons[1]"></fa-icon> Editar</button>
+                                <button><fa-icon [icon]="icons[2]"></fa-icon> Borrar</button>
+                            </td>
+                        </tr>
+                        <tr title="Alfajor Blanco y negro">
+                            <td>1293045837</td>
+                            <td>Alfajor Blanco y negro</td>
+                            <td>Kiosko</td>
+                            <td>10</td>
+                            <td>10</td>
+                            <td>60</td>
+                            <td>16</td>
+                            <td>
+                                <button><fa-icon [icon]="icons[1]"></fa-icon> Editar</button>
+                                <button><fa-icon [icon]="icons[2]"></fa-icon> Borrar</button>
+                            </td>
+                        </tr>
+                        <tr title="Alfajor Blanco y negro">
+                            <td>1293045837</td>
+                            <td>Alfajor Blanco y negro</td>
+                            <td>Kiosko</td>
+                            <td>10</td>
+                            <td>10</td>
+                            <td>60</td>
+                            <td>16</td>
+                            <td>
+                                <button><fa-icon [icon]="icons[1]"></fa-icon> Editar</button>
+                                <button><fa-icon [icon]="icons[2]"></fa-icon> Borrar</button>
+                            </td>
+                        </tr>
+                        <tr title="Alfajor Blanco y negro">
+                            <td>1293045837</td>
+                            <td>Alfajor Blanco y negro</td>
+                            <td>Kiosko</td>
+                            <td>10</td>
+                            <td>10</td>
+                            <td>60</td>
+                            <td>16</td>
+                            <td>
+                                <button><fa-icon [icon]="icons[1]"></fa-icon> Editar</button>
+                                <button><fa-icon [icon]="icons[2]"></fa-icon> Borrar</button>
+                            </td>
+                        </tr>
+                        <tr title="Alfajor Blanco y negro">
+                            <td>1293045837</td>
+                            <td>Alfajor Blanco y negro</td>
+                            <td>Kiosko</td>
+                            <td>10</td>
+                            <td>10</td>
+                            <td>60</td>
+                            <td>16</td>
+                            <td>
+                                <button><fa-icon [icon]="icons[1]"></fa-icon> Editar</button>
+                                <button><fa-icon [icon]="icons[2]"></fa-icon> Borrar</button>
+                            </td>
+                        </tr>
+                        <tr title="Alfajor Blanco y negro">
+                            <td>1293045837</td>
+                            <td>Alfajor Blanco y negro</td>
+                            <td>Kiosko</td>
+                            <td>10</td>
+                            <td>10</td>
+                            <td>60</td>
+                            <td>16</td>
+                            <td>
+                                <button><fa-icon [icon]="icons[1]"></fa-icon> Editar</button>
+                                <button><fa-icon [icon]="icons[2]"></fa-icon> Borrar</button>
+                            </td>
+                        </tr>
+                        <tr title="Alfajor Blanco y negro">
+                            <td>1293045837</td>
+                            <td>Alfajor Blanco y negro</td>
+                            <td>Kiosko</td>
+                            <td>10</td>
+                            <td>10</td>
+                            <td>60</td>
+                            <td>16</td>
+                            <td>
+                                <button><fa-icon [icon]="icons[1]"></fa-icon> Editar</button>
+                                <button><fa-icon [icon]="icons[2]"></fa-icon> Borrar</button>
+                            </td>
+                        </tr>
+                        <tr title="Alfajor Blanco y negro">
+                            <td>1293045837</td>
+                            <td>Alfajor Blanco y negro</td>
+                            <td>Kiosko</td>
+                            <td>10</td>
+                            <td>10</td>
+                            <td>60</td>
+                            <td>16</td>
+                            <td>
+                                <button><fa-icon [icon]="icons[1]"></fa-icon> Editar</button>
+                                <button><fa-icon [icon]="icons[2]"></fa-icon> Borrar</button>
+                            </td>
+                        </tr>
+                        <tr title="Alfajor Blanco y negro triple con dulce de leche">
+                            <td>1293045837</td>
+                            <td>Alfajor Blanco y negro triple con dulce de leche</td>
+                            <td>Kiosko</td>
+                            <td>10</td>
+                            <td>10</td>
+                            <td>60</td>
+                            <td>16</td>
+                            <td>
+                                <button><fa-icon [icon]="icons[1]"></fa-icon> Editar</button>
+                                <button><fa-icon [icon]="icons[2]"></fa-icon> Borrar</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>                
+            </div>
+            <div class="footer">
+                <div class="prev"><a><fa-icon [icon]="icons[3]"></fa-icon> Anterior</a></div>
+                <div class="next"><a>Siguiente <fa-icon [icon]="icons[4]"></fa-icon></a></div>
+            </div>            
+        </div>        
+    </div>
 </div>
+<app-form-product></app-form-product>
+

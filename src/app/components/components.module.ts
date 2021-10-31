@@ -8,6 +8,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { TopbarComponent } from './topbar/topbar.component';
 import { SalesChartComponent } from './sales-chart/sales-chart.component';
 import { RouterModule } from '@angular/router';
+import { FormProductComponent } from './form-product/form-product.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -15,18 +17,22 @@ import { RouterModule } from '@angular/router';
   declarations: [
     NavbarComponent,
     TopbarComponent,
-    SalesChartComponent
+    SalesChartComponent,
+    FormProductComponent
   ],
   imports: [
     CommonModule,
     FontAwesomeModule,
     ChartsModule,
-    RouterModule
+    RouterModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   exports: [
     NavbarComponent,
     TopbarComponent,
-    SalesChartComponent
+    SalesChartComponent,
+    FormProductComponent
   ]
 })
 export class ComponentsModule { }

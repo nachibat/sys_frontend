@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { faBookOpen, faHome, faArchive, faMoneyBillAlt, faClipboardList, faUserAlt, faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
 import { NavbarService } from 'src/app/services/navbar.service';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-navbar',
@@ -14,7 +15,8 @@ export class NavbarComponent implements OnInit {
   isOpen: boolean = false;
 
   constructor(private navbarService: NavbarService,
-              private router: Router) { }
+              private router: Router,
+              private userService: UserService) { }
 
   ngOnInit(): void {
     this.isOpen = this.navbarService.isOpen;
@@ -26,6 +28,7 @@ export class NavbarComponent implements OnInit {
   logout(): void {
     localStorage.removeItem('token');
     this.router.navigate(['/login']);
+    this.userService.validated = false;
   }
 
 }

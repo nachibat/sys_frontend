@@ -12,7 +12,7 @@ import { LoginResponse, User, UserResponse } from '../interfaces/user.response';
 export class UserService {
 
   private url: string = environment.URL;
-  private validated: boolean = false;
+  public validated: boolean = false;
   public user!: User;
 
   constructor(private http: HttpClient,
@@ -28,7 +28,6 @@ export class UserService {
 
   validateToken(): Promise<boolean> {
     if (this.validated) {
-      console.log('salteo verificacion');
       return Promise.resolve(true);
     }
     const token = this.getToken();
@@ -44,7 +43,6 @@ export class UserService {
         if (resp.ok) {
           this.validated = true;
           this.user = resp.user;
-          console.log('verifico correctamente');
           resolve(true);
         } else {
           resolve(false);
