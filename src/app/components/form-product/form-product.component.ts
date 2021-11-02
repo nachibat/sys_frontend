@@ -1,7 +1,8 @@
 import { Component, ElementRef, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { faCalculator, faSave, faTimes } from '@fortawesome/free-solid-svg-icons';
-import { UserService } from 'src/app/services/user.service';
+import { ToastrService } from 'ngx-toastr';
+import { ProductService } from 'src/app/services/product.service';
 
 @Component({
   selector: 'app-form-product',
@@ -23,10 +24,11 @@ export class FormProductComponent implements OnInit {
   public icons = [faCalculator, faSave, faTimes];
   public formProduct: FormGroup;
 
-  constructor(private userService: UserService,
+  constructor(public productService: ProductService,
+              private formBuilder: FormBuilder,
               private modal: ElementRef,
               private container: ElementRef,
-              private formBuilder: FormBuilder) {
+              private toastService: ToastrService) {
     this.formProduct = this.formBuilder.group({
       barcode: [{ value: '', disabled: false }, Validators.required],
       description: [{ value: '', disabled: false }, Validators.required],
@@ -41,15 +43,6 @@ export class FormProductComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  public openModal(): void {
-    const myModal = this.modal.nativeElement.querySelector("#modal");
-    const myContainer = this.container.nativeElement.querySelector('#container');
-    myModal.classList.remove('closed');
-    myModal.classList.add('opened');
-    myModal.classList.add('fadeIn');    
-    myContainer.classList.add('slideIn');
-  }
-
   public closeModal(): void {
     const myModal = this.modal.nativeElement.querySelector("#modal");
     const myContainer = this.container.nativeElement.querySelector('#container');
@@ -58,10 +51,7 @@ export class FormProductComponent implements OnInit {
     myContainer.classList.remove('slideIn');
     myContainer.classList.add('slideOut');
     setTimeout(() => {
-      myModal.classList.remove('opened');
-      myModal.classList.remove('fadeOut');
-      myModal.classList.add('closed');
-      myContainer.classList.remove('slideOut');
+      this.productService.openForm = false;
     }, 450);
   }
 
@@ -77,6 +67,7 @@ export class FormProductComponent implements OnInit {
       return;
     }
     const profit = (cost * per_profit) / 100;
+    this.validate.pric = false;
     this.formProduct.controls.price.setValue(cost + profit);
   }
 
@@ -121,12 +112,24 @@ export class FormProductComponent implements OnInit {
       return;
     }
     this.disabledInputs();
-    setTimeout(() => {
-      console.log(this.formProduct.value);
+    this.productService.createProduct(this.formProduct.value).subscribe(resp => {
+      this.toastService.success('Producto agregado correctamente', 'Información')
       this.cleanForm();
       this.enabledInputs();
       this.closeModal();
-    }, 1500);
+    }, err => {
+      this.enabledInputs();      
+      if (err.status === 401) {
+        this.toastService.error('Problemas de autorizacion. Cerrar sesión y volver a iniciar!', 'Error!', { timeOut: 7000 });
+        console.log(err.error);
+      } if (err.error.detail.errors.barcode.message === 'barcode must be unique') {
+        this.toastService.error('Código de barra repetido', 'Error!', { timeOut: 7000 });
+        console.log(err.error);
+      } else {
+        this.toastService.error('Problemas con el servidor', 'Error!', { timeOut: 7000 });
+        console.log(err);
+      }
+    });
   }
 
 }

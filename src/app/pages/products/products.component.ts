@@ -1,8 +1,9 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { faChevronLeft, faChevronRight, faEdit, faPlus, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { FormProductComponent } from 'src/app/components/form-product/form-product.component';
 import { NavbarService } from 'src/app/services/navbar.service';
+import { ProductService } from 'src/app/services/product.service';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
@@ -10,8 +11,8 @@ import { UserService } from 'src/app/services/user.service';
   templateUrl: './products.component.html',
   styleUrls: ['./products.component.css']
 })
-export class ProductsComponent implements OnInit {
-
+export class ProductsComponent implements OnInit, OnDestroy {
+  
   public icons = [faPlus, faEdit, faTrash, faChevronLeft, faChevronRight];
   public isOpen: boolean = false;
   public admin = false;
@@ -19,7 +20,7 @@ export class ProductsComponent implements OnInit {
 
   constructor(private navbarService: NavbarService,
               private userService: UserService,
-              public formProduct: FormProductComponent) {
+              public productService: ProductService) {
   }
 
   ngOnInit(): void {
@@ -34,10 +35,13 @@ export class ProductsComponent implements OnInit {
     }
   }
 
+  ngOnDestroy(): void {
+    
+  }
+
   addProduct(): void {    
     if (!this.admin) { return; }
-    console.log('abrir');
-    this.formProduct.openModal();
+    this.productService.openForm = true;
   }
 
 }
