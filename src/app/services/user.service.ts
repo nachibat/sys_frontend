@@ -45,8 +45,12 @@ export class UserService {
           this.user = resp.user;
           resolve(true);
         } else {
+          this.router.navigate(['/login']);
           resolve(false);
         }
+      }, err => {
+        this.router.navigate(['/login']);
+        resolve(false);
       });
     });
   }

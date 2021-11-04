@@ -2,7 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { Product, ProductResponse } from '../interfaces/product.response';
+import { Product, ProductDeletedResponse, ProductListResponse, ProductModifiedResponse, ProductResponse } from '../interfaces/product.response';
 
 @Injectable({
   providedIn: 'root'
@@ -10,14 +10,34 @@ import { Product, ProductResponse } from '../interfaces/product.response';
 export class ProductService {
 
   public openForm = false;
+  public edit = false;
+  public product!: Product;
   private url: string = environment.URL;
 
   constructor(private http: HttpClient) { }
+
+  getProducts(from: number = 0, limit: number = 11, order: string = 'description'): Observable<ProductListResponse> {
+    const token = localStorage.getItem('token') || '';
+    const headers = new HttpHeaders({ Authorization: token });
+    return this.http.get<ProductListResponse>(`${this.url}/product/list?from=${from}&limit=${limit}&order=${order}`, { headers });
+  }
 
   createProduct(product: Product): Observable<ProductResponse> {
     const token = localStorage.getItem('token') || '';
     const headers = new HttpHeaders({ Authorization: token });    
     return this.http.post<ProductResponse>(`${this.url}/product`, product, { headers });
+  }
+
+  modifyProduct(id: string, product: Product): Observable<ProductModifiedResponse> {
+    const token = localStorage.getItem('token') || '';
+    const headers = new HttpHeaders({ Authorization: token });
+    return this.http.put<ProductModifiedResponse>(`${this.url}/product/${id}`, product, { headers });
+  }
+
+  deleteProduct(id: string): Observable<ProductDeletedResponse> {
+    const token = localStorage.getItem('token') || '';
+    const headers = new HttpHeaders({ Authorization: token });
+    return this.http.delete<ProductDeletedResponse>(`${this.url}/product/${id}`, { headers });
   }
 
 }

@@ -74,6 +74,14 @@ input[type=number] {
     color: var(--blue);
 }
 
+.closed {
+    display: none;
+}
+
+.opened {
+    display: block;
+}
+
 /**** Responsive design ****/
 
 @media (max-width: 1024px) {

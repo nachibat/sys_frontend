@@ -1,7 +1,8 @@
-<div *ngIf="productService.openForm" id="modal" class="modal opened fadeIn">
+<div id="modal" class="modal opened fadeIn">
     <div id="container" class="container slideIn">
         <div class="header">
-            <h2>Agregar producto</h2>
+            <h2 *ngIf="!productService.edit">Agregar producto</h2>
+            <h2 *ngIf="productService.edit">Modificar producto</h2>            
         </div>
         <form [formGroup]="formProduct" (ngSubmit)="formSubmit()">
             <label [class.error]="validate.code" for="barcode">Código<input (change)="validate.code=false" type="text" name="barcode" formControlName="barcode"></label>

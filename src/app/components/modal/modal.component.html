@@ -1,0 +1,14 @@
+<div *ngIf="modalService.confirmationModal" id="modalConfirmation" class="modal opened fadeIn">
+    <div id="container" class="container slideIn">
+        <div class="header">
+            <h3>Confirmación</h3>
+        </div>
+        <div class="body">
+            <p>¿Está seguro que desea eliminar el producto?</p>
+        </div>
+        <div class="footer">
+            <button (click)="confirmModal()">Confirmar</button>
+            <button (click)="closeModal()">Cancelar</button>
+        </div>
+    </div>
+</div>

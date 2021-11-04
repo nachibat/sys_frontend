@@ -10,6 +10,7 @@ import { SalesChartComponent } from './sales-chart/sales-chart.component';
 import { RouterModule } from '@angular/router';
 import { FormProductComponent } from './form-product/form-product.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ModalComponent } from './modal/modal.component';
 
 
 
@@ -18,7 +19,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     NavbarComponent,
     TopbarComponent,
     SalesChartComponent,
-    FormProductComponent
+    FormProductComponent,
+    ModalComponent
   ],
   imports: [
     CommonModule,
@@ -32,7 +34,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     NavbarComponent,
     TopbarComponent,
     SalesChartComponent,
-    FormProductComponent
+    FormProductComponent,
+    ModalComponent
   ]
 })
 export class ComponentsModule { }

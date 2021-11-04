@@ -1,12 +1,3 @@
-
-.closed {
-    display: none;
-}
-
-.opened {
-    display: block;
-}
-
 .modal {
     width: 100%;
     height: 100%;
@@ -16,34 +7,6 @@
     left: 0;
     overflow: hidden;
     background: rgba(0, 0, 0, 0.6);    
-}
-
-.fadeIn {
-    animation-name: fadeIn;
-    animation-duration: 0.5s;
-}
-
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-    }
-    to {
-        opacity: 1;
-    }
-}
-
-.fadeOut {
-    animation-name: fadeOut;
-    animation-duration: 0.5s;
-}
-
-@keyframes fadeOut {
-    from {
-        opacity: 1;
-    }
-    to {
-        opacity: 0;
-    }
 }
 
 .modal .container {
@@ -57,34 +20,6 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);    
-}
-
-.slideIn {
-    animation-name: slideIn;
-    animation-duration: 0.5s;
-}
-
-@keyframes slideIn {
-    from {
-        top: -100%;
-    }
-    to {
-        top: 50%;
-    }
-}
-
-.slideOut {
-    animation-name: slideOut;
-    animation-duration: 0.5s;
-}
-
-@keyframes slideOut {
-    from {
-        top: 50%;
-    }
-    to {
-        top: -100%;
-    }
 }
 
 .modal .container .header {
