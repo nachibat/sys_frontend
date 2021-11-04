@@ -8,7 +8,25 @@
         </div>
         <div class="footer">
             <button (click)="confirmModal()">Confirmar</button>
-            <button (click)="closeModal()">Cancelar</button>
+            <button (click)="closeModal('#modalConfirmation', '#container')">Cancelar</button>
         </div>
+    </div>
+</div>
+
+<div *ngIf="modalService.addModal" id="addModal" class="modal opened fadeIn">
+    <div id="addContainer" class="container slideIn">
+        <form (submit)="confirmAddQuantity()">
+            <div class="header">
+                <h3>Agregar Cantidad</h3>
+            </div>
+            <div class="body">
+                <p>Ingrese cantidad al producto</p>
+                <p><input type="number" name="quantity" [(ngModel)]="data"></p>
+            </div>
+            <div class="footer">
+                <button type="submit">Confirmar</button>
+                <button type="button" (click)="closeModal('#addModal', '#addContainer')">Cancelar</button>
+            </div>
+        </form>
     </div>
 </div>

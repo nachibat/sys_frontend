@@ -13,12 +13,12 @@
                     <thead>
                         <tr>
                             <td>Código</td>
-                            <td>Descripción</td>
-                            <td>Categoría</td>
-                            <td>Cantidad</td>
+                            <td (click)="reorderList('description')" title="Reordenar por descripción">Descripción <fa-icon [icon]="icons[5]"></fa-icon></td>
+                            <td (click)="reorderList('category')" title="Reordenar por categoría">Categoría <fa-icon [icon]="icons[5]"></fa-icon></td>
+                            <td (click)="reorderList('quantity')" title="Reordenar por cantidad">Cantidad <fa-icon [icon]="icons[5]"></fa-icon></td>
                             <td>Costo</td>
                             <td>Ganancia %</td>
-                            <td>Precio final</td>
+                            <td (click)="reorderList('price')" title="Reordenar por precio final">Precio final <fa-icon [icon]="icons[5]"></fa-icon></td>
                             <td>Acciones</td>
                         </tr>
                     </thead>
@@ -32,8 +32,9 @@
                             <td>{{ product.percent_profit || '-' }}</td>
                             <td>{{ product.price }}</td>
                             <td>
-                                <button (click)="edit(product)"><fa-icon [icon]="icons[1]"></fa-icon> Editar</button>
-                                <button (click)="remove(product._id)"><fa-icon [icon]="icons[2]"></fa-icon> Borrar</button>
+                                <button title="Agregar cantidad a {{ product.description }}" (click)="addQuantity(product._id, product.quantity)"><fa-icon [icon]="icons[0]"></fa-icon></button>
+                                <button title="Editar {{ product.description }}" (click)="edit(product)"><fa-icon [icon]="icons[1]"></fa-icon></button>
+                                <button title="Borrar {{ product.description }}" (click)="remove(product._id)"><fa-icon [icon]="icons[2]"></fa-icon></button>
                             </td>
                         </tr>                        
                     </tbody>

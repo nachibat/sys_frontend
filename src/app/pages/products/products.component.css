@@ -39,6 +39,13 @@
     font-weight: 600;
 }
 
+.tables .list table thead td:nth-child(2),
+.tables .list table thead td:nth-child(3),
+.tables .list table thead td:nth-child(4),
+.tables .list table thead td:nth-child(7) {
+    cursor: pointer;
+}
+
 .tables .list table tr {
     color: var(--black1);
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
@@ -91,13 +98,18 @@
 }
 
 .tables .list table tbody tr td:last-child button {
-    padding: 2px 5px;
+    padding: 7px 9px;
     border-radius: 6px;
     color: var(--white);
     cursor: pointer;
 }
 
 .tables .list table tbody tr td:last-child button:nth-child(1) {
+    background: var(--success);
+    border: 1px solid var(--success);
+}
+
+.tables .list table tbody tr td:last-child button:nth-child(2) {
     background: var(--warning);
     border: 1px solid var(--warning);
 }

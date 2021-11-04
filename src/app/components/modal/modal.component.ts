@@ -9,6 +9,7 @@ import { ModalService } from 'src/app/services/modal.service';
 export class ModalComponent implements OnInit {
 
   public confirmationModal: boolean = false;
+  public data: any = null;
 
   constructor(private modal: ElementRef,
               private container: ElementRef,
@@ -17,21 +18,27 @@ export class ModalComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  public closeModal(): void {
-    const modal = this.modal.nativeElement.querySelector("#modalConfirmation");
-    const container = this.container.nativeElement.querySelector("#container");
+  public closeModal(id1: string, id2: string): void {
+    const modal = this.modal.nativeElement.querySelector(id1);
+    const container = this.container.nativeElement.querySelector(id2);
     modal.classList.remove('fadeIn');
     modal.classList.add('fadeOut');
     container.classList.remove('slideIn');
     container.classList.add('slideOut');
     setTimeout(() => {
       this.modalService.confirmationModal = false;
+      this.modalService.addModal = false;
     }, 450);  
   }
 
   public confirmModal(): void {
     this.modalService.callback();
-    this.closeModal();
+    this.closeModal('#modalConfirmation', '#container');
+  }
+
+  public confirmAddQuantity(): void {
+    this.modalService.callback(this.data);
+    this.closeModal('#addModal', '#addContainer');
   }
 
 }

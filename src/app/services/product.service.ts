@@ -28,7 +28,7 @@ export class ProductService {
     return this.http.post<ProductResponse>(`${this.url}/product`, product, { headers });
   }
 
-  modifyProduct(id: string, product: Product): Observable<ProductModifiedResponse> {
+  modifyProduct(id: string, product: any): Observable<ProductModifiedResponse> {
     const token = localStorage.getItem('token') || '';
     const headers = new HttpHeaders({ Authorization: token });
     return this.http.put<ProductModifiedResponse>(`${this.url}/product/${id}`, product, { headers });

@@ -163,14 +163,20 @@ export class FormProductComponent implements OnInit {
     if (err.status === 401) {
       this.toastService.error('Problemas de autorizacion. Cerrar sesión y volver a iniciar!', 'Error!', { timeOut: 7000 });
       console.log(err.error);
-    } if (err.status === 400) {
+    } 
+    if (err.status === 400) {
       if (err.error.detail.errors.barcode.message === 'barcode must be unique') {
         this.toastService.error('Código de barra repetido', 'Error!', { timeOut: 7000 });
         console.log(err.error);
       }
     } else {
-      this.toastService.error('Problemas con el servidor', 'Error!', { timeOut: 7000 });
-      console.log(err);
+      if (err.status === 403) {
+        this.toastService.error('Problemas de autorizacion. El usuario no tiene permisos!', 'Error!', { timeOut: 7000 });
+        console.log(err.error);
+      } else {
+        this.toastService.error('Problemas con el servidor', 'Error!', { timeOut: 7000 });
+        console.log(err);
+      }
     }
   }
 

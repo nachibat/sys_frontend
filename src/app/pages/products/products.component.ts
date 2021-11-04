@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { faChevronLeft, faChevronRight, faEdit, faPlus, faTrash } from '@fortawesome/free-solid-svg-icons';
+import { faChevronLeft, faChevronRight, faEdit, faPlus, faSort, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { ToastrService } from 'ngx-toastr';
 import { Product } from 'src/app/interfaces/product.response';
 import { ModalService } from 'src/app/services/modal.service';
@@ -14,7 +14,7 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class ProductsComponent implements OnInit {
   
-  public icons = [faPlus, faEdit, faTrash, faChevronLeft, faChevronRight];
+  public icons = [faPlus, faEdit, faTrash, faChevronLeft, faChevronRight, faSort];
   public isOpen: boolean = false;
   public admin = false;
   public products: Product[] = [];
@@ -86,23 +86,55 @@ export class ProductsComponent implements OnInit {
     this.modalService.confirmationModal = true;
     this.modalService.execCallback(() => {
       this.productService.deleteProduct(id).subscribe(resp => {
+        console.log(resp);
         this.toastService.success('Se eliminó el producto correctamente', 'Información');
         this.loadProducts();
       }, err => {
-        if (err.status === 401) {
-          this.toastService.error('Problemas de autorizacion. Cerrar sesión y volver a iniciar!', 'Error!', { timeOut: 7000 });
-          console.log(err.error);
-        } else {
-          this.toastService.error('Problemas con el servidor', 'Error!', { timeOut: 7000 });
-          console.log(err);
-        }
+        this.handleError(err);
       });      
+    });
+  }
+
+  addQuantity(id: string, quantity: number) {
+    this.modalService.addModal = true;
+    this.modalService.execCallback((data: any) => {
+      if (data === null) { return; }
+      this.productService.modifyProduct(id, { quantity: data + quantity }).subscribe(resp => {
+        this.toastService.success('Se incrementó el stock correctamente', 'Información');
+        this.loadProducts();
+      }, err => {
+        this.handleError(err);
+      });
     });
   }
 
   receiveMessage($event: any): void {
     if ($event) {
       this.loadProducts();
+    }
+  }
+
+  reorderList(orderby: string): void {
+    if (orderby === this.order) {
+      this.order = '-' + orderby;
+      this.from = 0;
+    } else {
+      this.order = orderby;
+    }
+    this.loadProducts();
+  }
+
+  handleError(err: any): void {
+    if (err.status === 401) {
+      this.toastService.error('Problemas de autorizacion. Cerrar sesión y volver a iniciar!', 'Error!', { timeOut: 7000 });
+      console.log(err.error);
+    } 
+    if (err.status === 403) {
+      this.toastService.error('Problemas de autorizacion. El usuario no tiene permisos!', 'Error!', { timeOut: 7000 });
+      console.log(err.error);
+    } else {
+      this.toastService.error('Problemas con el servidor', 'Error!', { timeOut: 7000 });
+      console.log(err);
     }
   }
 
