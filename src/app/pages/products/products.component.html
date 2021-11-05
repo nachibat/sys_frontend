@@ -1,7 +1,7 @@
 <app-navbar></app-navbar>
 <div class="main" [ngClass]="{'wide-main': isOpen}">
     <app-topbar></app-topbar>
-    <div class="container">
+    <div class="container" [ngClass]="{'loading': productService.loading}">
         <div class="actions"></div>
         <div class="tables">
             <div class="list">

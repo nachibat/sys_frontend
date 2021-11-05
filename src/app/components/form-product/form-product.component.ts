@@ -119,6 +119,7 @@ export class FormProductComponent implements OnInit {
       return;
     }
     this.disabledInputs();
+    this.productService.loading = true;
     if (this.productService.edit) {
       this.productService.modifyProduct(this.productService.product._id, this.formProduct.value).subscribe(resp => {
         this.success();
@@ -151,6 +152,7 @@ export class FormProductComponent implements OnInit {
     } else {
       this.toastService.success('Producto agregado correctamente', 'Información');
     }
+    this.productService.loading = false;
     this.productService.edit = false;
     this.cleanForm();
     this.enabledInputs();
@@ -159,6 +161,7 @@ export class FormProductComponent implements OnInit {
   }
 
   handleError(err: any): void {
+    this.productService.loading = false;
     this.enabledInputs();
     if (err.status === 401) {
       this.toastService.error('Problemas de autorizacion. Cerrar sesión y volver a iniciar!', 'Error!', { timeOut: 7000 });

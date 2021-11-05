@@ -9,9 +9,10 @@ import { Product, ProductDeletedResponse, ProductListResponse, ProductModifiedRe
 })
 export class ProductService {
 
-  public openForm = false;
-  public edit = false;
+  public openForm: boolean = false;
+  public edit: boolean = false;
   public product!: Product;
+  public loading: boolean = false;
   private url: string = environment.URL;
 
   constructor(private http: HttpClient) { }

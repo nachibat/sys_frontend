@@ -53,6 +53,7 @@ export class ProductsComponent implements OnInit {
   }
 
   loadProducts(): void {
+    this.productService.loading = true;
     this.productService.getProducts(this.from, this.limit, this.order).subscribe(resp => {
       this.products = resp.listProducts;
       if (this.products.length === this.limit && this.total != resp.total) {
@@ -60,6 +61,7 @@ export class ProductsComponent implements OnInit {
       } else {
         this.next = false;
       }
+      this.productService.loading = false;
     });
   }
 
@@ -83,8 +85,9 @@ export class ProductsComponent implements OnInit {
     this.productService.product = product;
   }
   remove(id: string): void {
-    this.modalService.confirmationModal = true;
+    this.modalService.confirmationModal = true;    
     this.modalService.execCallback(() => {
+      this.productService.loading = true;
       this.productService.deleteProduct(id).subscribe(resp => {
         console.log(resp);
         this.toastService.success('Se eliminó el producto correctamente', 'Información');
@@ -99,6 +102,7 @@ export class ProductsComponent implements OnInit {
     this.modalService.addModal = true;
     this.modalService.execCallback((data: any) => {
       if (data === null) { return; }
+      this.productService.loading = true;
       this.productService.modifyProduct(id, { quantity: data + quantity }).subscribe(resp => {
         this.toastService.success('Se incrementó el stock correctamente', 'Información');
         this.loadProducts();
@@ -125,6 +129,7 @@ export class ProductsComponent implements OnInit {
   }
 
   handleError(err: any): void {
+    this.productService.loading = false;
     if (err.status === 401) {
       this.toastService.error('Problemas de autorizacion. Cerrar sesión y volver a iniciar!', 'Error!', { timeOut: 7000 });
       console.log(err.error);

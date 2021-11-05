@@ -82,6 +82,10 @@ input[type=number] {
     display: block;
 }
 
+.loading {
+    cursor: wait !important;
+}
+
 /**** Responsive design ****/
 
 @media (max-width: 1024px) {
