@@ -52,7 +52,7 @@
         <div class="card-stock">
             <div class="card-header">
                 <h2>Stock mínimo</h2>
-                <a href="#" class="link-btn">Ver todos</a>
+                <a [routerLink]="['/products']" class="link-btn">Ver todos</a>
             </div>
             <table>
                 <thead>
@@ -63,56 +63,15 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>Alfajor Tita Negro</td>
-                        <td>0</td>
-                        <td><span class="status no-stock">Sin stock</span></td>
-                    </tr>
-                    <tr>
-                        <td>Cigarrillo Marlboro Común</td>
-                        <td>0</td>
-                        <td><span class="status no-stock">Sin stock</span></td>
-                    </tr>
-                    <tr>
-                        <td>Gaseosa Coca Cola 500ml</td>
-                        <td>3</td>
-                        <td><span class="status minimo">Stock mínimo</span></td>
-                    </tr>
-                    <tr>
-                        <td>Gomitas Mogul Bolsita</td>
-                        <td>4</td>
-                        <td><span class="status minimo">Stock mínimo</span></td>
-                    </tr>
-                    <tr>
-                        <td>Energizante Speed</td>
-                        <td>4</td>
-                        <td><span class="status minimo">Stock mínimo</span></td>
-                    </tr>
-                    <tr>
-                        <td>Jugo Baggio Manzana 1L</td>
-                        <td>5</td>
-                        <td><span class="status stock">Stock</span></td>
-                    </tr>
-                    <tr>
-                        <td>Chupetin Pico Dulce</td>
-                        <td>5</td>
-                        <td><span class="status stock">Stock</span></td>
-                    </tr>
-                    <tr>
-                        <td>Caramelos Media Hora</td>
-                        <td>5</td>
-                        <td><span class="status stock">Stock</span></td>
-                    </tr>
-                    <tr>
-                        <td>Jugo Tang Sobre</td>
-                        <td>6</td>
-                        <td><span class="status stock">Stock</span></td>
-                    </tr>
-                    <tr>
-                        <td>Galletita Oreo</td>
-                        <td>6</td>
-                        <td><span class="status stock">Stock</span></td>
-                    </tr>
+                    <tr *ngFor="let product of products">
+                        <td>{{ product.description }}</td>
+                        <td>{{ product.quantity }}</td>
+                        <td>
+                            <span *ngIf="product.quantity === 0" class="status no-stock">Sin stock</span>
+                            <span *ngIf="product.quantity > 0 && product.quantity <= 4" class="status minimo">Stock mínimo</span>
+                            <span *ngIf="product.quantity > 4" class="status stock">Stock</span>
+                        </td>
+                    </tr>                    
                 </tbody>
             </table>
         </div>

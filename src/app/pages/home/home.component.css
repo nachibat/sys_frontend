@@ -113,6 +113,17 @@
     text-align: end;
 }
 
+.details .card-stock table tr td:nth-child(1) {
+    max-width: 150px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.details .card-stock table tr td:nth-child(1):hover {
+    border-bottom: 1px solid var(--blue);
+}
+
 .details .card-stock table tr td:nth-child(2) {
     text-align: center;
 }

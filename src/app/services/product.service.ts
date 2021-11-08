@@ -31,6 +31,12 @@ export class ProductService {
     return this.http.get<ProductListResponse>(`${this.url}/product/search?from=${from}&limit=${limit}&field=${field}&term=${term}`, { headers });
   }
 
+  stockProducts(from: number = 0, limit: number = 10, order: string = 'quantity', category: string = 'kiosko'): Observable<ProductListResponse> {
+    const token = localStorage.getItem('token') || '';
+    const headers = new HttpHeaders({ Authorization: token });
+    return this.http.get<ProductListResponse>(`${this.url}/product/stock?from=${from}&limit=${limit}&order=${order}&category=${category}`, { headers });
+  }
+
   createProduct(product: Product): Observable<ProductResponse> {
     const token = localStorage.getItem('token') || '';
     const headers = new HttpHeaders({ Authorization: token });    
