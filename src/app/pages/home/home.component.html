@@ -63,6 +63,9 @@
                     </tr>
                 </thead>
                 <tbody>
+                    <tr>
+                        <td *ngIf="products.length === 0" >No hay resultados</td>
+                    </tr>
                     <tr *ngFor="let product of products">
                         <td>{{ product.description }}</td>
                         <td>{{ product.quantity }}</td>

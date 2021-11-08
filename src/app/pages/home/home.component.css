@@ -120,8 +120,8 @@
     text-overflow: ellipsis;
 }
 
-.details .card-stock table tr td:nth-child(1):hover {
-    border-bottom: 1px solid var(--blue);
+.details .card-stock table tbody tr:hover td:nth-child(1) {
+    border-top: 1px solid var(--blue);
 }
 
 .details .card-stock table tr td:nth-child(2) {
