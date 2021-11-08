@@ -23,6 +23,12 @@ export class ProductService {
     return this.http.get<ProductListResponse>(`${this.url}/product/list?from=${from}&limit=${limit}&order=${order}`, { headers });
   }
 
+  searchProducts(from: number = 0, limit: number = 5, field: string = 'description', term: any = ''): Observable<ProductListResponse> {
+    const token = localStorage.getItem('token') || '';
+    const headers = new HttpHeaders({ Authorization: token });
+    return this.http.get<ProductListResponse>(`${this.url}/product/search?from=${from}&limit=${limit}&field=${field}&term=${term}`, { headers });
+  }
+
   createProduct(product: Product): Observable<ProductResponse> {
     const token = localStorage.getItem('token') || '';
     const headers = new HttpHeaders({ Authorization: token });    

@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { faChevronLeft, faChevronRight, faEdit, faPlus, faSort, faTrash } from '@fortawesome/free-solid-svg-icons';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { faChevronLeft, faChevronRight, faEdit, faPlus, faRedoAlt, faSort, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { ToastrService } from 'ngx-toastr';
 import { Product } from 'src/app/interfaces/product.response';
 import { ModalService } from 'src/app/services/modal.service';
@@ -12,18 +12,20 @@ import { UserService } from 'src/app/services/user.service';
   templateUrl: './products.component.html',
   styleUrls: ['./products.component.css']
 })
-export class ProductsComponent implements OnInit {
+export class ProductsComponent implements OnInit, OnDestroy {
   
-  public icons = [faPlus, faEdit, faTrash, faChevronLeft, faChevronRight, faSort];
+  public icons = [faPlus, faEdit, faTrash, faChevronLeft, faChevronRight, faSort, faRedoAlt];
   public isOpen: boolean = false;
   public admin = false;
   public products: Product[] = [];
 
   private from: number = 0;
-  private limit: number = 11;
+  private limit: number = 9;
   private order: string = 'description';
   private next: boolean = true;
   private total!: number;
+  private searchMode: boolean = false;
+  private searchParams: string[] = [];
 
 
   constructor(private navbarService: NavbarService,
@@ -45,6 +47,10 @@ export class ProductsComponent implements OnInit {
       this.admin = false;
     }
     this.loadProducts();
+  }
+
+  ngOnDestroy(): void {
+    this.searchMode = false;
   }
 
   addProduct(): void {    
@@ -69,14 +75,22 @@ export class ProductsComponent implements OnInit {
     if (!this.next) { return; }
     this.from += this.limit;    
     this.total += this.limit;    
-    this.loadProducts();
+    if (this.searchMode) {
+      this.searchFor(this.searchParams);
+    } else {
+      this.loadProducts();
+    }
   }
 
   listPrev(): void {
     if (this.from === 0) { return; }
     this.from -= this.limit;
     this.total -= this.limit;
-    this.loadProducts();
+    if (this.searchMode) {
+      this.searchFor(this.searchParams);
+    } else {
+      this.loadProducts();
+    }
   }
 
   edit(product: Product): void {
@@ -141,6 +155,29 @@ export class ProductsComponent implements OnInit {
       this.toastService.error('Problemas con el servidor', 'Error!', { timeOut: 7000 });
       console.log(err);
     }
+  }
+
+  searchFor($event: any): void {
+    this.searchMode = true;
+    this.searchParams = $event;
+    this.productService.loading = true;
+    this.productService.searchProducts(this.from, this.limit, $event[0], $event[1]).subscribe(resp => {
+      this.products = resp.listProducts;
+      if (this.products.length === this.limit && this.total != resp.total) {
+        this.next = true;
+      } else {
+        this.next = false;
+      }
+      this.productService.loading = false;
+    });
+  }
+
+  reloadList(): void {
+    this.searchMode = false;
+    this.from = 0;
+    this.limit = 9;
+    this.order = 'description'
+    this.loadProducts();
   }
 
 }

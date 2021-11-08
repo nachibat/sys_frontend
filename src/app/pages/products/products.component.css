@@ -29,6 +29,16 @@
     box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08);
 }
 
+.tables .list .card-header .buttons {
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.tables .list .card-header .buttons a:nth-child(1) {
+    margin-right: 5px;
+}
+
 .tables .list table {
     width: 100%;
     border-collapse: collapse;
@@ -144,4 +154,36 @@
     cursor: pointer;
     color: var(--black2);
     text-decoration: none;
+}
+
+/**** Responsive design ****/
+
+@media (max-width: 1024px) {
+    .tables .list table tr td:nth-child(1),
+    .tables .list table tr td:nth-child(4),
+    .tables .list table tr td:nth-child(5),
+    .tables .list table tr td:nth-child(6) {
+        display: none;
+    }
+}
+
+@media (max-width: 450px) {
+    .actions,
+    .tables .list .card-header .buttons a span,
+    .tables .list table tr td:nth-child(3),
+    .tables .list table tr td:nth-child(7) {
+        display: none;
+    }
+
+    .tables .list {
+        overflow: auto;
+        padding: 5px;
+        margin: 0px;
+        height: 600px;
+        border-radius: 0px;
+    }
+
+    .tables .list table tr td:nth-child(8) {
+        min-width: 100px !important;
+    }
 }

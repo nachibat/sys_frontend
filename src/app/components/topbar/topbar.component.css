@@ -43,12 +43,14 @@
     border: 1px solid var(--black2);
 }
 
-.search label fa-icon {
+.search label button  {
     position: absolute;
     top: 0;
     left: 10px;
     font-size: 1.2em;
     color: var(--black2);
+    border: none;
+    background: var(--white);
 }
 
 .user {
