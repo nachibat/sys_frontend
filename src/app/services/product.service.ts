@@ -13,6 +13,8 @@ export class ProductService {
   public edit: boolean = false;
   public product!: Product;
   public loading: boolean = false;
+  public search: boolean = false;
+  public paramsSearch: string[] = [];
   private url: string = environment.URL;
 
   constructor(private http: HttpClient) { }

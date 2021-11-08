@@ -46,11 +46,17 @@ export class ProductsComponent implements OnInit, OnDestroy {
     } else {
       this.admin = false;
     }
-    this.loadProducts();
+    if (this.productService.search) {
+      this.searchFor(this.productService.paramsSearch);
+    } else {
+      this.loadProducts();
+    }
   }
 
   ngOnDestroy(): void {
     this.searchMode = false;
+    this.productService.search = false;
+    this.productService.paramsSearch = [];
   }
 
   addProduct(): void {    
@@ -174,6 +180,8 @@ export class ProductsComponent implements OnInit, OnDestroy {
 
   reloadList(): void {
     this.searchMode = false;
+    this.productService.search = false;
+    this.productService.paramsSearch = [];
     this.from = 0;
     this.limit = 9;
     this.order = 'description'
