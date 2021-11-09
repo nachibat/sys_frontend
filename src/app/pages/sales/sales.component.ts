@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { faChevronLeft, faPlus, faSearch, faTimes } from '@fortawesome/free-solid-svg-icons';
 import { NavbarService } from 'src/app/services/navbar.service';
 
 @Component({
@@ -9,6 +10,7 @@ import { NavbarService } from 'src/app/services/navbar.service';
 export class SalesComponent implements OnInit {
 
   isOpen: boolean = false;
+  public icons = [faPlus, faTimes, faChevronLeft, faSearch];
 
   constructor(private navbarService: NavbarService) { }
 

@@ -84,10 +84,6 @@
     text-align: center;
 }
 
-.tables .list table tbody tr {
-    transform: 0.5s;
-}
-
 .tables .list table tbody tr:hover td:nth-child(2) {
     border-bottom: 1px solid var(--blue);
 }
