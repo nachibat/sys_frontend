@@ -1,3 +1,7 @@
+.no-events {
+    pointer-events: none;
+}
+
 .container {
     padding: 0;
 }
@@ -55,7 +59,7 @@
 }
 
 .tables table tr td:nth-child(2) {
-    max-width: 120px;
+    max-width: 200px;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -123,9 +127,9 @@
     border: 1px solid var(--white);
 }
 
-.tables .sales table tbody tr:last-child {
+/* .tables .sales table tbody tr:last-child {
     pointer-events: none;
-}
+} */
 
 .tables .sales table tbody tr:last-child td {
     text-align: end !important;
