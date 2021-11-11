@@ -49,7 +49,7 @@ export class SalesComponent implements OnInit {
       this.field = 'description';
     }
     this.message = 'No se encontraron productos!'
-    this.productService.searchProducts(0, 10, this.field, this.term.trim()).subscribe(resp => {
+    this.productService.searchProducts(0, 9, this.field, this.term.trim()).subscribe(resp => {
       if (this.field === 'barcode') {
         this.productsFound = resp.listProducts;
         this.selectItem(0);
@@ -60,6 +60,10 @@ export class SalesComponent implements OnInit {
   }
 
   selectItem(index: number): void {
+    if (this.saleService.items.length >= 9) {
+      this.toastService.warning('Solo se permiten 9 articulos por venta.', 'Advertencia', { timeOut: 7000 });
+      return;
+    }
     this.term = null;
     if (this.productsFound[index].quantity === 0) {
       this.toastService.error('No hay suficiente stock!', 'Error al agregar.', { timeOut: 7000 });

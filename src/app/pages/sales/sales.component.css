@@ -1,3 +1,5 @@
+/**** Main design ****/
+
 .no-events {
     pointer-events: none;
 }
@@ -28,6 +30,7 @@
 .tables .sales,
 .tables .products {
     position: relative;
+    height: 500px;
     background: var(--white);
     padding: 20px;
     box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08);
@@ -161,6 +164,7 @@
     position: relative;
     width: 100%;
     padding: 10px 20px;
+    margin-bottom: 20px;
     background: var(--white);
     text-align: center;
 }
@@ -172,4 +176,25 @@
     border: 1px solid var(--blue);
     border-radius: 40px;
     cursor: pointer;
+}
+
+/**** Responsive design ****/
+
+@media (max-width: 1024px) {
+    .tables {
+        width: 100%;
+        display: flex;
+        flex-direction: column-reverse;
+    }
+}
+
+@media (max-width: 480px) {
+    .tables .sales,
+    .tables .products {
+        width: 100%;
+        overflow: auto;
+    }
+    .header {
+        text-align: center;
+    }
 }

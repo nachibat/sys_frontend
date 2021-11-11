@@ -122,7 +122,7 @@
 }
 
 .details .card-stock table tbody tr:hover td:nth-child(1) {
-    border-top: 1px solid var(--blue);
+    border-bottom: 1px solid var(--blue);
 }
 
 .details .card-stock table tr td:nth-child(2) {
@@ -165,9 +165,6 @@
     .details .card-stock {
         margin-top: 20px;
     }
-}
-
-@media (max-width: 991px) {
 }
 
 @media (max-width: 480px) {
