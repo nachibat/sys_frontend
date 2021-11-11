@@ -5,6 +5,8 @@ import { Injectable } from '@angular/core';
 })
 export class ModalService {
 
+  public title: string = '';
+  public message: string = '';
   public confirmationModal: boolean = false;
   public addModal: boolean = false;
   public callback: any;

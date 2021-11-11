@@ -16,128 +16,29 @@
                             <td>Código</td>
                             <td>Descripción</td>
                             <td>Cantidad</td>
-                            <td>P/U</td>
+                            <td title="Precio unitario">P/U</td>
                             <td>Subtotal</td>
                             <td>Opciones</td>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>123123123</td>
-                            <td>Caramelos Sugus</td>
-                            <td>30</td>
-                            <td>5</td>
-                            <td>$ 150</td>
+                        <tr *ngFor="let item of saleService.items; let i = index" title="{{ item.description }}">
+                            <td>{{ item.barcode }}</td>
+                            <td>{{ item.description }}</td>
+                            <td>{{ item.quantity }}</td>
+                            <td>{{ item.price }}</td>
+                            <td>$ {{ item.subtotal }}</td>
                             <td>
-                                <button title="Incrementar cantidad"><fa-icon [icon]="icons[0]"></fa-icon></button>
-                                <button title="Quitar del listado"><fa-icon [icon]="icons[1]"></fa-icon></button>
+                                <button (click)="increaseItem(i)" title="Incrementar cantidad"><fa-icon [icon]="icons[0]"></fa-icon></button>
+                                <button (click)="removeItem(i)" title="Quitar del listado"><fa-icon [icon]="icons[1]"></fa-icon></button>
                             </td>
-                        </tr>
-                        <tr>
-                            <td>123123123</td>
-                            <td>Caramelos Sugus</td>
-                            <td>30</td>
-                            <td>5</td>
-                            <td>$ 150</td>
-                            <td>
-                                <button title="Incrementar cantidad"><fa-icon [icon]="icons[0]"></fa-icon></button>
-                                <button title="Quitar del listado"><fa-icon [icon]="icons[1]"></fa-icon></button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>123123123</td>
-                            <td>Caramelos Sugus</td>
-                            <td>30</td>
-                            <td>5</td>
-                            <td>$ 150</td>
-                            <td>
-                                <button title="Incrementar cantidad"><fa-icon [icon]="icons[0]"></fa-icon></button>
-                                <button title="Quitar del listado"><fa-icon [icon]="icons[1]"></fa-icon></button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>123123123</td>
-                            <td>Caramelos Sugus</td>
-                            <td>30</td>
-                            <td>5</td>
-                            <td>$ 150</td>
-                            <td>
-                                <button title="Incrementar cantidad"><fa-icon [icon]="icons[0]"></fa-icon></button>
-                                <button title="Quitar del listado"><fa-icon [icon]="icons[1]"></fa-icon></button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>123123123</td>
-                            <td>Caramelos Sugus</td>
-                            <td>30</td>
-                            <td>5</td>
-                            <td>$ 150</td>
-                            <td>
-                                <button title="Incrementar cantidad"><fa-icon [icon]="icons[0]"></fa-icon></button>
-                                <button title="Quitar del listado"><fa-icon [icon]="icons[1]"></fa-icon></button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>123123123</td>
-                            <td>Caramelos Sugus</td>
-                            <td>30</td>
-                            <td>5</td>
-                            <td>$ 150</td>
-                            <td>
-                                <button title="Incrementar cantidad"><fa-icon [icon]="icons[0]"></fa-icon></button>
-                                <button title="Quitar del listado"><fa-icon [icon]="icons[1]"></fa-icon></button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>123123123</td>
-                            <td>Caramelos Sugus</td>
-                            <td>30</td>
-                            <td>5</td>
-                            <td>$ 150</td>
-                            <td>
-                                <button title="Incrementar cantidad"><fa-icon [icon]="icons[0]"></fa-icon></button>
-                                <button title="Quitar del listado"><fa-icon [icon]="icons[1]"></fa-icon></button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>123123123</td>
-                            <td>Caramelos Sugus</td>
-                            <td>30</td>
-                            <td>5</td>
-                            <td>$ 150</td>
-                            <td>
-                                <button title="Incrementar cantidad"><fa-icon [icon]="icons[0]"></fa-icon></button>
-                                <button title="Quitar del listado"><fa-icon [icon]="icons[1]"></fa-icon></button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>123123123</td>
-                            <td>Caramelos Sugus</td>
-                            <td>30</td>
-                            <td>5</td>
-                            <td>$ 150</td>
-                            <td>
-                                <button title="Incrementar cantidad"><fa-icon [icon]="icons[0]"></fa-icon></button>
-                                <button title="Quitar del listado"><fa-icon [icon]="icons[1]"></fa-icon></button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>123123123</td>
-                            <td>Caramelos Sugus</td>
-                            <td>30</td>
-                            <td>5</td>
-                            <td>$ 150</td>
-                            <td>
-                                <button title="Incrementar cantidad"><fa-icon [icon]="icons[0]"></fa-icon></button>
-                                <button title="Quitar del listado"><fa-icon [icon]="icons[1]"></fa-icon></button>
-                            </td>
-                        </tr>
+                        </tr>                        
                         <tr class="no-events">
                             <td></td>
                             <td></td>
                             <td></td>
                             <td>Total</td>
-                            <td>$ 3000</td>
+                            <td>$ {{ saleService.total }}</td>
                         </tr>
                     </tbody>
                 </table>
@@ -163,72 +64,20 @@
                     </thead>
                     <tbody>
                         <tr class="no-events" *ngIf="productsFound.length === 0"><td colspan="4">{{ message }}</td></tr>
-                        <tr *ngFor="let product of productsFound" title="{{ product.description }}">
-                            <td><button title="Añadir {{ product.description }} al listado"><fa-icon [icon]="icons[2]"></fa-icon></button></td>
+                        <tr *ngFor="let product of productsFound; let i = index" title="{{ product.description }}">
+                            <td><button (click)="selectItem(i)" title="Añadir {{ product.description }} al listado"><fa-icon [icon]="icons[2]"></fa-icon></button></td>
                             <td>{{ product.description }}</td>
                             <td>{{ product.quantity }}</td>
                             <td>$ {{ product.price }}</td>
-                        </tr>
-                        <!-- <tr>
-                            <td><button title="Añadir al listado"><fa-icon [icon]="icons[2]"></fa-icon></button></td>
-                            <td>Caramelos Sugus</td>
-                            <td>150</td>
-                            <td>5</td>
-                        </tr>
-                        <tr>
-                            <td><button title="Añadir al listado"><fa-icon [icon]="icons[2]"></fa-icon></button></td>
-                            <td>Caramelos Sugus</td>
-                            <td>150</td>
-                            <td>5</td>
-                        </tr>
-                        <tr>
-                            <td><button title="Añadir al listado"><fa-icon [icon]="icons[2]"></fa-icon></button></td>
-                            <td>Caramelos Sugus</td>
-                            <td>150</td>
-                            <td>5</td>
-                        </tr>
-                        <tr>
-                            <td><button title="Añadir al listado"><fa-icon [icon]="icons[2]"></fa-icon></button></td>
-                            <td>Caramelos Sugus</td>
-                            <td>150</td>
-                            <td>5</td>
-                        </tr>
-                        <tr>
-                            <td><button title="Añadir al listado"><fa-icon [icon]="icons[2]"></fa-icon></button></td>
-                            <td>Caramelos Sugus</td>
-                            <td>150</td>
-                            <td>5</td>
-                        </tr>
-                        <tr>
-                            <td><button title="Añadir al listado"><fa-icon [icon]="icons[2]"></fa-icon></button></td>
-                            <td>Caramelos Sugus</td>
-                            <td>150</td>
-                            <td>5</td>
-                        </tr>
-                        <tr>
-                            <td><button title="Añadir al listado"><fa-icon [icon]="icons[2]"></fa-icon></button></td>
-                            <td>Caramelos Sugus</td>
-                            <td>150</td>
-                            <td>5</td>
-                        </tr>
-                        <tr>
-                            <td><button title="Añadir al listado"><fa-icon [icon]="icons[2]"></fa-icon></button></td>
-                            <td>Caramelos Sugus</td>
-                            <td>150</td>
-                            <td>5</td>
-                        </tr>
-                        <tr>
-                            <td><button title="Añadir al listado"><fa-icon [icon]="icons[2]"></fa-icon></button></td>
-                            <td>Caramelos Sugus</td>
-                            <td>150</td>
-                            <td>5</td>
-                        </tr> -->
+                        </tr>                        
                     </tbody>
                 </table>
             </div>
         </div>
         <div class="actions">
-            <button>Realizar Venta</button>
+            <button (click)="makeSale()">Realizar Venta</button>
         </div>
     </div>
 </div>
+
+<app-modal></app-modal>

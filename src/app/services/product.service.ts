@@ -55,4 +55,10 @@ export class ProductService {
     return this.http.delete<ProductDeletedResponse>(`${this.url}/product/${id}`, { headers });
   }
 
+  reduceStock(barcode: string, quantity: number): Observable<ProductModifiedResponse> {
+    const token = localStorage.getItem('token') || '';
+    const headers = new HttpHeaders({ Authorization: token });
+    return this.http.patch<ProductModifiedResponse>(`${this.url}/product/reduce-stock`, { barcode, quantity }, { headers });
+  }
+
 }

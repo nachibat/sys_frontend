@@ -105,7 +105,9 @@ export class ProductsComponent implements OnInit, OnDestroy {
     this.productService.product = product;
   }
   remove(id: string): void {
-    this.modalService.confirmationModal = true;    
+    this.modalService.confirmationModal = true;
+    this.modalService.title = 'Confirmación';
+    this.modalService.message = '¿Está seguro que desea eliminar el producto?';
     this.modalService.execCallback(() => {
       this.productService.loading = true;
       this.productService.deleteProduct(id).subscribe(resp => {
@@ -120,6 +122,8 @@ export class ProductsComponent implements OnInit, OnDestroy {
 
   addQuantity(id: string, quantity: number) {
     this.modalService.addModal = true;
+    this.modalService.title = 'Agregar cantidad';
+    this.modalService.message = 'Ingrese cantidad al producto';
     this.modalService.execCallback((data: any) => {
       if (data === null) { return; }
       this.productService.loading = true;

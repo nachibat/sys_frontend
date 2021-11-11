@@ -33,11 +33,13 @@ export class ModalComponent implements OnInit {
 
   public confirmModal(): void {
     this.modalService.callback();
+    this.data = null;
     this.closeModal('#modalConfirmation', '#container');
   }
 
   public confirmAddQuantity(): void {
     this.modalService.callback(this.data);
+    this.data = null;
     this.closeModal('#addModal', '#addContainer');
   }
 

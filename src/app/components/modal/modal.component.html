@@ -1,10 +1,10 @@
 <div *ngIf="modalService.confirmationModal" id="modalConfirmation" class="modal opened fadeIn">
     <div id="container" class="container slideIn">
         <div class="header">
-            <h3>Confirmación</h3>
+            <h3>{{ modalService.title }}</h3>
         </div>
         <div class="body">
-            <p>¿Está seguro que desea eliminar el producto?</p>
+            <p>{{ modalService.message }}</p>
         </div>
         <div class="footer">
             <button (click)="confirmModal()">Confirmar</button>
@@ -17,10 +17,10 @@
     <div id="addContainer" class="container slideIn">
         <form (submit)="confirmAddQuantity()">
             <div class="header">
-                <h3>Agregar Cantidad</h3>
+                <h3>{{ modalService.title }}</h3>
             </div>
             <div class="body">
-                <p>Ingrese cantidad al producto</p>
+                <p>{{ modalService.message }}</p>
                 <p><input type="number" name="quantity" [(ngModel)]="data"></p>
             </div>
             <div class="footer">

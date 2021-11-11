@@ -39,10 +39,6 @@
     text-align: center;
 }
 
-.modal .container .body p:last-child {
-    margin-top: 20px;
-}
-
 .modal .container .body p:last-child input {
     width: 100px;
     padding: 5px 10px;
