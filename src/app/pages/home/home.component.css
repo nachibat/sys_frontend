@@ -87,7 +87,7 @@
     margin-top: 10px;
 }
 
-.details table thead td {
+.details table thead th {
     font-weight: 600;
 }
 
@@ -106,12 +106,18 @@
     color: var(--white);
 }
 
+.details .card-stock table tr th,
 .details .card-stock table tr td {
     padding: 10px;
 }
 
+.details .card-stock table tr th:last-child,
 .details .card-stock table tr td:last-child {
     text-align: end;
+}
+
+.details .card-stock table tr th:first-child {
+    text-align: start;
 }
 
 .details .card-stock table tr td:nth-child(1) {
@@ -125,29 +131,9 @@
     border-bottom: 1px solid var(--blue);
 }
 
+.details .card-stock table tr th:nth-child(2),
 .details .card-stock table tr td:nth-child(2) {
     text-align: center;
-}
-
-.status {
-    padding: 2px 4px;
-    color: var(--white);
-    border-radius: 4px;
-    font-size: 12px;
-    font-weight: 500;
-    white-space: nowrap;
-}
-
-.status.no-stock {    
-    background: var(--danger);
-}
-
-.status.minimo {
-    background: var(--warning);
-}
-
-.status.stock {
-    background: var(--success);
 }
 
 /**** Responsive design ****/

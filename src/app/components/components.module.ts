@@ -11,6 +11,8 @@ import { RouterModule } from '@angular/router';
 import { FormProductComponent } from './form-product/form-product.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ModalComponent } from './modal/modal.component';
+import { ReportStockComponent } from './report-stock/report-stock.component';
+import { ReportSalesComponent } from './report-sales/report-sales.component';
 
 
 
@@ -20,7 +22,9 @@ import { ModalComponent } from './modal/modal.component';
     TopbarComponent,
     SalesChartComponent,
     FormProductComponent,
-    ModalComponent
+    ModalComponent,
+    ReportStockComponent,
+    ReportSalesComponent
   ],
   imports: [
     CommonModule,
@@ -35,7 +39,9 @@ import { ModalComponent } from './modal/modal.component';
     TopbarComponent,
     SalesChartComponent,
     FormProductComponent,
-    ModalComponent
+    ModalComponent,
+    ReportStockComponent,
+    ReportSalesComponent
   ]
 })
 export class ComponentsModule { }

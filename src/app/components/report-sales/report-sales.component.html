@@ -1,0 +1,17 @@
+<div class="card">
+    <div class="card-header">
+        <h2>Ventas diarias</h2>
+    </div>
+    <div *ngIf="loading" class="loading">
+        <div class="spinner"></div>
+    </div>
+    <table *ngIf="!loading">
+        <thead>
+            <tr>
+                <td>Descripción</td>
+                <td>Cantidad</td>
+                <td>Estado</td>
+            </tr>
+        </thead>
+    </table>
+</div>

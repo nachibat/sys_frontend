@@ -2,6 +2,7 @@
 
 .no-events {
     pointer-events: none;
+    text-align: center;
 }
 
 .container {
@@ -39,13 +40,18 @@
 
 .tables .sales table,
 .tables .products table {
+    position: relative;
     width: 100%;
     border-collapse: collapse;
     margin-top: 10px;
 }
 
-.tables table thead td {
+.tables table thead th {    
     font-weight: 600;
+    position: sticky;
+    top: 0;
+    background: var(--white);
+    height: 100%;
 }
 
 .tables table tr {
@@ -57,6 +63,7 @@
     border-bottom: none;
 }
 
+.tables table tr th,
 .tables table tr td {
     padding: 10px;
 }
@@ -146,10 +153,14 @@
 .tables .sales table tr td:nth-child(3),
 .tables .sales table tr td:nth-child(4),
 .tables .sales table tr td:nth-child(5),
-.tables .products table tr td:first-child,
 .tables .products table tr td:nth-child(3),
 .tables .products table tr td:nth-child(4) {
     text-align: center;
+}
+
+.tables .sales table tr th:nth-child(1),
+.tables .sales table tr th:nth-child(2) {
+    text-align: start;
 }
 
 .tables table tbody tr:hover td:nth-child(2) {
@@ -158,6 +169,12 @@
 
 .tables table tbody tr:last-child td:nth-child(2) {
     border-bottom: none;
+}
+
+.tables .custom-scrollbar {
+    width: calc(100% + 10px);
+    height: calc(100% - 10px);
+    overflow: scroll;
 }
 
 .actions {

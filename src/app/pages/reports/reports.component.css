@@ -1,0 +1,13 @@
+.container {
+    position: relative;
+    padding: 0;
+}
+
+.tables {
+    position: relative;
+    display: flex;
+    justify-content: space-evenly;
+    padding: 10px;
+    width: 100%;
+    background: var(--white);
+}

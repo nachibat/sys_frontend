@@ -1,0 +1,38 @@
+<div class="card">
+    <div class="card-header">
+        <h2>Stock mínimo</h2>
+        <div class="buttons">
+            <a class="link-btn"><fa-icon [icon]="icons[2]"></fa-icon> Imprimir</a>
+        </div>
+    </div>
+    <div *ngIf="loading" class="loading">
+        <div class="spinner"></div>
+    </div>
+    <table *ngIf="!loading">
+        <thead>
+            <tr>
+                <th>Descripción</th>
+                <th>Cantidad</th>
+                <th>Estado</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="no-events" *ngIf="stock.length === 0">
+                <td colspan="3">No hay resultados</td>
+            </tr>
+            <tr *ngFor="let item of stock" title="{{ item.description }}">
+                <td>{{ item.description }}</td>
+                <td>{{ item.quantity }}</td>
+                <td>
+                    <span *ngIf="item.quantity === 0" class="status no-stock">Sin stock</span>
+                    <span *ngIf="item.quantity > 0 && item.quantity <= 4" class="status minimum">Stock mínimo</span>
+                    <span *ngIf="item.quantity > 4" class="status stock">Stock</span>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="navigation">
+        <div class="prev"><a (click)="stockPrev()"><fa-icon [icon]="icons[0]"></fa-icon> Anterior</a></div>
+        <div class="next"><a (click)="stockNext()">Siguiente <fa-icon [icon]="icons[1]"></fa-icon></a></div>
+    </div>
+</div>

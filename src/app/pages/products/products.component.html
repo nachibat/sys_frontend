@@ -15,14 +15,14 @@
                 <table>
                     <thead>
                         <tr>
-                            <td>Código</td>
-                            <td (click)="reorderList('description')" title="Reordenar por descripción">Descripción <fa-icon [icon]="icons[5]"></fa-icon></td>
-                            <td (click)="reorderList('category')" title="Reordenar por categoría">Categoría <fa-icon [icon]="icons[5]"></fa-icon></td>
-                            <td (click)="reorderList('quantity')" title="Reordenar por cantidad">Cantidad <fa-icon [icon]="icons[5]"></fa-icon></td>
-                            <td>Costo</td>
-                            <td>Ganancia %</td>
-                            <td (click)="reorderList('price')" title="Reordenar por precio final">Precio final <fa-icon [icon]="icons[5]"></fa-icon></td>
-                            <td>Acciones</td>
+                            <th>Código</th>
+                            <th (click)="reorderList('description')" title="Reordenar por descripción">Descripción <fa-icon [icon]="icons[5]"></fa-icon></th>
+                            <th (click)="reorderList('category')" title="Reordenar por categoría">Categoría <fa-icon [icon]="icons[5]"></fa-icon></th>
+                            <th (click)="reorderList('quantity')" title="Reordenar por cantidad">Cantidad <fa-icon [icon]="icons[5]"></fa-icon></th>
+                            <th>Costo $</th>
+                            <th>Ganancia %</th>
+                            <th (click)="reorderList('price')" title="Reordenar por precio final">Precio final <fa-icon [icon]="icons[5]"></fa-icon></th>
+                            <th>Acciones</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -36,7 +36,7 @@
                             <td>{{ product.quantity }}</td>
                             <td>{{ product.cost_price || '-' }}</td>
                             <td>{{ product.percent_profit || '-' }}</td>
-                            <td>{{ product.price }}</td>
+                            <td>$ {{ product.price }}</td>
                             <td>
                                 <button title="Agregar cantidad a {{ product.description }}" (click)="addQuantity(product._id, product.quantity)"><fa-icon [icon]="icons[0]"></fa-icon></button>
                                 <button title="Editar {{ product.description }}" (click)="edit(product)"><fa-icon [icon]="icons[1]"></fa-icon></button>

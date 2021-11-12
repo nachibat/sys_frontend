@@ -10,38 +10,40 @@
                 <div class="card-header">
                     <h2>Ventas</h2>
                 </div>
-                <table>
-                    <thead>
-                        <tr>
-                            <td>Código</td>
-                            <td>Descripción</td>
-                            <td>Cantidad</td>
-                            <td title="Precio unitario">P/U</td>
-                            <td>Subtotal</td>
-                            <td>Opciones</td>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr *ngFor="let item of saleService.items; let i = index" title="{{ item.description }}">
-                            <td>{{ item.barcode }}</td>
-                            <td>{{ item.description }}</td>
-                            <td>{{ item.quantity }}</td>
-                            <td>{{ item.price }}</td>
-                            <td>$ {{ item.subtotal }}</td>
-                            <td>
-                                <button (click)="increaseItem(i)" title="Incrementar cantidad"><fa-icon [icon]="icons[0]"></fa-icon></button>
-                                <button (click)="removeItem(i)" title="Quitar del listado"><fa-icon [icon]="icons[1]"></fa-icon></button>
-                            </td>
-                        </tr>                        
-                        <tr class="no-events">
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td>Total</td>
-                            <td>$ {{ saleService.total }}</td>
-                        </tr>
-                    </tbody>
-                </table>
+                <div class="custom-scrollbar">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Código</th>
+                                <th>Descripción</th>
+                                <th>Cantidad</th>
+                                <th title="Precio unitario">P/U</th>
+                                <th>Subtotal</th>
+                                <th>Opciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let item of saleService.items; let i = index" title="{{ item.description }}">
+                                <td>{{ item.barcode }}</td>
+                                <td>{{ item.description }}</td>
+                                <td>{{ item.quantity }}</td>
+                                <td>{{ item.price }}</td>
+                                <td>$ {{ item.subtotal }}</td>
+                                <td>
+                                    <button (click)="increaseItem(i)" title="Incrementar cantidad"><fa-icon [icon]="icons[0]"></fa-icon></button>
+                                    <button (click)="removeItem(i)" title="Quitar del listado"><fa-icon [icon]="icons[1]"></fa-icon></button>
+                                </td>
+                            </tr>                        
+                            <tr class="no-events">
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td>Total</td>
+                                <td>$ {{ saleService.total }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
             <div class="products">
                 <div class="card-header">
@@ -53,25 +55,27 @@
                         </label>
                     </form>
                 </div>
-                <table>
-                    <thead>
-                        <tr>
-                            <td>Añadir</td>
-                            <td>Descripción</td>
-                            <td>Stock</td>
-                            <td>Precio</td>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr class="no-events" *ngIf="productsFound.length === 0"><td colspan="4">{{ message }}</td></tr>
-                        <tr *ngFor="let product of productsFound; let i = index" title="{{ product.description }}">
-                            <td><button (click)="selectItem(i)" title="Añadir {{ product.description }} al listado"><fa-icon [icon]="icons[2]"></fa-icon></button></td>
-                            <td>{{ product.description }}</td>
-                            <td>{{ product.quantity }}</td>
-                            <td>$ {{ product.price }}</td>
-                        </tr>                        
-                    </tbody>
-                </table>
+                <div class="custom-scrollbar">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Añadir</th>
+                                <th>Descripción</th>
+                                <th>Stock</th>
+                                <th>Precio</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="no-events" *ngIf="productsFound.length === 0"><td colspan="4">{{ message }}</td></tr>
+                            <tr *ngFor="let product of productsFound; let i = index" title="{{ product.description }}">
+                                <td><button (click)="selectItem(i)" title="Añadir {{ product.description }} al listado"><fa-icon [icon]="icons[2]"></fa-icon></button></td>
+                                <td>{{ product.description }}</td>
+                                <td>{{ product.quantity }}</td>
+                                <td>$ {{ product.price }}</td>
+                            </tr>                        
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
         <div class="actions">

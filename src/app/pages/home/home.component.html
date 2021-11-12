@@ -52,14 +52,14 @@
         <div class="card-stock">
             <div class="card-header">
                 <h2>Stock mínimo</h2>
-                <a [routerLink]="['/products']" class="link-btn">Ver todos</a>
+                <a [routerLink]="['/reports']" class="link-btn">Ver todos</a>
             </div>
             <table>
                 <thead>
                     <tr>
-                        <td>Descripción</td>
-                        <td>Cantidad</td>
-                        <td>Estado</td>
+                        <th>Descripción</th>
+                        <th>Cantidad</th>
+                        <th>Estado</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -71,7 +71,7 @@
                         <td>{{ product.quantity }}</td>
                         <td>
                             <span *ngIf="product.quantity === 0" class="status no-stock">Sin stock</span>
-                            <span *ngIf="product.quantity > 0 && product.quantity <= 4" class="status minimo">Stock mínimo</span>
+                            <span *ngIf="product.quantity > 0 && product.quantity <= 4" class="status minimum">Stock mínimo</span>
                             <span *ngIf="product.quantity > 4" class="status stock">Stock</span>
                         </td>
                     </tr>                    

@@ -1,0 +1,97 @@
+.card table tbody tr.no-events {
+    pointer-events: none;
+}
+
+.card table tbody tr.no-events td {
+    text-align: center !important;
+}
+
+.card {
+    position: relative;
+    padding: 20px;
+    min-width: 500px;
+    height: 650px;
+    background: var(--white);
+    border-radius: 20px;
+    box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08);
+}
+
+.card .card-header .buttons {
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.card table {
+    width: 100%;
+    padding: 10px 0;
+    border-collapse: collapse;
+}
+
+.card table thead tr th,
+.card table tbody tr td {
+    padding: 10px;
+}
+
+.card table thead tr th:first-child {
+    text-align: start;
+}
+
+.card table thead tr th:last-child,
+.card table tbody tr td:last-child {
+    text-align: end;
+}
+
+.card table tbody tr{
+    color: var(--black1);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.card table tbody tr:last-child {
+    border-bottom: none;
+}
+
+.card table tbody tr td:nth-child(2) {
+    text-align: center;
+}
+
+.card table tbody tr td:first-child {
+    max-width: 180px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.card table tbody tr:hover {
+    background: var(--blue);
+    color: var(--white);
+}
+
+.card table tbody tr:hover td {
+    border-bottom: 1px solid var(--blue);
+}
+
+.card .navigation {
+    position: absolute;
+    width: 100%;
+    height: 40px;
+    display: flex;
+    bottom: 0px;
+    left: 0px;
+    padding: 0 20px;
+}
+
+.card .navigation .prev {
+    width: 50%;
+}
+
+.card .navigation .next {
+    width: 50%;
+    text-align: end;
+}
+
+.card .navigation a {
+    cursor: pointer;
+    color: var(--black2);
+    text-decoration: none;
+}
