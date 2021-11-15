@@ -22,6 +22,25 @@
     align-items: center;
 }
 
+.card .card-header .buttons select {
+    direction: rtl;
+    text-align: center;
+    position: relative;
+    padding: 3.5px 10px;
+    margin-right: 5px;
+    border: 1px solid var(--blue);
+    background: var(--blue);
+    color: var(--white);
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.card .card-header .buttons select option {
+    color: var(--black2);
+    background: var(--white);
+}
+
 .card table {
     width: 100%;
     padding: 10px 0;

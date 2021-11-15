@@ -2,6 +2,11 @@
     <div class="card-header">
         <h2>Stock mínimo</h2>
         <div class="buttons">
+            <select (change)="onChange($event)">
+                <option value="kiosko">Kiosko</option>
+                <option value="libreria">Librería</option>
+                <option value="electronica">Electrónica</option>
+            </select>
             <a class="link-btn"><fa-icon [icon]="icons[2]"></fa-icon> Imprimir</a>
         </div>
     </div>
@@ -18,7 +23,7 @@
         </thead>
         <tbody>
             <tr class="no-events" *ngIf="stock.length === 0">
-                <td colspan="3">No hay resultados</td>
+                <td colspan="3">No se encontraron productos</td>
             </tr>
             <tr *ngFor="let item of stock" title="{{ item.description }}">
                 <td>{{ item.description }}</td>

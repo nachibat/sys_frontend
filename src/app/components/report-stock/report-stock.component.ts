@@ -20,17 +20,19 @@ export class ReportStockComponent implements OnInit {
   private limit: number = 13;
   private next: boolean = true;
   private total!: number;
+  private category!: string;
 
   constructor(private productService: ProductService) { }
 
   ngOnInit(): void {
     this.total = this.limit;
-    this.loadStock();
+    this.loadStock('kiosko');
   }
 
-  loadStock(): void {
+  loadStock(category: string): void {
+    this.category = category;
     this.loading = true;
-    this.productService.stockProducts(this.from, this.limit).subscribe(resp => {
+    this.productService.stockProducts(this.from, this.limit, 'quantity', category).subscribe(resp => {
       this.stock = resp.listProducts;
       if (this.stock.length === this.limit && this.total != resp.total) {
         this.next = true;
@@ -45,14 +47,20 @@ export class ReportStockComponent implements OnInit {
     if (this.from === 0) { return; }
     this.from -= this.limit;
     this.total -= this.limit;
-    this.loadStock();
+    this.loadStock(this.category);
   }
 
   stockNext(): void {
     if (!this.next) { return; }
     this.from += this.limit;
     this.total += this.limit;
-    this.loadStock();
+    this.loadStock(this.category);
+  }
+
+  onChange(event: any): void {
+    this.from = 0;
+    this.total = this.limit;
+    this.loadStock(event.target.value);
   }
 
 }
