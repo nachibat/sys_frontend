@@ -1,7 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { faChevronLeft, faChevronRight, faPrint } from '@fortawesome/free-solid-svg-icons';
-import { Product } from 'src/app/interfaces/product.response';
+import { faChevronLeft, faChevronRight, faFilePdf } from '@fortawesome/free-solid-svg-icons';
 
+import { PdfMakeWrapper, Table } from 'pdfmake-wrapper';
+import { ITable } from 'pdfmake-wrapper/lib/interfaces';
+import * as pdfFonts from 'pdfmake/build/vfs_fonts';
+PdfMakeWrapper.setFonts(pdfFonts);
+type TableRow = [string, number, number, number];
+
+import { Product } from 'src/app/interfaces/product.response';
 import { ProductService } from 'src/app/services/product.service'
 
 @Component({
@@ -11,7 +17,7 @@ import { ProductService } from 'src/app/services/product.service'
 })
 export class ReportStockComponent implements OnInit {
 
-  icons = [faChevronLeft, faChevronRight, faPrint];
+  icons = [faChevronLeft, faChevronRight, faFilePdf];
 
   public loading = false;
   public stock: Product[] = [];
@@ -61,6 +67,28 @@ export class ReportStockComponent implements OnInit {
     this.from = 0;
     this.total = this.limit;
     this.loadStock(event.target.value);
+  }
+
+  generatePdf(): void {
+    this.productService.stockProducts(0, 2000, 'quantity', this.category).subscribe(resp => {
+      const stock = resp.listProducts;
+      const pdf = new PdfMakeWrapper();
+      pdf.add(this.createTable(stock));
+      pdf.create().open();
+    });
+  }
+
+  createTable(data: Product[]): ITable {
+    return new Table([
+      ['Descripción', 'Cantidad', 'Precio Costo', 'Precio Final'],
+      ...this.extractData(data)
+    ])
+    .layout('lightHorizontalLines')
+    .end;
+  }
+
+  extractData(data: Product[]): TableRow[] {
+    return data.map(row => [row.description, row.quantity, row.cost_price, row.price]);
   }
 
 }

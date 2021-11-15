@@ -7,7 +7,7 @@
                 <option value="libreria">Librería</option>
                 <option value="electronica">Electrónica</option>
             </select>
-            <a class="link-btn"><fa-icon [icon]="icons[2]"></fa-icon> Imprimir</a>
+            <a (click)="generatePdf()" class="link-btn"><fa-icon [icon]="icons[2]"></fa-icon> Generar PDF</a>
         </div>
     </div>
     <div *ngIf="loading" class="loading">
