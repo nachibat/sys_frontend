@@ -1,6 +1,6 @@
 <app-navbar></app-navbar>
 <div class="main" [ngClass]="{'wide-main': isOpen}">
-    <app-topbar></app-topbar>
+    <app-topbar (searchEvent)="searchProducts($event)"></app-topbar>
     <div class="container">
         <div class="header">
             <h3>Fecha {{ date | date }}</h3>
@@ -47,13 +47,7 @@
             </div>
             <div class="products">
                 <div class="card-header">
-                    <h2>Productos</h2>
-                    <form (submit)="searchProducts()">
-                        <label>
-                            <input type="text" name="term" [(ngModel)]="term" placeholder="Buscar producto">
-                            <button type="submit"><fa-icon [icon]="icons[3]"></fa-icon></button>
-                        </label>
-                    </form>
+                    <h2>Productos encontrados</h2>
                 </div>
                 <div class="custom-scrollbar">
                     <table>

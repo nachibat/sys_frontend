@@ -5,7 +5,7 @@
     <div class="search">
         <form (submit)="search()">
             <label>
-                <input type="text" placeholder="Buscar producto" name="data" [(ngModel)]="data">
+                <input type="text" placeholder="Buscar producto" name="data" [(ngModel)]="data" autocomplete="off">
                 <button type="submit"><fa-icon [icon]="icons[1]"></fa-icon></button>                
             </label>
         </form>

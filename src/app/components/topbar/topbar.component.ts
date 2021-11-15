@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { faBars, faSearch } from '@fortawesome/free-solid-svg-icons';
 
@@ -12,6 +12,7 @@ import { ProductService } from 'src/app/services/product.service';
 })
 export class TopbarComponent implements OnInit {
 
+  @Input() productPage: boolean = false;
   @Output() searchEvent = new EventEmitter<string[]>();
 
   public icons = [faBars, faSearch];
@@ -38,7 +39,11 @@ export class TopbarComponent implements OnInit {
       this.searchEvent.emit(['description', this.data.trim()]);
     }
     this.productService.search = true;
-    this.router.navigate(['/products']);
+    if (this.productPage) {
+      this.router.navigate(['/products']);
+    } else {
+      this.router.navigate(['/sales']);
+    }
   }
 
 }

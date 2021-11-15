@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { faChevronLeft, faPlus, faSearch, faTimes } from '@fortawesome/free-solid-svg-icons';
 import { ToastrService } from 'ngx-toastr';
 
@@ -14,7 +14,7 @@ import { UserService } from 'src/app/services/user.service';
   templateUrl: './sales.component.html',
   styleUrls: ['./sales.component.css']
 })
-export class SalesComponent implements OnInit {
+export class SalesComponent implements OnInit, OnDestroy {
 
   private field: string = 'barcode';
   private subtotal: number = 0;
@@ -22,7 +22,6 @@ export class SalesComponent implements OnInit {
   isOpen: boolean = false;
   public icons = [faPlus, faTimes, faChevronLeft, faSearch];
   public date!: Date;
-  public term!: any;
   public message: string = 'No se buscaron productos';
   public productsFound: Product[] = [];  
 
@@ -39,17 +38,25 @@ export class SalesComponent implements OnInit {
       this.isOpen = resp;
     });
     this.date = new Date();
+    if (this.productService.search) {
+      this.searchProducts(this.productService.paramsSearch);
+    }
   }
 
-  searchProducts(): void {
-    if (this.term === undefined || this.term.trim() === '') { return; }
-    if (!isNaN(parseFloat(this.term)) && !isNaN(this.term - 0)) {
+  ngOnDestroy(): void {
+    this.productService.search = false;
+    this.productService.paramsSearch = [];
+  }
+
+  searchProducts(event: any): void {
+    if (!isNaN(parseFloat(event[1])) && !isNaN(event[1] - 0)) {
       this.field = 'barcode';
     } else {
       this.field = 'description';
     }
     this.message = 'No se encontraron productos!'
-    this.productService.searchProducts(0, 30, this.field, this.term.trim()).subscribe(resp => {
+    this.productService.searchProducts(0, 30, this.field, event[1].trim()).subscribe(resp => {
+      if (resp.total === 0) { return; }
       if (this.field === 'barcode') {
         this.productsFound = resp.listProducts;
         this.selectItem(0);
@@ -60,7 +67,6 @@ export class SalesComponent implements OnInit {
   }
 
   selectItem(index: number): void {
-    this.term = null;
     if (this.productsFound[index].quantity === 0) {
       this.toastService.error('No hay suficiente stock!', 'Error al agregar.', { timeOut: 7000 });
       return;

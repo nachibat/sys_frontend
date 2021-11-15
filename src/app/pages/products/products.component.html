@@ -1,6 +1,6 @@
 <app-navbar></app-navbar>
 <div class="main" [ngClass]="{'wide-main': isOpen}">
-    <app-topbar (searchEvent)="searchFor($event)"></app-topbar>
+    <app-topbar [productPage]="true" (searchEvent)="searchFor($event)"></app-topbar>
     <div class="container" [ngClass]="{'loading': productService.loading}">
         <div class="actions"></div>
         <div class="tables">
