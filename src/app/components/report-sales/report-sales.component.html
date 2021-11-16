@@ -1,6 +1,9 @@
 <div class="card">
     <div class="card-header">
         <h2>Ventas diarias</h2>
+        <div class="buttons">
+            <a (click)="generatePdf()" class="link-btn"><fa-icon [icon]="icons[0]"></fa-icon> Generar PDF</a>
+        </div>
     </div>
     <div *ngIf="loading" class="loading">
         <div class="spinner"></div>
@@ -8,10 +11,92 @@
     <table *ngIf="!loading">
         <thead>
             <tr>
-                <td>Descripción</td>
-                <td>Cantidad</td>
-                <td>Estado</td>
+                <th>Cant.</th>
+                <th>Código</th>
+                <th>Descripción</th>
+                <th>Subtotal</th>
             </tr>
         </thead>
+        <tbody>
+            <tr title="Lápices de color largo Util Uno	">
+                <td>2</td>
+                <td>7798318374540</td>
+                <td>Lápices de color largo Util Uno	</td>
+                <td>$ 1000</td>
+            </tr>
+            <tr title="Lápices de color largo Util Uno	">
+                <td>2</td>
+                <td>7798318374540</td>
+                <td>Lápices de color largo Util Uno	</td>
+                <td>$ 1000</td>
+            </tr>
+            <tr title="Lápices de color largo Util Uno	">
+                <td>2</td>
+                <td>7798318374540</td>
+                <td>Lápices de color largo Util Uno	</td>
+                <td>$ 1000</td>
+            </tr>
+            <tr title="Lápices de color largo Util Uno	">
+                <td>2</td>
+                <td>7798318374540</td>
+                <td>Lápices de color largo Util Uno	</td>
+                <td>$ 1000</td>
+            </tr>
+            <tr title="Lápices de color largo Util Uno	">
+                <td>2</td>
+                <td>7798318374540</td>
+                <td>Lápices de color largo Util Uno	</td>
+                <td>$ 1000</td>
+            </tr>
+            <tr title="Lápices de color largo Util Uno	">
+                <td>2</td>
+                <td>7798318374540</td>
+                <td>Lápices de color largo Util Uno	</td>
+                <td>$ 1000</td>
+            </tr>
+            <tr title="Lápices de color largo Util Uno	">
+                <td>2</td>
+                <td>7798318374540</td>
+                <td>Lápices de color largo Util Uno	</td>
+                <td>$ 1000</td>
+            </tr>
+            <tr title="Lápices de color largo Util Uno	">
+                <td>2</td>
+                <td>7798318374540</td>
+                <td>Lápices de color largo Util Uno	</td>
+                <td>$ 1000</td>
+            </tr>
+            <tr title="Lápices de color largo Util Uno	">
+                <td>2</td>
+                <td>7798318374540</td>
+                <td>Lápices de color largo Util Uno	</td>
+                <td>$ 1000</td>
+            </tr>
+            <tr title="Lápices de color largo Util Uno	">
+                <td>2</td>
+                <td>7798318374540</td>
+                <td>Lápices de color largo Util Uno	</td>
+                <td>$ 1000</td>
+            </tr>
+            <tr title="Lápices de color largo Util Uno	">
+                <td>2</td>
+                <td>7798318374540</td>
+                <td>Lápices de color largo Util Uno	</td>
+                <td>$ 1000</td>
+            </tr>
+            <tr title="Lápices de color largo Util Uno	">
+                <td>2</td>
+                <td>7798318374540</td>
+                <td>Lápices de color largo Util Uno	</td>
+                <td>$ 1000</td>
+            </tr>
+        </tbody>
     </table>
+    <div class="total">
+        <p>Total vendido: $ 10000</p>
+    </div>
+    <div class="navigation">
+        <div (click)="salesPrev()" class="prev"><a><fa-icon [icon]="icons[1]"></fa-icon> Anterior</a></div>
+        <div (click)="salesNext()" class="next"><a>Sigiente <fa-icon [icon]="icons[2]"></fa-icon></a></div>
+    </div>
 </div>
