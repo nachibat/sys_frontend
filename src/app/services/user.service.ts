@@ -14,6 +14,7 @@ export class UserService {
   private url: string = environment.URL;
   public validated: boolean = false;
   public user!: User;
+  public loading: boolean = false;
 
   constructor(private http: HttpClient,
               private router: Router) { }
@@ -36,6 +37,7 @@ export class UserService {
       return Promise.resolve(false);  
     }
     return new Promise<boolean>(resolve => {
+      this.loading = true;
       const headers = new HttpHeaders({
         Authorization: token
       });
@@ -43,13 +45,16 @@ export class UserService {
         if (resp.ok) {
           this.validated = true;
           this.user = resp.user;
+          this.loading = false;
           resolve(true);
         } else {
           this.router.navigate(['/login']);
+          this.loading = false;
           resolve(false);
         }
       }, err => {
         this.router.navigate(['/login']);
+        this.loading = false;
         resolve(false);
       });
     });

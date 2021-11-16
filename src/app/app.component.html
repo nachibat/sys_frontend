@@ -1,1 +1,6 @@
-<router-outlet></router-outlet>
+<div *ngIf="userService.loading" class="card">
+    <div class="loading">
+        <div class="spinner"></div>
+    </div>
+</div>
+<router-outlet *ngIf="!userService.loading"></router-outlet>
