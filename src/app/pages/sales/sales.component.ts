@@ -77,6 +77,7 @@ export class SalesComponent implements OnInit, OnDestroy {
 
   addItem(product: Product): void {
     let item = {
+      id_product: product._id,
       barcode: product.barcode,
       description: product.description,
       stock: product.quantity,
@@ -133,13 +134,13 @@ export class SalesComponent implements OnInit, OnDestroy {
       this.saleService.createSale(this.userService.user._id).subscribe(resp => {
         for (let i = 0; i < this.saleService.items.length; i++) {
           const item = this.saleService.items[i];
-          this.saleService.addItemSale(resp.saleCreated._id, item.barcode, item.price, item.quantity).subscribe(resp2 => {
+          this.saleService.addItemSale(resp.saleCreated._id, item.id_product, item.price, item.quantity).subscribe(resp2 => {
             const newStock = item.stock - item.quantity;
             if (newStock < 5 && newStock > 0) {
               this.toastService.warning(`Stock mínimo. Favor de reponer ${item.description}.`, 'Advertencia!', { timeOut: 10000 });
             }
             if (newStock === 0 ) {
-              this.toastService.error(`Se ha quedado sin mercadería. Favor de ${item.description}.`, 'Advertencia', { timeOut: 10000 });
+              this.toastService.error(`Se ha quedado sin mercadería. Favor de reponer ${item.description}.`, 'Advertencia', { timeOut: 10000 });
             }
             this.productService.reduceStock(item.barcode, newStock).subscribe();
           }, err => {

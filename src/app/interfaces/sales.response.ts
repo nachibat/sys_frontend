@@ -1,4 +1,5 @@
 export interface Item {
+    id_product: string;
     barcode: string;
     description: string;
     stock: number;
@@ -9,10 +10,10 @@ export interface Item {
 
 export interface SaleResponse {
     ok: boolean;
-    saleCreated: SaleCreated;
+    saleCreated: Sale;
 }
 
-export interface SaleCreated {
+export interface Sale {
     _id: string;
     id_user: string;
     total: number;
@@ -22,13 +23,38 @@ export interface SaleCreated {
 
 export interface ItemSaleResponse {
     ok: boolean;
-    itemCreated: ItemCreated;
+    itemCreated: SaleItem;
 }
 
-export interface ItemCreated {
+export interface SaleItem {
     _id: string;
     id_sale: string;
-    barcode: string;
-    price: string;
+    id_product: string;
+    price: number;
     quantity: number;
+}
+
+export interface SaleListResponse {
+    ok:        boolean;
+    total:     number;
+    listSales: Sale[];
+}
+
+export interface SaleItemListResponse {
+    ok:        boolean;
+    listItems: ListItem[];
+}
+
+export interface ListItem {
+    _id:        string;
+    id_sale:    string;
+    product: Product;
+    price:      number;
+    quantity:   number;
+}
+
+export interface Product {
+    _id:         string;
+    barcode:     string;
+    description: string;
 }

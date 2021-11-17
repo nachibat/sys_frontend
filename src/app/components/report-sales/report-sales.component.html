@@ -18,82 +18,19 @@
             </tr>
         </thead>
         <tbody>
-            <tr title="Lápices de color largo Util Uno	">
-                <td>2</td>
-                <td>7798318374540</td>
-                <td>Lápices de color largo Util Uno	</td>
-                <td>$ 1000</td>
+            <tr class="no-events" *ngIf="salesItems.length === 0">
+                <td colspan="4">Todavía no se realizaron ventas</td>
             </tr>
-            <tr title="Lápices de color largo Util Uno	">
-                <td>2</td>
-                <td>7798318374540</td>
-                <td>Lápices de color largo Util Uno	</td>
-                <td>$ 1000</td>
-            </tr>
-            <tr title="Lápices de color largo Util Uno	">
-                <td>2</td>
-                <td>7798318374540</td>
-                <td>Lápices de color largo Util Uno	</td>
-                <td>$ 1000</td>
-            </tr>
-            <tr title="Lápices de color largo Util Uno	">
-                <td>2</td>
-                <td>7798318374540</td>
-                <td>Lápices de color largo Util Uno	</td>
-                <td>$ 1000</td>
-            </tr>
-            <tr title="Lápices de color largo Util Uno	">
-                <td>2</td>
-                <td>7798318374540</td>
-                <td>Lápices de color largo Util Uno	</td>
-                <td>$ 1000</td>
-            </tr>
-            <tr title="Lápices de color largo Util Uno	">
-                <td>2</td>
-                <td>7798318374540</td>
-                <td>Lápices de color largo Util Uno	</td>
-                <td>$ 1000</td>
-            </tr>
-            <tr title="Lápices de color largo Util Uno	">
-                <td>2</td>
-                <td>7798318374540</td>
-                <td>Lápices de color largo Util Uno	</td>
-                <td>$ 1000</td>
-            </tr>
-            <tr title="Lápices de color largo Util Uno	">
-                <td>2</td>
-                <td>7798318374540</td>
-                <td>Lápices de color largo Util Uno	</td>
-                <td>$ 1000</td>
-            </tr>
-            <tr title="Lápices de color largo Util Uno	">
-                <td>2</td>
-                <td>7798318374540</td>
-                <td>Lápices de color largo Util Uno	</td>
-                <td>$ 1000</td>
-            </tr>
-            <tr title="Lápices de color largo Util Uno	">
-                <td>2</td>
-                <td>7798318374540</td>
-                <td>Lápices de color largo Util Uno	</td>
-                <td>$ 1000</td>
-            </tr>
-            <tr title="Lápices de color largo Util Uno	">
-                <td>2</td>
-                <td>7798318374540</td>
-                <td>Lápices de color largo Util Uno	</td>
-                <td>$ 1000</td>
-            </tr>
-            <tr title="Lápices de color largo Util Uno	">
-                <td>2</td>
-                <td>7798318374540</td>
-                <td>Lápices de color largo Util Uno	</td>
-                <td>$ 1000</td>
-            </tr>
+            <tr *ngFor="let item of salesItems" title="{{ item.product.description }}">
+                <td>{{ item.quantity }}</td>
+                <td>{{ item.product.barcode }}</td>
+                <td>{{ item.product.description }}</td>
+                <td>$ {{ item.price * item.quantity }}</td>
+            </tr>            
         </tbody>
     </table>
     <div class="total">
-        <p>Total vendido: $ 10000</p>
+        <p>Total vendido: $ {{ total }}</p>
     </div>
     <div class="navigation">
         <div (click)="salesPrev()" class="prev"><a><fa-icon [icon]="icons[1]"></fa-icon> Anterior</a></div>

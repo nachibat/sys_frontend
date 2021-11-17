@@ -1,3 +1,8 @@
+.no-events {
+    pointer-events: none;
+    border-bottom: none !important;
+}
+
 .card {
     position: relative;
     padding: 20px;
