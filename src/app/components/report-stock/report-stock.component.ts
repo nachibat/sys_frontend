@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { faChevronLeft, faChevronRight, faFilePdf } from '@fortawesome/free-solid-svg-icons';
 
-import { PdfMakeWrapper, Table } from 'pdfmake-wrapper';
+import { PdfMakeWrapper, Table, Txt } from 'pdfmake-wrapper';
 import { ITable } from 'pdfmake-wrapper/lib/interfaces';
 import * as pdfFonts from 'pdfmake/build/vfs_fonts';
 PdfMakeWrapper.setFonts(pdfFonts);
@@ -73,16 +73,20 @@ export class ReportStockComponent implements OnInit {
     this.productService.stockProducts(0, 2000, 'quantity', this.category).subscribe(resp => {
       const stock = resp.listProducts;
       const pdf = new PdfMakeWrapper();
+      pdf.add(new Txt(new Date().toLocaleDateString()).alignment('right').end);
+      pdf.add('\n');
       pdf.add(this.createTable(stock));
+      pdf.watermark(new Txt('S&S Kiosko').color('lightgrey').end);
       pdf.create().open();
     });
   }
 
   createTable(data: Product[]): ITable {
     return new Table([
-      ['Descripción', 'Cantidad', 'Precio Costo', 'Precio Final'],
+      ['Descripción', 'Cantidad', 'Precio Costo $', 'Precio Final $'],
       ...this.extractData(data)
     ])
+    .widths(['*', 60, 80, 80])
     .layout('lightHorizontalLines')
     .end;
   }

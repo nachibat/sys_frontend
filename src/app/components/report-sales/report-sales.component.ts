@@ -1,5 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { faChevronLeft, faChevronRight, faFilePdf } from '@fortawesome/free-solid-svg-icons';
+
+import { PdfMakeWrapper, Table, Txt } from 'pdfmake-wrapper';
+import { ITable } from 'pdfmake-wrapper/lib/interfaces';
+import * as pdfFonts from 'pdfmake/build/vfs_fonts';
+PdfMakeWrapper.setFonts(pdfFonts);
+type TableRow = [number, string, string, number];
+
 import { ListItem, Sale } from 'src/app/interfaces/sales.response';
 import { SaleService } from 'src/app/services/sale.service';
 
@@ -15,14 +22,22 @@ export class ReportSalesComponent implements OnInit {
   public sales: Sale[] = [];
   public salesItems: ListItem[] = [];
   public total: number = 0;
+  public showedProducts: ListItem[] = [];
+  
+  private from: number = 0;
+  private limit: number = 12;
+  private totalItems!: number;
+  private next: boolean = true;
 
   constructor(private saleService: SaleService) { }
 
   ngOnInit(): void {
+    this.totalItems = this.limit;
     this.loadSalesItems();
   }
 
   loadSalesItems() {
+    this.loading = true;
     this.saleService.saleList().subscribe(resp => {
       this.sales = resp.listSales;
       for (let i = 0; i < this.sales.length; i++) {
@@ -30,26 +45,69 @@ export class ReportSalesComponent implements OnInit {
         this.total += element.total;
         this.saleService.itemSaleList(element._id).subscribe(resp => {
           this.salesItems.push(...resp.listItems);
+          if (i === (this.sales.length - 1)) {
+            this.reorderProducts();
+          }
         });
       }
-      console.log(this.salesItems);
+      this.loading = false;
     });
   }
 
-  findProduct(barcode: string): void {
-    // TODO: Create endpoint in backend
+  reorderProducts(): void {
+    this.showedProducts = [];
+    let count: number = 0;
+    for (let i = this.from; i < this.salesItems.length; i++) {
+      const element = this.salesItems[i];
+      if (count < this.limit) {
+        this.showedProducts.push(element);
+      }
+      count++;
+    }
+    if (this.totalItems >= this.salesItems.length)
+    {
+      this.next = false;
+    } else {
+      this.next = true;
+    }
   }
 
   salesPrev(): void {
-    console.log('anterior');
+    if (this.from === 0) { return; }
+    this.from -= this.limit;
+    this.totalItems -= this.limit;
+    this.reorderProducts();
   }
 
   salesNext(): void {
-    console.log('siguiente');
+    if (!this.next) { return; }
+    this.from += this.limit;
+    this.totalItems += this.limit;
+    this.reorderProducts();
   }
 
   generatePdf(): void {
-    console.log('pdf');
+    const pdf = new PdfMakeWrapper();
+    pdf.add(new Txt(new Date().toLocaleDateString()).alignment('right').end);
+    pdf.add('\n');
+    pdf.add(this.createTable(this.salesItems));
+    pdf.add(new Txt(`\nTotal: $ ${this.total}`).alignment('right').bold().fontSize(20).end)
+    pdf.watermark(new Txt('S&S Kiosko').color('lightgrey').end);
+    pdf.create().open();
+  }
+
+  createTable(data: ListItem[]): ITable {
+    return new Table([
+      ['Cantidad', 'Código', 'Descripción', 'Subtotal $'],
+      ...this.extractData(data)
+    ])
+    .widths([60, 100, '*', 60])
+    .layout('lightHorizontalLines')
+    .end
+  }
+
+  extractData(data: ListItem[]): TableRow[] {
+    return data.map(row => [row.quantity, row.product.barcode, row.product.description, (row.price * row.quantity)]);
   }
 
 }

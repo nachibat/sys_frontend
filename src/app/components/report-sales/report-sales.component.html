@@ -21,7 +21,7 @@
             <tr class="no-events" *ngIf="salesItems.length === 0">
                 <td colspan="4">Todavía no se realizaron ventas</td>
             </tr>
-            <tr *ngFor="let item of salesItems" title="{{ item.product.description }}">
+            <tr *ngFor="let item of showedProducts" title="{{ item.product.description }}">
                 <td>{{ item.quantity }}</td>
                 <td>{{ item.product.barcode }}</td>
                 <td>{{ item.product.description }}</td>
@@ -33,7 +33,7 @@
         <p>Total vendido: $ {{ total }}</p>
     </div>
     <div class="navigation">
-        <div (click)="salesPrev()" class="prev"><a><fa-icon [icon]="icons[1]"></fa-icon> Anterior</a></div>
-        <div (click)="salesNext()" class="next"><a>Sigiente <fa-icon [icon]="icons[2]"></fa-icon></a></div>
+        <div class="prev"><a (click)="salesPrev()"><fa-icon [icon]="icons[1]"></fa-icon> Anterior</a></div>
+        <div class="next"><a (click)="salesNext()">Sigiente <fa-icon [icon]="icons[2]"></fa-icon></a></div>
     </div>
 </div>

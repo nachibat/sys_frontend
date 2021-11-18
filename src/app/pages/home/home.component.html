@@ -2,18 +2,18 @@
 <div class="main" [ngClass]="{'wide-main': isOpen}">
     <app-topbar></app-topbar>
     <div class="card-box">
-        <div class="card">
+        <div (click)="redirectReports()" class="card">
             <div>
-                <div class="numbers">30</div>
+                <div class="numbers">{{ dailySales }}</div>
                 <div class="card-name">Ventas Diarias</div>
             </div>
             <div class="icon-box">
                 <fa-icon [icon]="icons[0]"></fa-icon>
             </div>
         </div>
-        <div class="card">
+        <div (click)="redirectReports()" class="card">
             <div>
-                <div class="numbers">$1000</div>
+                <div class="numbers">${{ dailyEarnings }}</div>
                 <div class="card-name">Ganancias Diarias</div>
             </div>
             <div class="icon-box">
