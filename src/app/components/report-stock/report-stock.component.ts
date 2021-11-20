@@ -92,7 +92,7 @@ export class ReportStockComponent implements OnInit {
   }
 
   extractData(data: Product[]): TableRow[] {
-    return data.map(row => [row.description, row.quantity, row.cost_price, row.price]);
+    return data.map(row => [row.description, row.quantity, (row.cost_price || 0), row.price]);
   }
 
 }
