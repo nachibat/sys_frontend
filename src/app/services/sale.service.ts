@@ -42,6 +42,12 @@ export class SaleService {
     return this.http.get<SaleListResponse>(`${this.url}/sale/list`, { headers });
   }
 
+  saleListRange(from: string, to: string): Observable<SaleListResponse> {
+    const token = localStorage.getItem('token') || '';
+    const headers = new HttpHeaders({ Authorization: token });
+    return this.http.get<SaleListResponse>(`${this.url}/sale/search?from=${from}&to=${to}`, { headers });
+  }
+
   itemSaleList(idSale: string): Observable<SaleItemListResponse> {
     const token = localStorage.getItem('token') || '';
     const headers = new HttpHeaders({ Authorization: token });

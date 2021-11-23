@@ -5,7 +5,7 @@ import { PdfMakeWrapper, Table, Txt } from 'pdfmake-wrapper';
 import { ITable } from 'pdfmake-wrapper/lib/interfaces';
 import * as pdfFonts from 'pdfmake/build/vfs_fonts';
 PdfMakeWrapper.setFonts(pdfFonts);
-type TableRow = [string, number, number, number];
+type TableRow = [string, number, string, string];
 
 import { Product } from 'src/app/interfaces/product.response';
 import { ProductService } from 'src/app/services/product.service'
@@ -83,7 +83,7 @@ export class ReportStockComponent implements OnInit {
 
   createTable(data: Product[]): ITable {
     return new Table([
-      ['Descripción', 'Cantidad', 'Precio Costo $', 'Precio Final $'],
+      ['Descripción', 'Cantidad', 'Precio Costo', 'Precio Final'],
       ...this.extractData(data)
     ])
     .widths(['*', 60, 80, 80])
@@ -92,7 +92,15 @@ export class ReportStockComponent implements OnInit {
   }
 
   extractData(data: Product[]): TableRow[] {
-    return data.map(row => [row.description, row.quantity, (row.cost_price || 0), row.price]);
+    return data.map(row => {
+      let cost = '';
+      if (row.cost_price) {
+        cost = `$ ${row.cost_price}`;
+      } else {
+        cost = '-';
+      }
+      return [row.description, row.quantity, cost, `$ ${row.price}`];
+    });
   }
 
 }

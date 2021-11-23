@@ -1,0 +1,43 @@
+<div class="card">
+    <div class="card-header">
+        <h2>Listado Cigarrillos</h2>
+        <div class="buttons">
+            <label for="from">Desde:<input type="date" name="from" [(ngModel)]="dateFrom"></label>
+            <label for="to">Hasta:<input type="date" name="to" [(ngModel)]="dateTo"></label>
+            <a (click)="search()" class="link-btn"><fa-icon [icon]="icons[2]"></fa-icon> Buscar</a>
+        </div>
+    </div>
+    <div *ngIf="loading" class="loading">
+        <div class="spinner"></div>
+    </div>
+    <table *ngIf="!loading">
+        <thead>
+            <tr>
+                <th>Cant.</th>
+                <th>Código</th>
+                <th>Descripción</th>
+                <th>Precio unitario</th>
+                <th>Subtotal</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="no-events" *ngIf="showedProducts.length === 0">
+                <td colspan="5">No hay venta de cigarrillos en el rango de fecha elegido</td>
+            </tr>
+            <tr *ngFor="let item of showedProducts" title="{{ item.product.description }}">
+                <td>{{ item.quantity }}</td>
+                <td>{{ item.product.barcode }}</td>
+                <td>{{ item.product.description }}</td>
+                <td>{{ item.price }}</td>
+                <td>$ {{ item.price * item.quantity }}</td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="totales">
+        <p>Total cigarrillos vendidos $ {{ total }}</p>
+    </div>
+    <div class="navigation">
+        <div class="prev"><a (click)="listPrev()"><fa-icon [icon]="icons[0]"></fa-icon> Anterior</a></div>
+        <div class="next"><a (click)="listNext()">Siguiente <fa-icon [icon]="icons[1]"></fa-icon></a></div>
+    </div>
+</div>

@@ -13,6 +13,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ModalComponent } from './modal/modal.component';
 import { ReportStockComponent } from './report-stock/report-stock.component';
 import { ReportSalesComponent } from './report-sales/report-sales.component';
+import { CigarettesComponent } from './cigarettes/cigarettes.component';
 
 
 
@@ -24,7 +25,8 @@ import { ReportSalesComponent } from './report-sales/report-sales.component';
     FormProductComponent,
     ModalComponent,
     ReportStockComponent,
-    ReportSalesComponent
+    ReportSalesComponent,
+    CigarettesComponent
   ],
   imports: [
     CommonModule,
@@ -41,7 +43,8 @@ import { ReportSalesComponent } from './report-sales/report-sales.component';
     FormProductComponent,
     ModalComponent,
     ReportStockComponent,
-    ReportSalesComponent
+    ReportSalesComponent,
+    CigarettesComponent
   ]
 })
 export class ComponentsModule { }
