@@ -10,7 +10,7 @@
             </label>
         </form>
     </div>
-    <div class="user">
-        <img src="../../../assets/user.jpg" alt="perfil" title="Mi perfil">
+    <div [routerLink]="['/profile']" class="user" title="Perfil de '{{ userName }}'">
+        <p>{{ initials }}</p>
     </div>
 </div>

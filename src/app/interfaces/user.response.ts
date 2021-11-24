@@ -1,18 +1,21 @@
 export interface LoginResponse {
-    ok:    boolean;
+    ok: boolean;
     token: string;
 }
 
 export interface UserResponse {
-    ok:   boolean;
+    ok: boolean;
     user: User;
 }
 
 export interface User {
-    _id:       string;
-    username:  string;
-    role:      string;
-    state:     boolean;
+    _id: string;
+    username: string;
+    role: string;
+    state: boolean;
+    name:string,
+    lastname:string,
+    email:string,
     createdAt: Date;
     updatedAt: Date;
 }
