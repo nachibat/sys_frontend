@@ -44,6 +44,7 @@ export class TopbarComponent implements OnInit {
       this.searchEvent.emit(['description', this.data.trim()]);
     }
     this.productService.search = true;
+    this.data = null;
     if (this.productPage) {
       this.router.navigate(['/products']);
     } else {

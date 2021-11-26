@@ -1,5 +1,74 @@
 <app-navbar></app-navbar>
 <div class="main" [ngClass]="{'wide-main': isOpen}">
     <app-topbar></app-topbar>
-    <p>profile works!</p>
+    <div class="container">
+        <div class="card">
+            <div class="card-header">
+                <h2>Perfil de usuario</h2>
+            </div>
+            <div *ngIf="loading" class="loading">
+                <div class="spinner"></div>
+            </div>
+            <div *ngIf="!loading" class="body">
+                <div class="data">
+                    <p>Nombre de usuario</p>
+                    <p>{{ user.username }}</p>
+                    <hr>
+                    <p>Perfil</p>
+                    <p *ngIf="user.role === 'ADMIN_ROLE'">Administrador</p>
+                    <p *ngIf="user.role === 'SALE_ROLE'">Vendedor</p>
+                    <p *ngIf="user.role === 'USER_ROLE'">Usuario</p>
+                    <hr>
+                    <p>Nombre completo</p>
+                    <p>{{ user.name || '-' }} {{ user.lastname }}</p>
+                    <hr>
+                    <p>email</p>
+                    <p>{{ user.email || '-' }}</p>
+                    <hr>
+                    <p>Creado</p>
+                    <p>{{ user.createdAt | date:'medium' }}</p>
+                    <hr>
+                    <p>Modificado</p>
+                    <p>{{ user.updatedAt | date:'medium' }}</p>
+                </div>
+            </div>
+            <div class="buttons">
+                <button disabled=true (click)="modalEdit = true">Editar</button>
+                <button disabled=true (click)="modalPass = true">Cambiar contraseña</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div *ngIf="modalEdit" id="modalEdit" class="modal fadeIn">
+    <div id="containerEdit" class="container slideIn">
+        <div class="header">
+            <h2>Edición de usuario</h2>
+        </div>
+        <form>
+            <label for="name">Nombre<input type="text" name="name"></label>
+            <label for="lastname">Apellido<input type="text" name="lastname"></label>
+            <label for="email">Email<input type="email" name="email"></label>
+            <div class="buttons">
+                <button (click)="editUser()"><fa-icon [icon]="icons[0]"></fa-icon> Guardar</button>
+                <button (click)="closeModal('#modalEdit', '#containerEdit')"><fa-icon [icon]="icons[1]"></fa-icon> Cancelar</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div *ngIf="modalPass" id="modalPass" class="modal fadeIn">
+    <div id="containerPass" class="container slideIn">
+        <div class="header">
+            <h2>Cambiar contraseña</h2>
+        </div>
+        <form class="pass">
+            <label for="pass">Contraseña actual<input type="password" name="pass"></label>
+            <label for="newpass">Contraseña nueva<input type="password" name="newpass"></label>
+            <label for="retrypass">Repetir contraseña nueva<input type="password" name="retrypass"></label>
+            <div class="buttons">
+                <button (click)="changePass()"><fa-icon [icon]="icons[2]"></fa-icon> Cambiar</button>
+                <button (click)="closeModal('#modalPass', '#containerPass')"><fa-icon [icon]="icons[1]"></fa-icon> Cancelar</button>
+            </div>
+        </form>
+    </div>
 </div>

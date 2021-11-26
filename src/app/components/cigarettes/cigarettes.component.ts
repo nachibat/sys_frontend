@@ -53,7 +53,9 @@ export class CigarettesComponent implements OnInit {
           }
         });
       }
-      this.loading = false;
+      if (this.sales.length === 0) {
+        this.loading = false;
+      }
     });
   }
 
@@ -73,6 +75,7 @@ export class CigarettesComponent implements OnInit {
     } else {
       this.next = true;
     }
+    this.loading = false;
   }
 
   listPrev(): void {
