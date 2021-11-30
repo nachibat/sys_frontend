@@ -8,6 +8,11 @@ export interface UserResponse {
     user: User;
 }
 
+export interface UserModifyResponse {
+    ok: boolean;
+    userModified: User;
+}
+
 export interface User {
     _id: string;
     username: string;

@@ -116,9 +116,18 @@
 }
 
 .modal .container form .buttons {
-    margin-top: 40px;
+    margin-top: 30px;
     display: flex;
     justify-content: space-around;
+}
+
+.modal .container form .paragraph {
+    margin-top: 30px;
+    text-align: center;
+}
+
+.modal .container form .paragraph p {
+    color: var(--black2);
 }
 
 .modal .container form .buttons button {

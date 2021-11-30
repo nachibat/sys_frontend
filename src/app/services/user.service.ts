@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
-import { LoginResponse, User, UserResponse } from '../interfaces/user.response';
+import { LoginResponse, User, UserModifyResponse, UserResponse } from '../interfaces/user.response';
 
 @Injectable({
   providedIn: 'root'
@@ -58,6 +58,12 @@ export class UserService {
         resolve(false);
       });
     });
+  }
+
+  modifyUser(id: string, userValues: any): Observable<UserModifyResponse> {
+    const token = localStorage.getItem('token') || '';
+    const headers = new HttpHeaders({ Authorization: token });
+    return this.http.put<UserModifyResponse>(`${this.url}/user/${id}`, userValues, { headers });
   }
 
 }
