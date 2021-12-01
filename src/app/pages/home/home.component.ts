@@ -20,8 +20,10 @@ export class HomeComponent implements OnInit {
   public products: Product[] = [];
   public dailySales: number = 0;
   public dailyEarnings: number = 0;
-  
-  private sales: Sale[] = [];
+  public monthlySales: number = 0;
+  public monthlyEarnings: number = 0;
+
+  public sales: Sale[] = [];
 
   constructor(private navbarService: NavbarService,
               private productService: ProductService,
@@ -34,7 +36,8 @@ export class HomeComponent implements OnInit {
       this.isOpen = resp;
     });
     this.loadStock();
-    this.loadSales();
+    this.loadDailySales();
+    this.loadMonthlySales();
   }
 
   loadStock(): void {
@@ -43,12 +46,27 @@ export class HomeComponent implements OnInit {
     });
   }
 
-  loadSales(): void {
+  loadDailySales(): void {
     this.saleService.saleList().subscribe(resp => {
       this.dailySales = resp.listSales.length;
       for (let i = 0; i < resp.listSales.length; i++) {
         const element = resp.listSales[i];
         this.dailyEarnings += element.total;
+      }
+    });
+  }
+
+  loadMonthlySales(): void {
+    this.monthlyEarnings = 0;
+    const today = new Date();
+    const from = new Date(today.getFullYear(), today.getMonth(), 1).toISOString().slice(0, 10);
+    const to = new Date(today.getFullYear(), today.getMonth() + 1, 0).toISOString().slice(0, 10);
+    this.saleService.saleListRange(from, to).subscribe(resp => {
+      this.sales = resp.listSales;
+      this.monthlySales = this.sales.length;
+      for (let i = 0; i < this.sales.length; i++) {
+        const element = this.sales[i];
+        this.monthlyEarnings += element.total;
       }
     });
   }
