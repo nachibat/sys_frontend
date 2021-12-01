@@ -13,6 +13,12 @@ export interface UserModifyResponse {
     userModified: User;
 }
 
+export interface UserChangePassResponse {
+    ok:            boolean;
+    msg:           string;
+    changeDetails: User;
+}
+
 export interface User {
     _id: string;
     username: string;

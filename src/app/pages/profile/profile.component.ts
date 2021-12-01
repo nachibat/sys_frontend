@@ -1,5 +1,5 @@
 import { Component, ElementRef, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { faKey, faSave, faTimes } from '@fortawesome/free-solid-svg-icons';
 import { ToastrService } from 'ngx-toastr';
 import { User } from 'src/app/interfaces/user.response';
@@ -20,6 +20,17 @@ export class ProfileComponent implements OnInit {
   public modalEdit: boolean = false;
   public modalPass: boolean = false;
   public formProduct: FormGroup;
+  public formPass: FormGroup;
+
+  public required = false;
+  public validatedLength = false;
+  public badlogin = false;
+  public different = false;
+  public validatedError = {
+    pass: false,
+    newpass: false,
+    retrypass: false
+  };
 
   constructor(private navbarService: NavbarService,
               private userService: UserService,
@@ -31,6 +42,11 @@ export class ProfileComponent implements OnInit {
       name: [{ value: '', disabled: false }],
       lastname: [{ value: '', disabled: false }],
       email: [{ value: '', disabled: false }],
+    });
+    this.formPass = this.formBuilder.group({
+      pass: [{ value: '', disabled: false }, Validators.required],
+      newpass: [{ value: '', disabled: false }, [Validators.required, Validators.minLength(6)]],
+      retrypass: [{ value: '', disabled: false }, [Validators.required, Validators.minLength(6)]]
     });
   }
 
@@ -74,8 +90,58 @@ export class ProfileComponent implements OnInit {
     });
   }
 
+  cleanError(): void {
+    this.required = false
+    this.validatedLength = false;
+    this.badlogin = false;
+    this.different = false;
+    this.validatedError = {
+      pass: false,
+      newpass: false,
+      retrypass: false
+    };
+  }
+
   changePass(): void {
-    console.log('cambiar pass');
+    if (!this.formPass.valid) {
+      if (this.formPass.controls.pass.errors) {
+        this.required = true;
+        this.validatedError.pass = true;
+      }
+      if (this.formPass.controls.newpass.errors) {
+        this.validatedError.newpass = true;
+        if (this.formPass.controls.newpass.errors.required) {
+          this.required = true;
+        } else {
+          this.validatedLength = true;
+        }
+      }
+      if (this.formPass.controls.retrypass.errors) {
+        this.validatedError.retrypass = true;
+        if (this.formPass.controls.retrypass.errors.required) {
+          this.required = true;
+        } else {
+          this.validatedLength = true;
+        }
+      }
+      return;
+    }
+    if (this.formPass.value.newpass != this.formPass.value.retrypass) {
+      this.different = true;
+      return;
+    }
+    this.userService.changePassword(this.user.username, this.formPass.value.pass, this.formPass.value.newpass).subscribe(resp => {
+      this.toastService.success('Usuario modificado correctamente', 'Información');
+      this.closeModal('#modalPass', '#containerPass');
+    }, err => {
+      if (err.status === 401) {
+        this.badlogin = true;
+      } else {
+        this.toastService.error('Problemas con el servidor', 'Error!', { timeOut: 7000 });
+        console.log(err);
+      }
+    });
+    this.cleanError();
   }
 
 }

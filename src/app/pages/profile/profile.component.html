@@ -34,7 +34,7 @@
             </div>
             <div class="buttons">
                 <button (click)="modalEdit = true">Editar</button>
-                <button disabled="true" (click)="modalPass = true">Cambiar contraseña</button>
+                <button (click)="modalPass = true">Cambiar contraseña</button>
             </div>
         </div>
     </div>
@@ -64,13 +64,22 @@
         <div class="header">
             <h2>Cambiar contraseña</h2>
         </div>
-        <form class="pass">
-            <label for="pass">Contraseña actual<input type="password" name="pass"></label>
-            <label for="newpass">Contraseña nueva<input type="password" name="newpass"></label>
-            <label for="retrypass">Repetir contraseña nueva<input type="password" name="retrypass"></label>
+        <form [formGroup]="formPass" class="pass" (ngSubmit)="changePass()">
+            <label [class.error]="validatedError.pass || badlogin" for="pass">Contraseña actual<input (focus)="cleanError()" type="password" name="pass" formControlName="pass"></label>
+            <label [class.error]="validatedError.newpass || different" for="newpass">Contraseña nueva<input (focus)="cleanError()" type="password" name="newpass" formControlName="newpass"></label>
+            <label [class.error]="validatedError.retrypass || different" for="retrypass">Repetir contraseña nueva<input (focus)="cleanError()" type="password" name="retrypass" formControlName="retrypass"></label>
+            <div class="validate">
+                <p *ngIf="required">Los campos son obligatorios</p>
+                <p *ngIf="validatedLength">La contraseña debe ser de mas de 6 caracteres</p>
+                <p *ngIf="badlogin">Contraseña actual incorrecta</p>
+                <p *ngIf="different">Las contraseñas nuevas deben ser iguales</p>
+            </div>
+            <div class="paragraph">
+                <p>Para mas seguridad, una vez hecho el cambio de contraseña, cierre la sesión y volva a abrirla.</p>
+            </div>
             <div class="buttons">
-                <button (click)="changePass()"><fa-icon [icon]="icons[2]"></fa-icon> Cambiar</button>
-                <button (click)="closeModal('#modalPass', '#containerPass')"><fa-icon [icon]="icons[1]"></fa-icon> Cancelar</button>
+                <button type="submit"><fa-icon [icon]="icons[2]"></fa-icon> Cambiar</button>
+                <button type="button" (click)="closeModal('#modalPass', '#containerPass')"><fa-icon [icon]="icons[1]"></fa-icon> Cancelar</button>
             </div>
         </form>
     </div>

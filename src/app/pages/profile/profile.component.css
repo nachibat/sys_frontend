@@ -121,6 +121,12 @@
     justify-content: space-around;
 }
 
+.modal .container form .validate {
+    padding-left: 10px;
+    color: var(--danger);
+    font-weight: 600;
+}
+
 .modal .container form .paragraph {
     margin-top: 30px;
     text-align: center;
@@ -151,4 +157,8 @@
 .modal .container form.pass label input {
     margin: 5px 0;
     width: 100%;
+}
+
+.error input {
+    border: 2px solid var(--danger) !important;
 }
