@@ -20,7 +20,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
   public products: Product[] = [];
 
   private from: number = 0;
-  private limit: number = 9;
+  private limit: number = 8;
   private order: string = 'description';
   private next: boolean = true;
   private total!: number;
