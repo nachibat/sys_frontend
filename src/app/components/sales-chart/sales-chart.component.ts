@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ChartDataSets, ChartOptions, ChartType } from 'chart.js';
 import { Color, Label } from 'ng2-charts';
+import { ToastrService } from 'ngx-toastr';
+import { SaleService } from 'src/app/services/sale.service';
 
 @Component({
   selector: 'app-sales-chart',
@@ -9,13 +11,13 @@ import { Color, Label } from 'ng2-charts';
 })
 export class SalesChartComponent implements OnInit {
 
+  private data: number[] = [];
+
   lineChartData: ChartDataSets[] = [
-    { data: [40000, 39500, 41000, 40000, 39300, 42000, 43000], label: 'Ventas Mensuales' },
-    // { data: [28, 48, 40, 19, 86, 27, 90], label: 'Tortillas' },
-    // { data: [180, 480, 770, 90, 1000, 270, 400], label: 'Chorizos' }
+    { data: this.data, label: 'Ventas Mensuales' }
   ];
 
-  public lineChartLabels: Label[] = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
+  public lineChartLabels: Label[] = [];
 
   public lineChartOptions: ChartOptions = {
     responsive: true
@@ -33,9 +35,60 @@ export class SalesChartComponent implements OnInit {
   ];
   public lineChartType: ChartType = 'line';
 
-  constructor() { }
+  constructor(private saleService: SaleService,
+              private toastService: ToastrService) { }
 
   ngOnInit(): void {
+    this.listMonth();
+    this.listEarnings();
+  }
+
+  listMonth(): void {
+    const today = new Date();
+    const from = today.getMonth() - 5;
+    const to = from + 5;
+    const month: string[] = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
+    for (let i = from; i <= to; i++) {
+      if (i < 0) {
+        this.lineChartLabels.push(month[i + 12]);
+      } else {
+        this.lineChartLabels.push(month[i]);
+      }
+    }
+  }
+  
+  listEarnings(): void {
+    const today = new Date();
+    const from = today.getMonth() - 5;
+    const to = from + 5;
+    let months = [];
+    for (let i = from; i <= to; i++) {
+      if (i < 0) {
+        months.push(i + 12);
+      } else {
+        months.push(i);
+      }
+    }
+    for (let i = 0; i < months.length; i++) {
+      const element = months[i];
+      const dateFrom = new Date(today.getFullYear(), element, 1).toISOString().slice(0, 10);
+      const dateTo = new Date(today.getFullYear(), element + 1, 0).toISOString().slice(0, 10);
+      let total: number = 0;
+      this.saleService.saleListRange(dateFrom, dateTo).subscribe(resp => {
+        const sales = resp.listSales;
+        for (let i = 0; i < sales.length; i++) {
+          const element = sales[i];
+          total += element.total;
+        }
+        this.data.push(total);
+      }, err => {
+        this.toastService.error('Ocurrio un error al cargar el grafico', 'Error!', { timeOut: 7000 });
+        console.log(err);
+      });
+    }
+    this.lineChartData = [
+      { data: this.data, label: 'Ventas Mensuales' }
+    ]
   }
 
 }
