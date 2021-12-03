@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit } from '@angular/core';
+import { Component, ElementRef, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
 import { ModalService } from 'src/app/services/modal.service';
 
 @Component({
@@ -7,6 +7,8 @@ import { ModalService } from 'src/app/services/modal.service';
   styleUrls: ['./modal.component.css']
 })
 export class ModalComponent implements OnInit {
+
+  @Output() focusEvent = new EventEmitter();
 
   public confirmationModal: boolean = false;
   public data: any = null;
@@ -28,6 +30,7 @@ export class ModalComponent implements OnInit {
     setTimeout(() => {
       this.modalService.confirmationModal = false;
       this.modalService.addModal = false;
+      this.focusEvent.emit();
     }, 450);  
   }
 

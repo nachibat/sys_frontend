@@ -1,4 +1,5 @@
 <div *ngIf="modalService.confirmationModal" id="modalConfirmation" class="modal opened fadeIn">
+    {{ confirm.focus() }}
     <div id="container" class="container slideIn">
         <div class="header">
             <h3>{{ modalService.title }}</h3>
@@ -7,13 +8,14 @@
             <p>{{ modalService.message }}</p>
         </div>
         <div class="footer">
-            <button (click)="confirmModal()">Confirmar</button>
+            <button #confirm (click)="confirmModal()">Confirmar</button>
             <button (click)="closeModal('#modalConfirmation', '#container')">Cancelar</button>
         </div>
     </div>
 </div>
 
 <div *ngIf="modalService.addModal" id="addModal" class="modal opened fadeIn">
+    {{ input.focus() }}
     <div id="addContainer" class="container slideIn">
         <form (submit)="confirmAddQuantity()">
             <div class="header">
@@ -21,7 +23,7 @@
             </div>
             <div class="body">
                 <p>{{ modalService.message }}</p>
-                <p><input type="number" name="quantity" [(ngModel)]="data"></p>
+                <p><input #input type="number" name="quantity" [(ngModel)]="data"></p>
             </div>
             <div class="footer">
                 <button type="submit">Confirmar</button>

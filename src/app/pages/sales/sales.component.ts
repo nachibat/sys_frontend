@@ -1,6 +1,7 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { faChevronLeft, faPlus, faSearch, faTimes } from '@fortawesome/free-solid-svg-icons';
 import { ToastrService } from 'ngx-toastr';
+import { TopbarComponent } from 'src/app/components/topbar/topbar.component';
 
 import { Product } from 'src/app/interfaces/product.response';
 import { ModalService } from 'src/app/services/modal.service';
@@ -16,6 +17,8 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class SalesComponent implements OnInit, OnDestroy {
 
+  @ViewChild(TopbarComponent) topbar!: TopbarComponent;
+
   private field: string = 'barcode';
   private subtotal: number = 0;
 
@@ -23,7 +26,7 @@ export class SalesComponent implements OnInit, OnDestroy {
   public icons = [faPlus, faTimes, faChevronLeft, faSearch];
   public date!: Date;
   public message: string = 'No se buscaron productos';
-  public productsFound: Product[] = [];  
+  public productsFound: Product[] = [];
 
   constructor(private navbarService: NavbarService,
               private userService: UserService,
@@ -67,6 +70,7 @@ export class SalesComponent implements OnInit, OnDestroy {
   }
 
   selectItem(index: number): void {
+    this.topbar.focus();
     if (this.productsFound[index].quantity === 0) {
       this.toastService.error('No hay suficiente stock!', 'Error al agregar.', { timeOut: 7000 });
       return;
@@ -92,6 +96,7 @@ export class SalesComponent implements OnInit, OnDestroy {
   }
 
   removeItem(index: number): void {
+    this.topbar.focus();
     this.saleService.items.splice(index, 1);
     this.totalCount();
   }
@@ -109,6 +114,7 @@ export class SalesComponent implements OnInit, OnDestroy {
     this.modalService.title = 'Incrementar cantidad';
     this.modalService.message = `Ingrese la cantidad que desea vender (stock: ${this.saleService.items[index].stock})`;
     this.modalService.execCallback((data: any) => {
+      this.topbar.focus();
       if (data === null) { return; }
       if (data > this.saleService.items[index].stock) {
         this.toastService.error('No hay suficiente stock!', 'Error al incrementar');        
@@ -121,7 +127,7 @@ export class SalesComponent implements OnInit, OnDestroy {
       this.saleService.items[index].quantity = data;
       this.subtotal = this.saleService.items[index].quantity * this.saleService.items[index].price;
       this.saleService.items[index].subtotal = this.subtotal;
-      this.totalCount();
+      this.totalCount();      
     });
   }
 
@@ -155,6 +161,10 @@ export class SalesComponent implements OnInit, OnDestroy {
         console.log(err);
       });
     });
+  }
+
+  focusSearch(): void {
+    this.topbar.focus();
   }
 
 }

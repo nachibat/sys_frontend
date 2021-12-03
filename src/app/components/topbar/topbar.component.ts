@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { faBars, faSearch } from '@fortawesome/free-solid-svg-icons';
 
@@ -15,6 +15,7 @@ export class TopbarComponent implements OnInit {
 
   @Input() productPage: boolean = false;
   @Output() searchEvent = new EventEmitter<string[]>();
+  @Output() makeSaleEvent = new EventEmitter();
 
   public icons = [faBars, faSearch];
   public data: any;
@@ -24,18 +25,28 @@ export class TopbarComponent implements OnInit {
   constructor(private navbarService: NavbarService,
               private router: Router,
               private productService: ProductService,
-              private userService: UserService) { }
+              private userService: UserService,
+              private searchInput: ElementRef) { }
 
   ngOnInit(): void {
     this.fillInitials();
+    this.focus();
   }
 
   toggleNavbar() {
     this.navbarService.toggle();
   }
 
+  focus(): void {
+    const search = this.searchInput.nativeElement.querySelector('#data');
+    search.focus();
+  }
+
   search(): void {
-    if (this.data === undefined || this.data.trim() === '') { return; }    
+    if (this.data === undefined || this.data === null || this.data.trim() === '') {
+      this.makeSaleEvent.emit();
+      return;
+    }
     if (!isNaN(parseFloat(this.data)) && !isNaN(this.data - 0)) {
       this.productService.paramsSearch = ['barcode', this.data.trim()];
       this.searchEvent.emit(['barcode', this.data.trim()]);

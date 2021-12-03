@@ -1,6 +1,6 @@
 <app-navbar></app-navbar>
 <div class="main" [ngClass]="{'wide-main': isOpen}">
-    <app-topbar (searchEvent)="searchProducts($event)"></app-topbar>
+    <app-topbar (makeSaleEvent)="makeSale()" (searchEvent)="searchProducts($event)"></app-topbar>
     <div class="container">
         <div class="header">
             <h3>Fecha {{ date | date }}</h3>
@@ -78,4 +78,4 @@
     </div>
 </div>
 
-<app-modal></app-modal>
+<app-modal (focusEvent)="focusSearch()"></app-modal>
