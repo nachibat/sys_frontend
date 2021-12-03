@@ -1,4 +1,10 @@
-<canvas baseChart 
+<div *ngIf="loading" class="card">
+        <div class="loading">
+                <div class="spinner"></div>
+        </div>
+</div>
+<canvas *ngIf="!loading"
+        baseChart 
         [datasets]="lineChartData"
         [labels]="lineChartLabels"
         [options]="lineChartOptions"

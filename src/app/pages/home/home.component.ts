@@ -56,21 +56,20 @@ export class HomeComponent implements OnInit {
     });
   }
 
-  loadMonthlySales(): void {
+  async loadMonthlySales() {
     this.monthlyEarnings = 0;
     const today = new Date();
     const from = new Date(today.getFullYear(), today.getMonth(), 1).toISOString().slice(0, 10);
     const to = new Date(today.getFullYear(), today.getMonth() + 1, 0).toISOString().slice(0, 10);
-    this.saleService.saleListRange(from, to).subscribe(resp => {
-      this.sales = resp.listSales;
-      this.monthlySales = this.sales.length;
-      for (let i = 0; i < this.sales.length; i++) {
-        const element = this.sales[i];
-        this.monthlyEarnings += element.total;
-      }
-    });
+    const resp = await this.saleService.saleListRange(from, to);
+    this.sales = resp.listSales;
+    this.monthlySales = this.sales.length;
+    for (let i = 0; i < this.sales.length; i++) {
+      const element = this.sales[i];
+      this.monthlyEarnings += element.total;
+    }    
   }
-
+  
   redirectReports(): void {
     this.router.navigate(['/reports']);
   }

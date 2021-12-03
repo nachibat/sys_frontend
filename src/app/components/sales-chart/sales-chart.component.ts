@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ChartDataSets, ChartOptions, ChartType } from 'chart.js';
 import { Color, Label } from 'ng2-charts';
 import { ToastrService } from 'ngx-toastr';
+import { Sale } from 'src/app/interfaces/sales.response';
 import { SaleService } from 'src/app/services/sale.service';
 
 @Component({
@@ -12,13 +13,13 @@ import { SaleService } from 'src/app/services/sale.service';
 export class SalesChartComponent implements OnInit {
 
   private data: number[] = [];
+  private sales: any;
 
-  lineChartData: ChartDataSets[] = [
+  public lineChartData: ChartDataSets[] = [
     { data: this.data, label: 'Ventas Mensuales' }
   ];
 
   public lineChartLabels: Label[] = [];
-
   public lineChartOptions: ChartOptions = {
     responsive: true
   }
@@ -35,8 +36,9 @@ export class SalesChartComponent implements OnInit {
   ];
   public lineChartType: ChartType = 'line';
 
-  constructor(private saleService: SaleService,
-              private toastService: ToastrService) { }
+  public loading: boolean = false;
+
+  constructor(private saleService: SaleService) { }
 
   ngOnInit(): void {
     this.listMonth();
@@ -56,8 +58,9 @@ export class SalesChartComponent implements OnInit {
       }
     }
   }
-  
-  listEarnings(): void {
+
+  async listEarnings() {
+    this.loading = true;
     const today = new Date();
     const from = today.getMonth() - 5;
     const to = from + 5;
@@ -74,18 +77,14 @@ export class SalesChartComponent implements OnInit {
       const dateFrom = new Date(today.getFullYear(), element, 1).toISOString().slice(0, 10);
       const dateTo = new Date(today.getFullYear(), element + 1, 0).toISOString().slice(0, 10);
       let total: number = 0;
-      this.saleService.saleListRange(dateFrom, dateTo).subscribe(resp => {
-        const sales = resp.listSales;
-        for (let i = 0; i < sales.length; i++) {
-          const element = sales[i];
-          total += element.total;
-        }
-        this.data.push(total);
-      }, err => {
-        this.toastService.error('Ocurrio un error al cargar el grafico', 'Error!', { timeOut: 7000 });
-        console.log(err);
-      });
+      this.sales = await this.saleService.saleListRange(dateFrom, dateTo);
+      for (let i = 0; i < this.sales.listSales.length; i++) {
+        const element = this.sales.listSales[i];
+        total += element.total;
+      }
+      this.data.push(total);
     }
+    this.loading = false;
     this.lineChartData = [
       { data: this.data, label: 'Ventas Mensuales' }
     ]

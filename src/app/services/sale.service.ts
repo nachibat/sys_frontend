@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
-import { Item, ItemSaleResponse, SaleItemListResponse, SaleListResponse, SaleResponse } from '../interfaces/sales.response';
+import { Item, ItemSaleResponse, Sale, SaleItemListResponse, SaleListResponse, SaleResponse } from '../interfaces/sales.response';
 
 @Injectable({
   providedIn: 'root'
@@ -42,10 +42,10 @@ export class SaleService {
     return this.http.get<SaleListResponse>(`${this.url}/sale/list`, { headers });
   }
 
-  saleListRange(from: string, to: string): Observable<SaleListResponse> {
+  saleListRange(from: string, to: string): Promise<SaleListResponse> {
     const token = localStorage.getItem('token') || '';
     const headers = new HttpHeaders({ Authorization: token });
-    return this.http.get<SaleListResponse>(`${this.url}/sale/search?from=${from}&to=${to}`, { headers });
+    return this.http.get<SaleListResponse>(`${this.url}/sale/search?from=${from}&to=${to}`, { headers }).toPromise();
   }
 
   itemSaleList(idSale: string): Observable<SaleItemListResponse> {
