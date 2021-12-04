@@ -1,3 +1,5 @@
+/**** Main design ****/
+
 .no-events {
     pointer-events: none;
     border-bottom: none !important;
@@ -97,4 +99,18 @@
     cursor: pointer;
     color: var(--black2);
     text-decoration: none;
+}
+
+/**** Responsive design ****/
+
+@media (max-width: 450px) {
+    .card {
+        min-width: 100%;
+    }
+    .card table thead tr th:nth-child(1),
+    .card table tbody tr td:nth-child(1),
+    .card table thead tr th:nth-child(2),
+    .card table tbody tr td:nth-child(2) {
+        display: none;
+    }
 }

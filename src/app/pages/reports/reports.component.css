@@ -1,3 +1,5 @@
+/**** Main design ****/
+
 .container {
     position: relative;
     padding: 0;
@@ -5,7 +7,6 @@
 
 .tables {
     position: relative;
-    /* display: flex; */
     display: grid;
     justify-content: space-evenly;
     grid-template-columns: auto auto;
@@ -16,4 +17,12 @@
 
 .item3 {
     grid-column: 1 / span 2;
+}
+
+/**** Responsive design ****/
+
+@media (max-width: 1200px) {
+    .tables {
+        display: block;
+    }
 }

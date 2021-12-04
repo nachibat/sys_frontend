@@ -26,6 +26,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
   private total!: number;
   private searchMode: boolean = false;
   private searchParams: string[] = [];
+  private position: number = 0;
 
 
   constructor(private navbarService: NavbarService,
@@ -99,7 +100,8 @@ export class ProductsComponent implements OnInit, OnDestroy {
     }
   }
 
-  edit(product: Product): void {
+  edit(product: Product, pos: number): void {
+    this.position = pos;
     this.productService.openForm = true;
     this.productService.edit = true;
     this.productService.product = product;
@@ -120,7 +122,8 @@ export class ProductsComponent implements OnInit, OnDestroy {
     });
   }
 
-  addQuantity(id: string, quantity: number) {
+  addQuantity(id: string, quantity: number, pos: number): void {
+    this.position = pos;
     this.modalService.addModal = true;
     this.modalService.title = 'Agregar cantidad';
     this.modalService.message = 'Ingrese cantidad al producto';
@@ -128,17 +131,23 @@ export class ProductsComponent implements OnInit, OnDestroy {
       if (data === null) { return; }
       this.productService.loading = true;
       this.productService.modifyProduct(id, { quantity: data + quantity }).subscribe(resp => {
+        const newProduct = resp.productModified;
         this.toastService.success('Se incrementó el stock correctamente', 'Información');
-        this.loadProducts();
+        this.reloadArray(this.position, newProduct);
       }, err => {
         this.handleError(err);
       });
     });
   }
 
+  reloadArray(position: number, product: Product): void {
+    this.products[position] = product;
+    this.productService.loading = false;
+  }
+
   receiveMessage($event: any): void {
     if ($event) {
-      this.loadProducts();
+      this.reloadArray(this.position, this.productService.product);
     }
   }
 

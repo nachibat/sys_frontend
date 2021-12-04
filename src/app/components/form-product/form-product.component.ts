@@ -122,6 +122,7 @@ export class FormProductComponent implements OnInit {
     this.productService.loading = true;
     if (this.productService.edit) {
       this.productService.modifyProduct(this.productService.product._id, this.formProduct.value).subscribe(resp => {
+        this.productService.product = resp.productModified;
         this.success();
       }, err => {
         this.handleError(err);

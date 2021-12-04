@@ -162,10 +162,14 @@
 /**** Responsive design ****/
 
 @media (max-width: 1024px) {
-    .tables .list table tr td:nth-child(1),
-    .tables .list table tr td:nth-child(4),
-    .tables .list table tr td:nth-child(5),
-    .tables .list table tr td:nth-child(6) {
+    .tables .list table tbody tr td:nth-child(1),
+    .tables .list table tbody tr td:nth-child(4),
+    .tables .list table tbody tr td:nth-child(5),
+    .tables .list table tbody tr td:nth-child(6),
+    .tables .list table thead tr th:nth-child(1),
+    .tables .list table thead tr th:nth-child(4),
+    .tables .list table thead tr th:nth-child(5),
+    .tables .list table thead tr th:nth-child(6)  {
         display: none;
     }
 }
@@ -173,20 +177,34 @@
 @media (max-width: 450px) {
     .actions,
     .tables .list .card-header .buttons a span,
-    .tables .list table tr td:nth-child(3),
-    .tables .list table tr td:nth-child(7) {
+    .tables .list table thead tr th:nth-child(3),
+    .tables .list table thead tr th:nth-child(7),
+    .tables .list table tbody tr td:nth-child(3),
+    .tables .list table tbody tr td:nth-child(7)  {
         display: none;
+    }
+
+    .tables .list table tbody tr td:nth-child(2) {
+        max-width: 200px;
+    }
+
+    .tables {
+        height: 100%;
     }
 
     .tables .list {
         overflow: auto;
         padding: 5px;
         margin: 0px;
-        height: 600px;
+        height: 505px;
         border-radius: 0px;
     }
 
     .tables .list table tr td:nth-child(8) {
         min-width: 100px !important;
+    }
+
+    .tables .footer {
+        bottom: -40px
     }
 }

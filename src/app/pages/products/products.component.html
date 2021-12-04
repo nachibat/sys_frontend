@@ -29,7 +29,7 @@
                         <tr *ngIf="products.length === 0">
                             <td>No hay resultados</td>
                         </tr>
-                        <tr *ngFor="let product of products" title="{{ product.description }}">
+                        <tr *ngFor="let product of products; let i = index" title="{{ product.description }}">
                             <td>{{ product.barcode }}</td>
                             <td>{{ product.description }}</td>
                             <td>{{ product.category | titlecase }}</td>
@@ -38,8 +38,8 @@
                             <td>{{ product.percent_profit || '-' }}</td>
                             <td>$ {{ product.price }}</td>
                             <td>
-                                <button title="Agregar cantidad a {{ product.description }}" (click)="addQuantity(product._id, product.quantity)"><fa-icon [icon]="icons[0]"></fa-icon></button>
-                                <button title="Editar {{ product.description }}" (click)="edit(product)"><fa-icon [icon]="icons[1]"></fa-icon></button>
+                                <button title="Agregar cantidad a {{ product.description }}" (click)="addQuantity(product._id, product.quantity, i)"><fa-icon [icon]="icons[0]"></fa-icon></button>
+                                <button title="Editar {{ product.description }}" (click)="edit(product, i)"><fa-icon [icon]="icons[1]"></fa-icon></button>
                                 <button title="Borrar {{ product.description }}" (click)="remove(product._id)"><fa-icon [icon]="icons[2]"></fa-icon></button>
                             </td>
                         </tr>                        
