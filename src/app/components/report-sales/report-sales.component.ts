@@ -45,7 +45,7 @@ export class ReportSalesComponent implements OnInit {
         this.total += element.total;
         this.saleService.itemSaleList(element._id).subscribe(resp => {
           this.salesItems.push(...resp.listItems);
-          if (i === (this.sales.length - 1)) {
+          if (i >= (this.sales.length - 1)) {
             this.reorderProducts();
           }
         });

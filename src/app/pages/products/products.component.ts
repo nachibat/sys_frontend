@@ -106,7 +106,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
     this.productService.edit = true;
     this.productService.product = product;
   }
-  remove(id: string): void {
+  remove(id: string, pos: number): void {
     this.modalService.confirmationModal = true;
     this.modalService.title = 'Confirmación';
     this.modalService.message = '¿Está seguro que desea eliminar el producto?';
@@ -115,7 +115,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
       this.productService.deleteProduct(id).subscribe(resp => {
         console.log(resp);
         this.toastService.success('Se eliminó el producto correctamente', 'Información');
-        this.loadProducts();
+        this.products.splice(pos, 1);
       }, err => {
         this.handleError(err);
       });      

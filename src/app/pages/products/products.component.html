@@ -40,7 +40,7 @@
                             <td>
                                 <button title="Agregar cantidad a {{ product.description }}" (click)="addQuantity(product._id, product.quantity, i)"><fa-icon [icon]="icons[0]"></fa-icon></button>
                                 <button title="Editar {{ product.description }}" (click)="edit(product, i)"><fa-icon [icon]="icons[1]"></fa-icon></button>
-                                <button title="Borrar {{ product.description }}" (click)="remove(product._id)"><fa-icon [icon]="icons[2]"></fa-icon></button>
+                                <button title="Borrar {{ product.description }}" (click)="remove(product._id, i)"><fa-icon [icon]="icons[2]"></fa-icon></button>
                             </td>
                         </tr>                        
                     </tbody>

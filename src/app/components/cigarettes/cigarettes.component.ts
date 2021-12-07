@@ -43,7 +43,7 @@ export class CigarettesComponent implements OnInit {
       this.saleService.itemSaleList(element._id).subscribe(resp => {
         for (let j = 0; j < resp.listItems.length; j++) {
           const element = resp.listItems[j];
-          if (element.product.description.toLowerCase().search('cigarrillo') >= 0){
+          if (element.product && element.product.description.toLowerCase().search('cigarrillo') >= 0){
             this.salesItems.push(element);
             this.total += (element.quantity * element.price)
           }

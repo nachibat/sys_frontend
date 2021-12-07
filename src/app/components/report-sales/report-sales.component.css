@@ -62,6 +62,10 @@
     border-bottom: 1px solid var(--blue);
 }
 
+.card table tbody tr td.no-product {
+    color: var(--black2);
+}
+
 .card .total {
     position: absolute;
     width: 100%;

@@ -124,12 +124,14 @@ export class FormProductComponent implements OnInit {
       this.productService.modifyProduct(this.productService.product._id, this.formProduct.value).subscribe(resp => {
         this.productService.product = resp.productModified;
         this.success();
+        this.reloadEvent.emit(true);
       }, err => {
         this.handleError(err);
       });
     } else {
       this.productService.createProduct(this.formProduct.value).subscribe(resp => {
         this.success();
+        this.reloadEvent.emit(false);
       }, err => {            
         this.handleError(err);
       });
@@ -157,8 +159,7 @@ export class FormProductComponent implements OnInit {
     this.productService.edit = false;
     this.cleanForm();
     this.enabledInputs();
-    this.closeModal();
-    this.reloadEvent.emit(true);
+    this.closeModal();    
   }
 
   handleError(err: any): void {

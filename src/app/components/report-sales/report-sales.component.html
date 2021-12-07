@@ -21,11 +21,15 @@
             <tr class="no-events" *ngIf="salesItems.length === 0">
                 <td colspan="4">Todavía no se realizaron ventas</td>
             </tr>
-            <tr *ngFor="let item of showedProducts" title="{{ item.product.description }}">
-                <td>{{ item.quantity }}</td>
-                <td>{{ item.product.barcode }}</td>
-                <td>{{ item.product.description }}</td>
-                <td>$ {{ item.price * item.quantity }}</td>
+            <tr *ngFor="let item of showedProducts">
+                <td *ngIf="item.product != null">{{ item.quantity }}</td>
+                <td *ngIf="item.product != null">{{ item.product.barcode }}</td>
+                <td *ngIf="item.product != null">{{ item.product.description }}</td>
+                <td *ngIf="item.product != null">$ {{ item.price * item.quantity }}</td>
+                <td *ngIf="item.product === null"class="no-product">x</td>
+                <td *ngIf="item.product === null"class="no-product">xxxxxxxx</td>
+                <td *ngIf="item.product === null"class="no-product">Producto eliminado</td>
+                <td *ngIf="item.product === null"class="no-product">xxx</td>
             </tr>            
         </tbody>
     </table>
