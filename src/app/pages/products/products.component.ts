@@ -196,7 +196,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
     this.productService.search = false;
     this.productService.paramsSearch = [];
     this.from = 0;
-    this.limit = 9;
+    this.limit = 8;
     this.order = 'description'
     this.loadProducts();
   }

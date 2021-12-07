@@ -4,7 +4,7 @@
             <h2 *ngIf="!productService.edit">Agregar producto</h2>
             <h2 *ngIf="productService.edit">Modificar producto</h2>            
         </div>
-        <form [formGroup]="formProduct" (ngSubmit)="formSubmit()">
+        <form [formGroup]="formProduct">
             <label [class.error]="validate.code" for="barcode">Código<input (change)="validate.code=false" type="text" name="barcode" formControlName="barcode"></label>
             <label [class.error]="validate.desc" for="description">Descripción<input (change)="validate.desc=false" type="text" name="description" formControlName="description"></label>
             <label for="category">
@@ -24,7 +24,7 @@
                 <button [class.disabledBtn]="disBtn" [disabled]="disBtn" type="button" (click)="calculatePrice()"><fa-icon [icon]="icons[0]"></fa-icon> Calcular</button>
             </label>
             <div class="buttons">
-                <button [class.disabledBtn]="disBtn" [disabled]="disBtn" type="submit"><fa-icon [icon]="icons[1]"></fa-icon> Guardar</button>
+                <button [class.disabledBtn]="disBtn" [disabled]="disBtn" type="button" (click)="formSubmit()"><fa-icon [icon]="icons[1]"></fa-icon> Guardar</button>
                 <button [class.disabledBtn]="disBtn" [disabled]="disBtn" type="button" (click)="closeModal()"><fa-icon [icon]="icons[2]"></fa-icon> Cancelar</button>                
             </div>
         </form>

@@ -107,7 +107,18 @@ export class ReportSalesComponent implements OnInit {
   }
 
   extractData(data: ListItem[]): TableRow[] {
-    return data.map(row => [row.quantity, row.product.barcode, row.product.description, (row.price * row.quantity)]);
+    return data.map(row => {
+      let barcode = '';
+      let desc = '';
+      if (row.product === null) {
+        barcode = 'XXXXXXXX';
+        desc = 'PRODUCTO ELIMINADO'
+      } else {
+        barcode = row.product.barcode;
+        desc = row.product.description;
+      }
+      return [row.quantity, barcode, desc, (row.price * row.quantity)];
+    });
   }
 
 }
