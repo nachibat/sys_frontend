@@ -18,7 +18,6 @@ export class SalesRangeComponent implements OnInit {
   constructor(private saleService: SaleService) { }
 
   ngOnInit(): void {
-    this.search();
   }
 
   async search() {
