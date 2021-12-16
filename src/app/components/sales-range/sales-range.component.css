@@ -1,0 +1,106 @@
+/**** Main design ****/
+
+.card {
+    position: relative;
+    margin: 20px 0;
+    padding: 20px;
+    width: 100%;
+    min-height: 650px;
+    background: var(--white);
+    border-radius: 20px;
+    box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08);
+}
+
+.card .card-header .buttons label{
+    color: var(--black2);
+    margin-right: 10px;
+}
+
+.card .card-header .buttons label input {
+    margin-left: 10px;
+}
+
+.card table {
+    width: 100%;
+    padding: 10px 0;
+    border-collapse: collapse;
+}
+
+.card table thead tr th,
+.card table tbody tr td {
+    padding: 10px;
+}
+
+.card table thead tr th:nth-child(1),
+.card table tbody tr td:nth-child(1) {
+    text-align: center;
+}
+
+
+.card table tbody tr td:nth-child(2) {
+    text-align: start;
+}
+
+.card table thead tr th:nth-child(4),
+.card table tbody tr td:nth-child(4) {
+    text-align: end;
+}
+
+.card table tbody tr {
+    color: var(--black1);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.card table tbody tr:hover {
+    background: var(--blue);
+    color: var(--white);
+}
+
+.card table tbody tr.foot {
+    pointer-events: none;
+    background: rgb(233, 233, 233);
+    border-bottom: 2px solid var(--black1);
+}
+
+.card table tbody tr.foot td {
+    text-align: end;
+}
+
+.card table tbody tr.foot td span {
+    font-weight: 600;
+}
+
+/* .detail {
+    padding: 0 40px !important;
+    pointer-events: none;
+}
+
+.detail table thead tr th,
+.detail table tbody tr td{
+    padding: 3px !important;
+}
+
+.detail table thead tr th,
+.detail table tbody tr td {
+    font-size: 15px;
+}
+
+.detail table thead tr,
+.detail table tbody tr {
+    border: none;
+}
+
+.detail table thead tr th:nth-child(1),
+.detail table tbody tr td:nth-child(1),
+.detail table thead tr th:nth-child(3) {
+    text-align: center;
+}
+
+.detail table tbody tr td:nth-child(3) {
+    text-align: start;
+}
+
+.detail table thead tr th:nth-child(4),
+.detail table tbody tr td:nth-child(4) {
+    text-align: end;
+} */

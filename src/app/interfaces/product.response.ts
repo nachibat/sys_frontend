@@ -28,6 +28,7 @@ export interface Product {
     cost_price: number;
     percent_profit: number;
     price: number;
+    status: boolean;
     createdAt: Date;
     updatedAt: Date;
 }

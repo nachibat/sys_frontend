@@ -48,10 +48,10 @@ export class SaleService {
     return this.http.get<SaleListResponse>(`${this.url}/sale/search?from=${from}&to=${to}`, { headers }).toPromise();
   }
 
-  itemSaleList(idSale: string): Observable<SaleItemListResponse> {
+  itemSaleList(idSale: string): Promise<SaleItemListResponse> {
     const token = localStorage.getItem('token') || '';
     const headers = new HttpHeaders({ Authorization: token });
-    return this.http.get<SaleItemListResponse>(`${this.url}/item_sale/sale/${idSale}`, { headers });
+    return this.http.get<SaleItemListResponse>(`${this.url}/item_sale/sale/${idSale}`, { headers }).toPromise();
   }
 
 }

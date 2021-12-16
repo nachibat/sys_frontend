@@ -38,17 +38,16 @@ export class ReportSalesComponent implements OnInit {
 
   loadSalesItems() {
     this.loading = true;
-    this.saleService.saleList().subscribe(resp => {
+    this.saleService.saleList().subscribe(async resp => {
       this.sales = resp.listSales;
       for (let i = 0; i < this.sales.length; i++) {
         const element = this.sales[i];
         this.total += element.total;
-        this.saleService.itemSaleList(element._id).subscribe(resp => {
-          this.salesItems.push(...resp.listItems);
-          if (i >= (this.sales.length - 1)) {
-            this.reorderProducts();
-          }
-        });
+        const resp = await this.saleService.itemSaleList(element._id);
+        this.salesItems.push(...resp.listItems);
+        if (i >= (this.sales.length - 1)) {
+          this.reorderProducts();
+        }
       }
       this.loading = false;
     });

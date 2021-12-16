@@ -14,6 +14,7 @@ import { ModalComponent } from './modal/modal.component';
 import { ReportStockComponent } from './report-stock/report-stock.component';
 import { ReportSalesComponent } from './report-sales/report-sales.component';
 import { CigarettesComponent } from './cigarettes/cigarettes.component';
+import { SalesRangeComponent } from './sales-range/sales-range.component';
 
 
 
@@ -26,7 +27,8 @@ import { CigarettesComponent } from './cigarettes/cigarettes.component';
     ModalComponent,
     ReportStockComponent,
     ReportSalesComponent,
-    CigarettesComponent
+    CigarettesComponent,
+    SalesRangeComponent
   ],
   imports: [
     CommonModule,
@@ -44,7 +46,8 @@ import { CigarettesComponent } from './cigarettes/cigarettes.component';
     ModalComponent,
     ReportStockComponent,
     ReportSalesComponent,
-    CigarettesComponent
+    CigarettesComponent,
+    SalesRangeComponent
   ]
 })
 export class ComponentsModule { }

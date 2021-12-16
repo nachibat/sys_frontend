@@ -15,10 +15,16 @@ export interface SaleResponse {
 
 export interface Sale {
     _id: string;
-    id_user: string;
+    id_user: User;
     total: number;
     createdAt: Date;
     updatedAt: Date;
+}
+
+export interface User {
+    _id: string,
+    username: string,
+    role: string
 }
 
 export interface ItemSaleResponse {
@@ -35,26 +41,26 @@ export interface SaleItem {
 }
 
 export interface SaleListResponse {
-    ok:        boolean;
-    total:     number;
+    ok: boolean;
+    total: number;
     listSales: Sale[];
 }
 
 export interface SaleItemListResponse {
-    ok:        boolean;
+    ok: boolean;
     listItems: ListItem[];
 }
 
 export interface ListItem {
-    _id:        string;
-    id_sale:    string;
+    _id: string;
+    id_sale: string;
     product: Product;
-    price:      number;
-    quantity:   number;
+    price: number;
+    quantity: number;
 }
 
 export interface Product {
-    _id:         string;
-    barcode:     string;
+    _id: string;
+    barcode: string;
     description: string;
 }
