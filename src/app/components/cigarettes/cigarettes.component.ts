@@ -40,17 +40,18 @@ export class CigarettesComponent implements OnInit {
     this.sales = resp.listSales;
     for (let i = 0; i < this.sales.length; i++) {
       const element = this.sales[i];
-      const resp = await this.saleService.itemSaleList(element._id);
-      for (let j = 0; j < resp.listItems.length; j++) {
-        const element = resp.listItems[j];
-        if (element.product && element.product.description.toLowerCase().search('cigarrillo') >= 0) {
-          this.salesItems.push(element);
-          this.total += (element.quantity * element.price);
+      this.saleService.itemSaleListObs(element._id).subscribe(resp => {
+        for (let j = 0; j < resp.listItems.length; j++) {
+          const element = resp.listItems[j];
+          if (element.product && element.product.description.toLowerCase().search('cigarrillo') >= 0) {
+            this.salesItems.push(element);
+            this.total += (element.quantity * element.price);
+          }
         }
-      }
-      if (i === (this.sales.length - 1)) {
-        this.reorderProducts();
-      }
+        if (i === (this.sales.length - 1)) {
+          this.reorderProducts();
+        }
+      });
     }
     if (this.sales.length === 0) {
       this.loading = false;

@@ -54,4 +54,10 @@ export class SaleService {
     return this.http.get<SaleItemListResponse>(`${this.url}/item_sale/sale/${idSale}`, { headers }).toPromise();
   }
 
+  itemSaleListObs(idSale: string): Observable<SaleItemListResponse> {
+    const token = localStorage.getItem('token') || '';
+    const headers = new HttpHeaders({ Authorization: token });
+    return this.http.get<SaleItemListResponse>(`${this.url}/item_sale/sale/${idSale}`, { headers });
+  }
+
 }
