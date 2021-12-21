@@ -44,7 +44,6 @@ export class TopbarComponent implements OnInit {
 
   search(): void {
     if (this.data === undefined || this.data === null || this.data.trim() === '') {
-      this.makeSaleEvent.emit();
       return;
     }
     if (!isNaN(parseFloat(this.data)) && !isNaN(this.data - 0)) {
