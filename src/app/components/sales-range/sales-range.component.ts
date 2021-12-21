@@ -14,6 +14,8 @@ export class SalesRangeComponent implements OnInit {
   public dateTo: string = new Date().toISOString().slice(0,10);
   public loading: boolean = false;
   public sales: any[] = [];
+  public currentSale: number = 0;
+  public totalSale: number = 0;
 
   constructor(private saleService: SaleService) { }
 
@@ -24,8 +26,10 @@ export class SalesRangeComponent implements OnInit {
     this.loading = true;
     this.sales = [];
     const resp = await this.saleService.saleListRange(this.dateFrom, this.dateTo);
+    this.totalSale = resp.listSales.length;
     for (let i = 0; i < resp.listSales.length; i++) {
       const element = resp.listSales[i];
+      this.currentSale = i + 1;
       let items = [];
       const resp2 = await this.saleService.itemSaleList(element._id);
       for (let j = 0; j < resp2.listItems.length; j++) {

@@ -70,37 +70,12 @@
     font-weight: 600;
 }
 
-/* .detail {
-    padding: 0 40px !important;
-    pointer-events: none;
+.card .loading {
+    min-height: 600px;
+    flex-direction: column;
 }
 
-.detail table thead tr th,
-.detail table tbody tr td{
-    padding: 3px !important;
+.card .loading .text {
+    margin-top: 15px;
+    font-weight: 600;
 }
-
-.detail table thead tr th,
-.detail table tbody tr td {
-    font-size: 15px;
-}
-
-.detail table thead tr,
-.detail table tbody tr {
-    border: none;
-}
-
-.detail table thead tr th:nth-child(1),
-.detail table tbody tr td:nth-child(1),
-.detail table thead tr th:nth-child(3) {
-    text-align: center;
-}
-
-.detail table tbody tr td:nth-child(3) {
-    text-align: start;
-}
-
-.detail table thead tr th:nth-child(4),
-.detail table tbody tr td:nth-child(4) {
-    text-align: end;
-} */

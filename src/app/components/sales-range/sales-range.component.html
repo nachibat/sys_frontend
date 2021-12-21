@@ -9,6 +9,7 @@
     </div>
     <div *ngIf="loading" class="loading">
         <div class="spinner"></div>
+        <div class="text">Ventas procesadas: {{ currentSale }} de {{ totalSale }}</div>
     </div>
     <table *ngIf="!loading">
         <thead>
