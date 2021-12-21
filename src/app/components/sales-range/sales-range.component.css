@@ -63,6 +63,7 @@
 }
 
 .card table tbody tr.foot td {
+    column-span: all;
     text-align: end;
 }
 
@@ -78,4 +79,30 @@
 .card .loading .text {
     margin-top: 15px;
     font-weight: 600;
+}
+
+/**** Responsive design ****/
+
+@media (max-width: 450px) {
+    .card {
+        height: 100%;
+    }
+    .card .card-header {
+        display: block;
+    }
+    .card .card-header .buttons label {
+        display: block;
+        margin-bottom: 10px;
+    }
+    .card table thead tr th:nth-child(1),
+    .card table tbody tr td:nth-child(1),
+    .card table thead tr th:nth-child(2),
+    .card table tbody tr td:nth-child(2) {
+        display: none;
+    }
+
+    .card table tbody tr.foot td {
+        display: block;
+        font-size: 10px;
+    }
 }
