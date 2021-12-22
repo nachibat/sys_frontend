@@ -8,7 +8,7 @@
             <p>{{ modalService.message }}</p>
         </div>
         <div class="footer">
-            <button #confirm (click)="confirmModal()">Confirmar</button>
+            <button [disabled]="!modalService.confirmButton" #confirm (click)="confirmModal()">Confirmar</button>
             <button (click)="closeModal('#modalConfirmation', '#container')">Cancelar</button>
         </div>
     </div>

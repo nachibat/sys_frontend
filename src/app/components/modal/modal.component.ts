@@ -34,8 +34,9 @@ export class ModalComponent implements OnInit {
     }, 450);  
   }
 
-  public confirmModal(): void {
-    this.modalService.callback();
+  public async confirmModal() {
+    this.modalService.confirmButton = false;
+    await this.modalService.callback();
     this.data = null;
     this.closeModal('#modalConfirmation', '#container');
   }

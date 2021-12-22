@@ -8,6 +8,7 @@ export class ModalService {
   public title: string = '';
   public message: string = '';
   public confirmationModal: boolean = false;
+  public confirmButton: boolean = true;
   public addModal: boolean = false;
   public callback: any;
 

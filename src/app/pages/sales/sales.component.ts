@@ -136,6 +136,7 @@ export class SalesComponent implements OnInit, OnDestroy {
     this.modalService.confirmationModal = true;
     this.modalService.title = 'Confirmación';
     this.modalService.message = '¿Está seguro que desea realizar la venta?'
+    this.modalService.confirmButton = true;
     this.modalService.execCallback(() => {
       this.saleService.createSale(this.userService.user._id).subscribe(resp => {
         for (let i = 0; i < this.saleService.items.length; i++) {

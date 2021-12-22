@@ -108,6 +108,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
   }
   remove(id: string, pos: number): void {
     this.modalService.confirmationModal = true;
+    this.modalService.confirmButton = true;
     this.modalService.title = 'Confirmación';
     this.modalService.message = '¿Está seguro que desea eliminar el producto?';
     this.modalService.execCallback(() => {
@@ -116,6 +117,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
         console.log(resp);
         this.toastService.success('Se eliminó el producto correctamente', 'Información');
         this.products.splice(pos, 1);
+        this.productService.loading = false;
       }, err => {
         this.handleError(err);
       });      
