@@ -74,8 +74,24 @@ export class SalesChartComponent implements OnInit {
     }
     for (let i = 0; i < months.length; i++) {
       const element = months[i];
-      const dateFrom = new Date(today.getFullYear(), element, 1).toISOString().slice(0, 10);
-      const dateTo = new Date(today.getFullYear(), element + 1, 0).toISOString().slice(0, 10);
+      let lastyear = false;
+      let dateFrom;
+      let dateTo;
+      if (months[0] >= 7 || months[0] <= 11) {
+        lastyear = true;
+      } else {
+        lastyear = false;
+      }
+      if (element === 0) {
+        lastyear = false;
+      }
+      if (lastyear) {
+        dateFrom = new Date(today.getFullYear() - 1, element, 1).toISOString().slice(0, 10);
+        dateTo = new Date(today.getFullYear() - 1, element + 1, 0).toISOString().slice(0, 10);
+      } else {
+        dateFrom = new Date(today.getFullYear(), element, 1).toISOString().slice(0, 10);
+        dateTo = new Date(today.getFullYear(), element + 1, 0).toISOString().slice(0, 10);
+      }
       let total: number = 0;
       this.sales = await this.saleService.saleListRange(dateFrom, dateTo);
       for (let i = 0; i < this.sales.listSales.length; i++) {
