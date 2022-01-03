@@ -1,5 +1,15 @@
 /**** Main design ****/
 
+/* Delete after finish development */
+.no-events {
+    pointer-events: none;
+}
+
+li.no-events a span {
+    color: #0400ff59;
+}
+/* Delete after finish development */
+
 .container {
     position: relative;
     width: 100%;
