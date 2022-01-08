@@ -77,6 +77,11 @@ li.no-events a span {
     font-size: 1.7em;
 }
 
+.navigation ul li:hover a .icon fa-icon {
+    font-size: 2em;
+    transition: 0.5s;
+}
+
 .navigation ul li a .title {
     position: relative;
     display: block;
@@ -97,6 +102,10 @@ li.no-events a span {
     font-weight: normal !important;
     letter-spacing: 0px !important;
     cursor: default;
+}
+
+.active:hover .icon fa-icon {
+    font-size: 1.7em !important;
 }
 
 .active span {

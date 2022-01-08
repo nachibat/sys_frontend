@@ -86,15 +86,15 @@ input[type=number] {
     cursor: wait !important;
 }
 
-.card .loading {
+.loading {
     width: 100%;
-    height: 100%;
+    height: 80vh;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.card .loading .spinner {
+.loading .spinner {
     border: 4px solid rgba(0, 0, 0, 0.1);
     border-left-color: var(--blue);
     border-radius: 50%;

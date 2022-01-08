@@ -1,0 +1,50 @@
+<app-navbar></app-navbar>
+<div class="main" [ngClass]="{'wide-main': isOpen}">
+    <app-topbar></app-topbar>
+    <div class="container">
+        <div class="actions">
+            <button (click)="openAddModal()" title="Agregar Proveedor">Agregar</button>
+        </div>
+        <div class="cards">
+            <div *ngIf="loading" class="loading">
+                <div class="spinner"></div>
+            </div>
+            <h2 *ngIf="suppliers.length === 0 && !loading">No hay proveedores registrados</h2>
+            <div class="card" *ngFor="let supplier of suppliers">
+                <div class="header">
+                    <fa-icon [icon]="icons[4]"></fa-icon>
+                    <ul class="sub-menu">
+                        <li (click)="openEditModal(supplier)">Editar</li>
+                        <li (click)="remove(supplier._id)">Eliminar</li>
+                    </ul>
+                </div>                
+                <p><fa-icon [icon]="icons[0]"></fa-icon>{{ supplier.name }}</p>
+                <p><fa-icon [icon]="icons[1]"></fa-icon>{{ supplier.address }}</p>
+                <p><fa-icon [icon]="icons[2]"></fa-icon>{{ supplier.phone }}</p>
+                <p *ngIf="supplier.mail"><fa-icon [icon]="icons[3]"></fa-icon>{{ supplier.mail }}</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="modal" class="modal opened fadeIn" *ngIf="openModal">
+    <div id="container" class="container slideIn">
+        <div class="header">
+            <h2>{{ header }} proveedor</h2>
+        </div>
+        <div class="body">
+            <form [formGroup]="formSupplier">
+                <label [class.error]="validate.name" for="name">Proveedor <input (change)="validate.name=false" type="text" name="name" formControlName="name"></label>
+                <label [class.error]="validate.address" for="address">Dirección <input (change)="validate.address=false" type="text" name="address" formControlName="address"></label>
+                <label [class.error]="validate.phone" for="phone">Teléfono <input (change)="validate.phone=false" type="text" name="phone" formControlName="phone"></label>
+                <label for="mail">Email <input type="text" name="mail" formControlName="mail"></label>
+                <div class="buttons">
+                    <button [disabled]="disabledButton" (click)="confirmModal()" type="submit">{{ header }}</button>
+                    <button (click)="closeModal()" type="button">Cancelar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<app-modal></app-modal>

@@ -31,10 +31,16 @@
                     <span class="title">Informes</span>
                 </a>
             </li>
-            <li title="Proveedores" class="no-events">
-                <a [routerLink]="['/']">
+            <li title="Proveedores">
+                <a [routerLink]="['/suppliers']" routerLinkActive="active">
                     <span class="icon"><fa-icon [icon]="icons[7]"></fa-icon></span>
                     <span class="title">Proveedores</span>
+                </a>
+            </li>
+            <li title="Caja" class="no-events">
+                <a [routerLink]="['/cash-register']" routerLinkActive="active">
+                    <span class="icon"><fa-icon [icon]="icons[8]"></fa-icon></span>
+                    <span class="title">Caja</span>
                 </a>
             </li>
             <li title="Perfil">
