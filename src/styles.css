@@ -82,19 +82,19 @@ input[type=number] {
     display: block;
 }
 
-.loading {
+.card .loading {
     cursor: wait !important;
 }
 
-.loading {
+.card .loading {
     width: 100%;
-    height: 80vh;
+    height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.loading .spinner {
+.card .loading .spinner {
     border: 4px solid rgba(0, 0, 0, 0.1);
     border-left-color: var(--blue);
     border-radius: 50%;
