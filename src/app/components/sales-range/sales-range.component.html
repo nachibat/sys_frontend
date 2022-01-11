@@ -11,6 +11,10 @@
         <div class="spinner"></div>
         <div class="text">Ventas procesadas: {{ currentSale }} de {{ totalSale }}</div>
     </div>
+    <div *ngIf="sales.length > 0" class="totales">
+        <h3>Ventas realizadas en período buscado: {{ sales.length }}</h3>
+        <h3>Total vendido en período buscado: $ {{ total }}</h3>
+    </div>
     <table *ngIf="!loading">
         <thead>
             <tr>

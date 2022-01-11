@@ -20,6 +20,10 @@
     margin-left: 10px;
 }
 
+.card .totales {
+    padding: 30px 0;
+}
+
 .card table {
     width: 100%;
     padding: 10px 0;
@@ -104,5 +108,9 @@
     .card table tbody tr.foot td {
         display: block;
         font-size: 10px;
+    }
+
+    .card .totales h3 {
+        font-size: 14px;
     }
 }

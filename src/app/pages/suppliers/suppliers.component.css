@@ -1,3 +1,5 @@
+/**** Main design ****/
+
 .error input {
     border: 2px solid var(--danger) !important;
 }
@@ -224,5 +226,16 @@
     }
     100% {
         transform: rotate(360deg);
+    }
+}
+
+/**** Responsive design ****/
+
+@media (max-width: 410px) {
+    .modal .container {
+        width: 330px;
+    }
+    .modal .container .body form label input {
+        width: 180px;
     }
 }
