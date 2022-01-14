@@ -1,11 +1,17 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { faChevronLeft, faChevronRight, faEdit, faPlus, faRedoAlt, faSort, faTrash } from '@fortawesome/free-solid-svg-icons';
+import { faChevronLeft, faChevronRight, faClipboard, faEdit, faPlus, faRedoAlt, faSort, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { ToastrService } from 'ngx-toastr';
 import { Product } from 'src/app/interfaces/product.response';
 import { ModalService } from 'src/app/services/modal.service';
 import { NavbarService } from 'src/app/services/navbar.service';
 import { ProductService } from 'src/app/services/product.service';
 import { UserService } from 'src/app/services/user.service';
+
+import { PdfMakeWrapper, Table, Txt } from 'pdfmake-wrapper';
+import { ITable } from 'pdfmake-wrapper/lib/interfaces';
+import * as pdfFonts from 'pdfmake/build/vfs_fonts';
+PdfMakeWrapper.setFonts(pdfFonts);
+type TableRow = [string, string, string, number, string, string, string];
 
 @Component({
   selector: 'app-products',
@@ -14,7 +20,7 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class ProductsComponent implements OnInit, OnDestroy {
   
-  public icons = [faPlus, faEdit, faTrash, faChevronLeft, faChevronRight, faSort, faRedoAlt];
+  public icons = [faPlus, faEdit, faTrash, faChevronLeft, faChevronRight, faSort, faRedoAlt, faClipboard];
   public isOpen: boolean = false;
   public admin = false;
   public products: Product[] = [];
@@ -201,6 +207,46 @@ export class ProductsComponent implements OnInit, OnDestroy {
     this.limit = 8;
     this.order = 'description'
     this.loadProducts();
+  }
+
+  generatePdf(): void {
+    this.productService.getProducts(0, 5000, 'description').subscribe(resp => {
+      console.log(resp);
+      const product = resp.listProducts;
+      const pdf = new PdfMakeWrapper();
+      pdf.add(new Txt(new Date().toLocaleDateString()).alignment('right').end);
+      pdf.add('\n');
+      pdf.add(new Txt('Listado de productos').alignment('center').fontSize(16).bold().end);
+      pdf.add('\n');
+      pdf.add(new Txt(`Total de productos registrados: ${resp.total}`).alignment('left').fontSize(12).end);
+      pdf.add('\n');
+      pdf.add(this.createTable(product));
+      pdf.watermark(new Txt('S&S Kiosko').color('lightgrey').end);
+      pdf.create().open();
+    });
+  }
+
+  createTable(data: Product[]): ITable {
+    return new Table([
+      ['Código', 'Descripción', 'Categ.', 'Cant.', 'Costo', '% Gan.', 'P. Final'],
+      ...this.extractData(data)
+    ])
+    .fontSize(10)
+    .widths([75, '*', 50, 25, 30, 35, 35])
+    .layout('lightHorizontalLines')
+    .headerRows(1)
+    .end;
+  }
+
+  extractData(data: Product[]): TableRow[] {
+    return data.map(row => {
+      let cost = '';
+      if (row.cost_price) { cost = `$ ${row.cost_price}` } else { cost = '-' }
+      let profit = '';
+      if (row.percent_profit) { profit = `% ${row.percent_profit}` } else { profit = '-' }
+      const cat = row.category.charAt(0).toUpperCase() + row.category.slice(1);
+      return [row.barcode, row.description, cat, row.quantity, cost, profit, `$ ${row.price}`];
+    });
   }
 
 }
