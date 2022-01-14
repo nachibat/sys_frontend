@@ -183,10 +183,21 @@
     padding: 10px 20px;
     margin-bottom: 20px;
     background: var(--white);
-    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.actions label select {
+    width: 130px;
+    padding: 5px 10px;
+    border-radius: 40px;
+    border: 1px solid var(--black2);
 }
 
 .actions button {
+    margin-top: 20px;
     background: var(--blue);
     color: var(--white);
     padding: 15px 25px;

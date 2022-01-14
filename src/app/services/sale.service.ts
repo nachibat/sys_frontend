@@ -22,10 +22,10 @@ export class SaleService {
     this.total = 0;
   }
 
-  createSale(id_user: string): Observable<SaleResponse> {
+  createSale(id_user: string, payment: string): Observable<SaleResponse> {
     const token = localStorage.getItem('token') || '';
     const headers = new HttpHeaders({ Authorization: token });
-    const data = { id_user, total: this.total };
+    const data = { id_user, payment, total: this.total };
     return this.http.post<SaleResponse>(`${this.url}/sale`, data, { headers });
   }
 

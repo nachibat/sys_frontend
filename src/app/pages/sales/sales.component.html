@@ -73,6 +73,14 @@
             </div>
         </div>
         <div class="actions">
+            <label for="payment">
+                Método de pago
+                <select name="payment" [(ngModel)]="payment">
+                    <option value="CASH">Efectivo</option>
+                    <option value="CARD">Tarjeta</option>
+                    <option value="MP">Mercado Pago</option>
+                </select>
+            </label>
             <button (click)="makeSale()">Realizar Venta</button>
         </div>
     </div>

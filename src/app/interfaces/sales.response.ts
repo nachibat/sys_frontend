@@ -17,6 +17,7 @@ export interface Sale {
     _id: string;
     id_user: User;
     total: number;
+    payment: string;
     createdAt: Date;
     updatedAt: Date;
 }

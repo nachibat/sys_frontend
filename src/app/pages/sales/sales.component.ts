@@ -27,6 +27,7 @@ export class SalesComponent implements OnInit, OnDestroy {
   public date!: Date;
   public message: string = 'No se buscaron productos';
   public productsFound: Product[] = [];
+  public payment: string = 'CASH'
 
   constructor(private navbarService: NavbarService,
               private userService: UserService,
@@ -138,7 +139,7 @@ export class SalesComponent implements OnInit, OnDestroy {
     this.modalService.message = '¿Está seguro que desea realizar la venta?'
     this.modalService.confirmButton = true;
     this.modalService.execCallback(() => {
-      this.saleService.createSale(this.userService.user._id).subscribe(resp => {
+      this.saleService.createSale(this.userService.user._id, this.payment).subscribe(resp => {
         for (let i = 0; i < this.saleService.items.length; i++) {
           const item = this.saleService.items[i];
           this.saleService.addItemSale(resp.saleCreated._id, item.id_product, item.price, item.quantity).subscribe(resp2 => {
@@ -156,6 +157,7 @@ export class SalesComponent implements OnInit, OnDestroy {
           });
         }
         this.toastService.success('Venta realizada correctamente', 'Información', { timeOut: 4000 });
+        this.payment = 'CASH';
         this.saleService.cleanData();
       }, err => {
         this.toastService.error('Ocurrio un error', 'Error');

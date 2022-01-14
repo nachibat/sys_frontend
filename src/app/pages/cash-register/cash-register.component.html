@@ -1,5 +1,222 @@
 <app-navbar></app-navbar>
 <div class="main" [ngClass]="{'wide-main': isOpen}">
     <app-topbar></app-topbar>
-    <p>cash-register works!</p>
+    <div class="container">
+        <div class="actions">
+            <div class="card-header">
+                <h2>Registro de caja diario</h2>
+            </div>
+            <div class="button">
+                <button type="button">Registrar caja</button>
+            </div>
+        </div>
+        <div class="list">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Fecha</th>
+                        <th title="Caja del día anterior">Caja</th>
+                        <th title="Carga virtual inicial">CV Inicial</th>
+                        <th title="Carga virtual final">CV Final</th>
+                        <th title="Adicional carga virtual">AD. CV</th>
+                        <th title="Total kiosko del día de la fecha">Kiosko</th>
+                        <th>TK/SI</th>
+                        <th title="Subtotal de ingresos">Subtotal</th>
+                        <th>Gastos</th>
+                        <th>Retiros</th>
+                        <th title="Subtotal de gastos y retiros">Subtotal 2</th>
+                        <th>Caja final</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>10/10/2020</td>
+                        <td>$ 16850</td>
+                        <td>$ 10192</td>
+                        <td>$ 18774</td>
+                        <td>$ 11140</td>
+                        <td>$ 13904</td>
+                        <td>$ 11110</td>
+                        <td>$ 12572</td>
+                        <td>$ 13590</td>
+                        <td>$ 11000</td>
+                        <td>$ 14590</td>
+                        <td>$ 17982</td>
+                    </tr>
+                    <tr>
+                        <td>10/10/2020</td>
+                        <td>$ 16850</td>
+                        <td>$ 10192</td>
+                        <td>$ 18774</td>
+                        <td>$ 11140</td>
+                        <td>$ 13904</td>
+                        <td>$ 11110</td>
+                        <td>$ 12572</td>
+                        <td>$ 13590</td>
+                        <td>$ 11000</td>
+                        <td>$ 14590</td>
+                        <td>$ 17982</td>
+                    </tr>
+                    <tr>
+                        <td>10/10/2020</td>
+                        <td>$ 16850</td>
+                        <td>$ 10192</td>
+                        <td>$ 18774</td>
+                        <td>$ 11140</td>
+                        <td>$ 13904</td>
+                        <td>$ 11110</td>
+                        <td>$ 12572</td>
+                        <td>$ 13590</td>
+                        <td>$ 11000</td>
+                        <td>$ 14590</td>
+                        <td>$ 17982</td>
+                    </tr>
+                    <tr>
+                        <td>10/10/2020</td>
+                        <td>$ 16850</td>
+                        <td>$ 10192</td>
+                        <td>$ 18774</td>
+                        <td>$ 11140</td>
+                        <td>$ 13904</td>
+                        <td>$ 11110</td>
+                        <td>$ 12572</td>
+                        <td>$ 13590</td>
+                        <td>$ 11000</td>
+                        <td>$ 14590</td>
+                        <td>$ 17982</td>
+                    </tr>
+                    <tr>
+                        <td>10/10/2020</td>
+                        <td>$ 16850</td>
+                        <td>$ 10192</td>
+                        <td>$ 18774</td>
+                        <td>$ 11140</td>
+                        <td>$ 13904</td>
+                        <td>$ 11110</td>
+                        <td>$ 12572</td>
+                        <td>$ 13590</td>
+                        <td>$ 11000</td>
+                        <td>$ 14590</td>
+                        <td>$ 17982</td>
+                    </tr>
+                    <tr>
+                        <td>10/10/2020</td>
+                        <td>$ 16850</td>
+                        <td>$ 10192</td>
+                        <td>$ 18774</td>
+                        <td>$ 11140</td>
+                        <td>$ 13904</td>
+                        <td>$ 11110</td>
+                        <td>$ 12572</td>
+                        <td>$ 13590</td>
+                        <td>$ 11000</td>
+                        <td>$ 14590</td>
+                        <td>$ 17982</td>
+                    </tr>
+                    <tr>
+                        <td>10/10/2020</td>
+                        <td>$ 16850</td>
+                        <td>$ 10192</td>
+                        <td>$ 18774</td>
+                        <td>$ 11140</td>
+                        <td>$ 13904</td>
+                        <td>$ 11110</td>
+                        <td>$ 12572</td>
+                        <td>$ 13590</td>
+                        <td>$ 11000</td>
+                        <td>$ 14590</td>
+                        <td>$ 17982</td>
+                    </tr>
+                    <tr>
+                        <td>10/10/2020</td>
+                        <td>$ 16850</td>
+                        <td>$ 10192</td>
+                        <td>$ 18774</td>
+                        <td>$ 11140</td>
+                        <td>$ 13904</td>
+                        <td>$ 11110</td>
+                        <td>$ 12572</td>
+                        <td>$ 13590</td>
+                        <td>$ 11000</td>
+                        <td>$ 14590</td>
+                        <td>$ 17982</td>
+                    </tr>
+                    <tr>
+                        <td>10/10/2020</td>
+                        <td>$ 16850</td>
+                        <td>$ 10192</td>
+                        <td>$ 18774</td>
+                        <td>$ 11140</td>
+                        <td>$ 13904</td>
+                        <td>$ 11110</td>
+                        <td>$ 12572</td>
+                        <td>$ 13590</td>
+                        <td>$ 11000</td>
+                        <td>$ 14590</td>
+                        <td>$ 17982</td>
+                    </tr>
+                    <tr>
+                        <td>10/10/2020</td>
+                        <td>$ 16850</td>
+                        <td>$ 10192</td>
+                        <td>$ 18774</td>
+                        <td>$ 11140</td>
+                        <td>$ 13904</td>
+                        <td>$ 11110</td>
+                        <td>$ 12572</td>
+                        <td>$ 13590</td>
+                        <td>$ 11000</td>
+                        <td>$ 14590</td>
+                        <td>$ 17982</td>
+                    </tr>
+                    <tr>
+                        <td>10/10/2020</td>
+                        <td>$ 16850</td>
+                        <td>$ 10192</td>
+                        <td>$ 18774</td>
+                        <td>$ 11140</td>
+                        <td>$ 13904</td>
+                        <td>$ 11110</td>
+                        <td>$ 12572</td>
+                        <td>$ 13590</td>
+                        <td>$ 11000</td>
+                        <td>$ 14590</td>
+                        <td>$ 17982</td>
+                    </tr>
+                    <tr>
+                        <td>10/10/2020</td>
+                        <td>$ 16850</td>
+                        <td>$ 10192</td>
+                        <td>$ 18774</td>
+                        <td>$ 11140</td>
+                        <td>$ 13904</td>
+                        <td>$ 11110</td>
+                        <td>$ 12572</td>
+                        <td>$ 13590</td>
+                        <td>$ 11000</td>
+                        <td>$ 14590</td>
+                        <td>$ 17982</td>
+                    </tr>
+                    <tr>
+                        <td>10/10/2020</td>
+                        <td>$ 16850</td>
+                        <td>$ 10192</td>
+                        <td>$ 18774</td>
+                        <td>$ 11140</td>
+                        <td>$ 13904</td>
+                        <td>$ 11110</td>
+                        <td>$ 12572</td>
+                        <td>$ 13590</td>
+                        <td>$ 11000</td>
+                        <td>$ 14590</td>
+                        <td>$ 17982</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="footer">
+            <div class="prev"><a><fa-icon [icon]="icons[0]"></fa-icon> Anterior</a></div>
+            <div class="next"><a>Siguiente <fa-icon [icon]="icons[1]"></fa-icon></a></div>
+        </div>
+    </div>
 </div>

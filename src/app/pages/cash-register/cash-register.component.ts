@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
 import { NavbarService } from 'src/app/services/navbar.service';
 
 @Component({
@@ -8,7 +9,8 @@ import { NavbarService } from 'src/app/services/navbar.service';
 })
 export class CashRegisterComponent implements OnInit {
 
-  isOpen: boolean = false;
+  public isOpen: boolean = false;
+  public icons = [faChevronLeft, faChevronRight]
 
   constructor(private navbarService: NavbarService) { }
 
