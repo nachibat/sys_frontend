@@ -5,7 +5,7 @@
     width: 100%;
     padding: 20px;
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(5, 1fr); /* Temporary (before repeat(4, 1fr)) */
     gap: 30px;
 }
 
@@ -20,6 +20,24 @@
     box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08);
     transition: 0.2s;
 }
+
+/* Temporary */
+.card-box .card:nth-child(1) {
+    animation: blink 1s linear infinite;
+}
+
+@keyframes blink {
+    0% {
+        border: 1px solid var(--white);
+    }
+    50% {
+        border: 1px solid var(--blue);
+    }
+    100% {
+        border: 1px solid var(--white);
+    }
+}
+/* Temporary */
 
 .card-box .card .numbers {
     position: relative;
