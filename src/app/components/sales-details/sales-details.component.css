@@ -1,0 +1,60 @@
+/**** Main design ****/
+
+.card {
+    position: relative;
+    margin: 20px 0;
+    padding: 20px;
+    width: 100%;
+    height: 410px;
+    background: var(--white);
+    border-radius: 20px;
+    box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08);
+}
+
+.card .card-header .buttons label {
+    color: var(--black2);
+    margin-right: 10px;
+}
+
+.card .details {
+    margin: 40px 0;
+}
+
+.card .details h3 {
+    font-size: 18px;
+    font-weight: 100;
+}
+
+.card .details h3 span {
+    font-weight: 600;
+}
+
+.card .not-found {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/**** Responsive design ****/
+
+@media (max-width: 450px) {
+    .card {
+        height: 100%;
+    }
+    .card .card-header {
+        display: block;
+    }
+    .card .card-header .buttons label {
+        display: block;
+        margin-bottom: 10px;
+    }
+    .card .details h3 {
+        font-size: 14px;
+    }
+    .card .not-found {
+        display: block;
+        padding: 50px 20px;
+    }
+}

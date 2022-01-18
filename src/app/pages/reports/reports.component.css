@@ -15,7 +15,7 @@
     background: var(--white);
 }
 
-.item3 {
+.item {
     grid-column: 1 / span 2;
 }
 

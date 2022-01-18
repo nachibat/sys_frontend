@@ -1,0 +1,33 @@
+<div class="card">
+    <div class="card-header">
+        <h2>Reporte general</h2>
+        <div class="buttons">
+            <label for="from">Desde:<input type="date" name="from" [(ngModel)]="dateFrom"></label>
+            <label for="to">Hasta:<input type="date" name="to" [(ngModel)]="dateTo"></label>
+            <a (click)="search()" class="link-btn"><fa-icon [icon]="icons[0]"></fa-icon> Buscar</a>
+        </div>
+    </div>
+    <div *ngIf="loading" class="loading">
+        <div class="spinner"></div>
+    </div>
+    <div *ngIf="!loading && total[0] != 0" class="details">
+        <h3>Período de busqueda desde <span>{{ dateFrom | date:'d/M/yyyy' }}</span> hasta <span>{{ dateTo | date:'d/M/yyyy' }}</span></h3>
+        <br>
+        <h3>Cantidad de ventas realizadas en el período buscado: <span>{{ total[0] }}</span></h3>
+        <h3>Cantitdad total ventas realizadas en el período buscado: <span>$ {{ total[1] }}</span></h3>
+        <h3>Cantidad retiro de caja en período  buscado: <span>$ {{ withdrawal }}</span></h3>
+        <br>
+        <h3>Cantidad ventas realizadas en efectivo: <span>{{ cash[0] }}</span></h3>
+        <h3>Ventas realizadas en efectivo: <span>$ {{ cash[1] }}</span></h3>
+        <br>
+        <h3>Cantidad ventas realizadas con tarjera: <span>{{ card[0] }}</span></h3>
+        <h3>Ventas realizadas con tarjera: <span>$ {{ card[1] }}</span></h3>
+        <br>
+        <h3>Cantidad ventas realizadas con Mercado Pago: <span>{{ mp[0] }}</span></h3>
+        <h3>Ventas realizadas con Mercado Pago: <span>$ {{ mp[1] }}</span></h3>
+        <br>
+    </div>
+    <div *ngIf="notFound" class="not-found">
+        <h3>No se encontraron ventas en el período elegido</h3>
+    </div>
+</div>

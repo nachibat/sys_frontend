@@ -15,6 +15,7 @@ import { ReportStockComponent } from './report-stock/report-stock.component';
 import { ReportSalesComponent } from './report-sales/report-sales.component';
 import { CigarettesComponent } from './cigarettes/cigarettes.component';
 import { SalesRangeComponent } from './sales-range/sales-range.component';
+import { SalesDetailsComponent } from './sales-details/sales-details.component';
 
 
 
@@ -28,7 +29,8 @@ import { SalesRangeComponent } from './sales-range/sales-range.component';
     ReportStockComponent,
     ReportSalesComponent,
     CigarettesComponent,
-    SalesRangeComponent
+    SalesRangeComponent,
+    SalesDetailsComponent
   ],
   imports: [
     CommonModule,
@@ -47,7 +49,8 @@ import { SalesRangeComponent } from './sales-range/sales-range.component';
     ReportStockComponent,
     ReportSalesComponent,
     CigarettesComponent,
-    SalesRangeComponent
+    SalesRangeComponent,
+    SalesDetailsComponent
   ]
 })
 export class ComponentsModule { }
