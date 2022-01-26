@@ -7,11 +7,19 @@
                 <h2>Registro de caja diario</h2>
             </div>
             <div class="button">
-                <button type="button">Registrar caja</button>
+                <button (click)="openModalWithData()" type="button">Registrar caja</button>
             </div>
         </div>
         <div class="list">
-            <table>
+            <div class="buttons">
+                <label for="from">Desde: <input type="date" name="from" [(ngModel)]="dateFrom"></label>
+                <label for="to">Hasta: <input type="date" name="to" [(ngModel)]="dateTo"></label>
+                <a (click)="search()" class="link-btn"><fa-icon [icon]="icons[2]"></fa-icon> Buscar</a>
+            </div>
+            <div *ngIf="loading" class="loading">
+                <div class="spinner"></div>
+            </div>
+            <table *ngIf="!loading">
                 <thead>
                     <tr>
                         <th>Fecha</th>
@@ -29,194 +37,51 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>10/10/2020</td>
-                        <td>$ 16850</td>
-                        <td>$ 10192</td>
-                        <td>$ 18774</td>
-                        <td>$ 11140</td>
-                        <td>$ 13904</td>
-                        <td>$ 11110</td>
-                        <td>$ 12572</td>
-                        <td>$ 13590</td>
-                        <td>$ 11000</td>
-                        <td>$ 14590</td>
-                        <td>$ 17982</td>
-                    </tr>
-                    <tr>
-                        <td>10/10/2020</td>
-                        <td>$ 16850</td>
-                        <td>$ 10192</td>
-                        <td>$ 18774</td>
-                        <td>$ 11140</td>
-                        <td>$ 13904</td>
-                        <td>$ 11110</td>
-                        <td>$ 12572</td>
-                        <td>$ 13590</td>
-                        <td>$ 11000</td>
-                        <td>$ 14590</td>
-                        <td>$ 17982</td>
-                    </tr>
-                    <tr>
-                        <td>10/10/2020</td>
-                        <td>$ 16850</td>
-                        <td>$ 10192</td>
-                        <td>$ 18774</td>
-                        <td>$ 11140</td>
-                        <td>$ 13904</td>
-                        <td>$ 11110</td>
-                        <td>$ 12572</td>
-                        <td>$ 13590</td>
-                        <td>$ 11000</td>
-                        <td>$ 14590</td>
-                        <td>$ 17982</td>
-                    </tr>
-                    <tr>
-                        <td>10/10/2020</td>
-                        <td>$ 16850</td>
-                        <td>$ 10192</td>
-                        <td>$ 18774</td>
-                        <td>$ 11140</td>
-                        <td>$ 13904</td>
-                        <td>$ 11110</td>
-                        <td>$ 12572</td>
-                        <td>$ 13590</td>
-                        <td>$ 11000</td>
-                        <td>$ 14590</td>
-                        <td>$ 17982</td>
-                    </tr>
-                    <tr>
-                        <td>10/10/2020</td>
-                        <td>$ 16850</td>
-                        <td>$ 10192</td>
-                        <td>$ 18774</td>
-                        <td>$ 11140</td>
-                        <td>$ 13904</td>
-                        <td>$ 11110</td>
-                        <td>$ 12572</td>
-                        <td>$ 13590</td>
-                        <td>$ 11000</td>
-                        <td>$ 14590</td>
-                        <td>$ 17982</td>
-                    </tr>
-                    <tr>
-                        <td>10/10/2020</td>
-                        <td>$ 16850</td>
-                        <td>$ 10192</td>
-                        <td>$ 18774</td>
-                        <td>$ 11140</td>
-                        <td>$ 13904</td>
-                        <td>$ 11110</td>
-                        <td>$ 12572</td>
-                        <td>$ 13590</td>
-                        <td>$ 11000</td>
-                        <td>$ 14590</td>
-                        <td>$ 17982</td>
-                    </tr>
-                    <tr>
-                        <td>10/10/2020</td>
-                        <td>$ 16850</td>
-                        <td>$ 10192</td>
-                        <td>$ 18774</td>
-                        <td>$ 11140</td>
-                        <td>$ 13904</td>
-                        <td>$ 11110</td>
-                        <td>$ 12572</td>
-                        <td>$ 13590</td>
-                        <td>$ 11000</td>
-                        <td>$ 14590</td>
-                        <td>$ 17982</td>
-                    </tr>
-                    <tr>
-                        <td>10/10/2020</td>
-                        <td>$ 16850</td>
-                        <td>$ 10192</td>
-                        <td>$ 18774</td>
-                        <td>$ 11140</td>
-                        <td>$ 13904</td>
-                        <td>$ 11110</td>
-                        <td>$ 12572</td>
-                        <td>$ 13590</td>
-                        <td>$ 11000</td>
-                        <td>$ 14590</td>
-                        <td>$ 17982</td>
-                    </tr>
-                    <tr>
-                        <td>10/10/2020</td>
-                        <td>$ 16850</td>
-                        <td>$ 10192</td>
-                        <td>$ 18774</td>
-                        <td>$ 11140</td>
-                        <td>$ 13904</td>
-                        <td>$ 11110</td>
-                        <td>$ 12572</td>
-                        <td>$ 13590</td>
-                        <td>$ 11000</td>
-                        <td>$ 14590</td>
-                        <td>$ 17982</td>
-                    </tr>
-                    <tr>
-                        <td>10/10/2020</td>
-                        <td>$ 16850</td>
-                        <td>$ 10192</td>
-                        <td>$ 18774</td>
-                        <td>$ 11140</td>
-                        <td>$ 13904</td>
-                        <td>$ 11110</td>
-                        <td>$ 12572</td>
-                        <td>$ 13590</td>
-                        <td>$ 11000</td>
-                        <td>$ 14590</td>
-                        <td>$ 17982</td>
-                    </tr>
-                    <tr>
-                        <td>10/10/2020</td>
-                        <td>$ 16850</td>
-                        <td>$ 10192</td>
-                        <td>$ 18774</td>
-                        <td>$ 11140</td>
-                        <td>$ 13904</td>
-                        <td>$ 11110</td>
-                        <td>$ 12572</td>
-                        <td>$ 13590</td>
-                        <td>$ 11000</td>
-                        <td>$ 14590</td>
-                        <td>$ 17982</td>
-                    </tr>
-                    <tr>
-                        <td>10/10/2020</td>
-                        <td>$ 16850</td>
-                        <td>$ 10192</td>
-                        <td>$ 18774</td>
-                        <td>$ 11140</td>
-                        <td>$ 13904</td>
-                        <td>$ 11110</td>
-                        <td>$ 12572</td>
-                        <td>$ 13590</td>
-                        <td>$ 11000</td>
-                        <td>$ 14590</td>
-                        <td>$ 17982</td>
-                    </tr>
-                    <tr>
-                        <td>10/10/2020</td>
-                        <td>$ 16850</td>
-                        <td>$ 10192</td>
-                        <td>$ 18774</td>
-                        <td>$ 11140</td>
-                        <td>$ 13904</td>
-                        <td>$ 11110</td>
-                        <td>$ 12572</td>
-                        <td>$ 13590</td>
-                        <td>$ 11000</td>
-                        <td>$ 14590</td>
-                        <td>$ 17982</td>
+                    <tr *ngFor="let cash of cashRegister">
+                        <td>{{ cash.createdAt | date:'d/M/yyyy' }}</td>
+                        <td>$ {{ cash.cash }}</td>
+                        <td>$ {{ cash.ivc }}</td>
+                        <td>$ {{ cash.uvc }}</td>
+                        <td>$ {{ cash.avc }}</td>
+                        <td>$ {{ cash.kiosk }}</td>
+                        <td>$ {{ cash.tksi }}</td>
+                        <td>$ {{ cash.cash + (cash.ivc - cash.uvc) + cash.avc + cash.kiosk + cash.tksi }}</td>
+                        <td>$ {{ cash.expenses + cash.cigarettes }}</td>
+                        <td>$ {{ cash.withdrawals }}</td>
+                        <td>$ {{ cash.expenses + cash.cigarettes + cash.withdrawals }}</td>
+                        <td>$ {{ (cash.cash + (cash.ivc - cash.uvc) + cash.avc + cash.kiosk + cash.tksi) - (cash.expenses + cash.cigarettes + cash.withdrawals) }}</td>
                     </tr>
                 </tbody>
             </table>
         </div>
-        <div class="footer">
+        <!-- <div class="footer">
             <div class="prev"><a><fa-icon [icon]="icons[0]"></fa-icon> Anterior</a></div>
             <div class="next"><a>Siguiente <fa-icon [icon]="icons[1]"></fa-icon></a></div>
+        </div> -->
+    </div>
+</div>
+
+<div id="modal" class="modal opened fadeIn" *ngIf="openModal">
+    <div id="container" class="container slideIn">
+        <div class="header">
+            <h2>Registrar caja</h2>
+        </div>
+        <div class="body">
+            <form [formGroup]="formCashRegister">
+                <label [class.error]="validate.cash" for="cash">Caja día anterior <input type="number" name="register" formControlName="cash" (change)="validate.cash=false"> <input title="Habilitar casilla caja" type="checkbox" name="chkCash" #chkCash (change)="stateInput(chkCash.checked, 'cash')"></label>
+                <label [class.error]="validate.ivc" for="ivc">Carga virtual inicial <input type="number" name="ivc" formControlName="ivc" (change)="validate.ivc=false"></label>
+                <label [class.error]="validate.uvc" for="uvc">Carga virtual final <input type="number" name="uvc" formControlName="uvc" (change)="validate.uvc=false"></label>
+                <label [class.error]="validate.avc" for="avc">Adicional carga virtual <input type="number" name="avc" formControlName="avc" (change)="validate.avc=false"></label>
+                <label [class.error]="validate.kiosk" for="kiosk">Kiosco (efectivo) <input type="number" name="kiosk" formControlName="kiosk" (change)="validate.kiosk=false"> <input title="Habilitar casilla kiosko" type="checkbox" name="chkKiosk" #chkKiosk (change)="stateInput(chkKiosk.checked, 'kiosk')"></label>
+                <label [class.error]="validate.tksi" for="tksi">TK/SI <input type="number" name="tksi" formControlName="tksi" (change)="validate.tksi=false"></label>
+                <label [class.error]="validate.expenses" for="expenses">Gastos varios <input type="number" name="expenses" formControlName="expenses" (change)="validate.expenses=false"></label>
+                <label [class.error]="validate.cigarettes" for="cigarettes">Gastos Cigarrillos <input type="number" name="cigarettes" formControlName="cigarettes" (change)="validate.cigarettes=false"> <input title="Habilitar casilla Gastos Cigarrillos" type="checkbox" name="chkCigarettes" #chkCigarettes (change)="stateInput(chkCigarettes.checked, 'cigarettes')"></label>
+                <label [class.error]="validate.withdrawals" for="withdrawals">Retiros <input type="number" name="withdrawals" formControlName="withdrawals" (change)="validate.withdrawals=false"></label>
+                <div class="buttons">
+                    <button [disabled]="disabledButton" type="submit" (click)="addCashRegister()">Registrar</button>
+                    <button [disabled]="disabledButton" type="button" (click)="closeModal()">Cancelar</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>

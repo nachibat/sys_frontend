@@ -42,6 +42,12 @@ export class SaleService {
     return this.http.get<SaleListResponse>(`${this.url}/sale/list`, { headers });
   }
 
+  saleListPromise(): Promise<SaleListResponse> {
+    const token = localStorage.getItem('token') || '';
+    const headers = new HttpHeaders({ Authorization: token });
+    return this.http.get<SaleListResponse>(`${this.url}/sale/list`, { headers }).toPromise();
+  }
+
   saleListRange(from: string, to: string): Promise<SaleListResponse> {
     const token = localStorage.getItem('token') || '';
     const headers = new HttpHeaders({ Authorization: token });
