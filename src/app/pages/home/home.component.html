@@ -2,17 +2,6 @@
 <div class="main" [ngClass]="{'wide-main': isOpen}">
     <app-topbar></app-topbar>
     <div class="card-box">
-        <!-- Temporary -->
-        <div (click)="redirectReports()" class="card">
-            <div>
-                <div class="numbers">{{ dailyEarningsCash }}</div>
-                <div class="card-name">Ganancias Diarias efectivo</div>
-            </div>
-            <div class="icon-box">
-                <fa-icon [icon]="icons[1]"></fa-icon>
-            </div>
-        </div>
-        <!-- Temporary -->
         <div (click)="redirectReports()" class="card">
             <div>
                 <div class="numbers">{{ dailySales }}</div>

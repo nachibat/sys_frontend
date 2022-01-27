@@ -82,21 +82,6 @@
     color: var(--white);
 }
 
-/* .container .footer {
-    width: 100%;
-    height: 40px;
-    display: flex;
-    padding: 0 5px;
-    align-items: center;
-    justify-content: space-between;
-}
-
-.container .footer a {
-    cursor: pointer;
-    color: var(--black2);
-    text-decoration: none;
-} */
-
 .loading {
     cursor: wait !important;
 }
@@ -176,6 +161,25 @@
     border-radius: 40px;
     border: 1px solid var(--black2);
     outline: none;
+}
+
+.modal .container .body form label .mini-spinner {
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    border: 4px solid rgba(0, 0, 0, 0.1);
+    border-left-color: var(--blue);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
 }
 
 .modal .container .body form .buttons {

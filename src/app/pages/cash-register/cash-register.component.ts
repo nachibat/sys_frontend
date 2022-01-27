@@ -24,6 +24,7 @@ export class CashRegisterComponent implements OnInit {
   public disabledButton: boolean = false;
   public cashRegister: Cash[] = [];
   public loading: boolean = false;
+  public inputLoading: boolean = false;
 
   private lastCashEarnings: number = 0;
   private todayCashEarnings: number = 0;
@@ -75,12 +76,14 @@ export class CashRegisterComponent implements OnInit {
   public async openModalWithData() {
     this.cleanForm();
     this.openModal = true
+    this.inputLoading = true;
     await this.getLastCashEarnings();
     await this.getTodayCashEarnings();
     await this.getTodayCigarettes();
     this.formCashRegister.controls.cash.setValue(this.lastCashEarnings);
     this.formCashRegister.controls.kiosk.setValue(this.todayCashEarnings);
     this.formCashRegister.controls.cigarettes.setValue(this.todayCigarettes);
+    this.inputLoading = false;
   }
 
   private async getLastCashEarnings() {
@@ -214,6 +217,7 @@ export class CashRegisterComponent implements OnInit {
     this.toastService.success(msg, 'Información');
     this.enabledForm();
     this.closeModal();
+    this.search();
   }
 
   private handleError(err: any): void {

@@ -22,7 +22,6 @@ export class HomeComponent implements OnInit {
   public dailyEarnings: number = 0;
   public monthlySales: number = 0;
   public monthlyEarnings: number = 0;
-  public dailyEarningsCash: number = 0;
 
   public sales: Sale[] = [];
 
@@ -53,9 +52,6 @@ export class HomeComponent implements OnInit {
       for (let i = 0; i < resp.listSales.length; i++) {
         const element = resp.listSales[i];
         this.dailyEarnings += element.total;
-        if (element.payment === 'CASH') {
-          this.dailyEarningsCash += element.total;
-        }
       }
     });
   }
