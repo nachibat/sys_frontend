@@ -19,40 +19,42 @@
             <div *ngIf="loading" class="loading">
                 <div class="spinner"></div>
             </div>
-            <table *ngIf="!loading">
-                <thead>
-                    <tr>
-                        <th>Fecha</th>
-                        <th title="Caja del día anterior">Caja</th>
-                        <th title="Carga virtual inicial">CV Inicial</th>
-                        <th title="Carga virtual final">CV Final</th>
-                        <th title="Adicional carga virtual">AD. CV</th>
-                        <th title="Total kiosko del día de la fecha">Kiosko</th>
-                        <th>TK/SI</th>
-                        <th title="Subtotal de ingresos">Subtotal</th>
-                        <th>Gastos</th>
-                        <th>Retiros</th>
-                        <th title="Subtotal de gastos y retiros">Subtotal 2</th>
-                        <th>Caja final</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr *ngFor="let cash of cashRegister">
-                        <td>{{ cash.createdAt | date:'d/M/yyyy' }}</td>
-                        <td>$ {{ cash.cash }}</td>
-                        <td>$ {{ cash.ivc }}</td>
-                        <td>$ {{ cash.uvc }}</td>
-                        <td>$ {{ cash.avc }}</td>
-                        <td>$ {{ cash.kiosk }}</td>
-                        <td>$ {{ cash.tksi }}</td>
-                        <td>$ {{ cash.cash + (cash.ivc - cash.uvc) + cash.avc + cash.kiosk + cash.tksi }}</td>
-                        <td>$ {{ cash.expenses + cash.cigarettes }}</td>
-                        <td>$ {{ cash.withdrawals }}</td>
-                        <td>$ {{ cash.expenses + cash.cigarettes + cash.withdrawals }}</td>
-                        <td>$ {{ (cash.cash + (cash.ivc - cash.uvc) + cash.avc + cash.kiosk + cash.tksi) - (cash.expenses + cash.cigarettes + cash.withdrawals) }}</td>
-                    </tr>
-                </tbody>
-            </table>
+            <div class="table">
+                <table *ngIf="!loading">
+                    <thead>
+                        <tr>
+                            <th>Fecha</th>
+                            <th title="Caja del día anterior">Caja</th>
+                            <th title="Carga virtual inicial">CV Inicial</th>
+                            <th title="Carga virtual final">CV Final</th>
+                            <th title="Adicional carga virtual">AD. CV</th>
+                            <th title="Total kiosko del día de la fecha">Kiosko</th>
+                            <th>TK/SI</th>
+                            <th title="Subtotal de ingresos">Subtotal</th>
+                            <th>Gastos</th>
+                            <th>Retiros</th>
+                            <th title="Subtotal de gastos y retiros">Subtotal 2</th>
+                            <th>Caja final</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let cash of cashRegister">
+                            <td>{{ cash.createdAt | date:'d/M/yyyy' }}</td>
+                            <td>$ {{ cash.cash }}</td>
+                            <td>$ {{ cash.ivc }}</td>
+                            <td>$ {{ cash.uvc }}</td>
+                            <td>$ {{ cash.avc }}</td>
+                            <td>$ {{ cash.kiosk }}</td>
+                            <td>$ {{ cash.tksi }}</td>
+                            <td>$ {{ cash.cash + (cash.ivc - cash.uvc) + cash.avc + cash.kiosk + cash.tksi }}</td>
+                            <td>$ {{ cash.expenses + cash.cigarettes }}</td>
+                            <td>$ {{ cash.withdrawals }}</td>
+                            <td>$ {{ cash.expenses + cash.cigarettes + cash.withdrawals }}</td>
+                            <td>$ {{ (cash.cash + (cash.ivc - cash.uvc) + cash.avc + cash.kiosk + cash.tksi) - (cash.expenses + cash.cigarettes + cash.withdrawals) }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 </div>

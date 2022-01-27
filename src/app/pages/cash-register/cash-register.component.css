@@ -205,3 +205,25 @@
     background: var(--danger);
     border: 1px solid var(--danger);
 }
+
+/**** Responsive design ****/
+
+@media (max-width: 480px) {
+    .container .actions h2 {
+        font-size: 20px;
+    }
+    .container .list .table {
+        overflow: auto;
+    }
+    .container .list .buttons {
+        width: 100%;
+    }
+    .container .list .buttons label {
+        display: block;
+        margin: 10px 0px;
+    }
+
+    .container .list .table table td {
+        min-width: 100px;
+    }
+}

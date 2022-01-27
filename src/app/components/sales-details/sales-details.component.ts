@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { ToastrService } from 'ngx-toastr';
+import { CashService } from 'src/app/services/cash.service';
 import { SaleService } from 'src/app/services/sale.service';
 
 @Component({
@@ -22,6 +23,7 @@ export class SalesDetailsComponent implements OnInit {
   public notFound: boolean = false;
 
   constructor(private saleService: SaleService,
+              private cashService: CashService,
               private toastService: ToastrService) { }
 
   ngOnInit(): void {
@@ -31,6 +33,13 @@ export class SalesDetailsComponent implements OnInit {
     if (this.loading) { return; }
     this.loading = true;
     this.clearData();
+    this.withdrawal = 0;
+    this.cashService.cashListRange(this.dateFrom, this.dateTo).subscribe(resp => {
+      for (let i = 0; i < resp.listCashes.length; i++) {
+        const element = resp.listCashes[i];
+        this.withdrawal += element.withdrawals;
+      }
+    });
     const resp = await this.saleService.saleListRange(this.dateFrom, this.dateTo);
     if (!resp.ok) {
       this.loading = false;
