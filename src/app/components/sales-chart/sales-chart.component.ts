@@ -72,18 +72,22 @@ export class SalesChartComponent implements OnInit {
         months.push(i);
       }
     }
+    let lastyear = false;
+    let thisyear = false;
     for (let i = 0; i < months.length; i++) {
       const element = months[i];
-      let lastyear = false;
       let dateFrom;
       let dateTo;
-      if (months[0] >= 7 || months[0] <= 11) {
-        lastyear = true;
-      } else {
-        lastyear = false;
+      if (!thisyear) {
+        if (months[0] >= 7 || months[0] <= 11) {
+          lastyear = true;
+        } else {
+          lastyear = false;
+        }
       }
       if (element === 0) {
         lastyear = false;
+        thisyear = true;
       }
       if (lastyear) {
         dateFrom = new Date(today.getFullYear() - 1, element, 1).toISOString().slice(0, 10);
