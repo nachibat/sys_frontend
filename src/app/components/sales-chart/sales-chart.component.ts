@@ -79,7 +79,7 @@ export class SalesChartComponent implements OnInit {
       let dateFrom;
       let dateTo;
       if (!thisyear) {
-        if (months[0] >= 7 || months[0] <= 11) {
+        if (months[0] >= 7 && months[0] <= 11) {
           lastyear = true;
         } else {
           lastyear = false;
