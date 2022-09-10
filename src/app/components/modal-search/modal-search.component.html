@@ -1,0 +1,24 @@
+<div *ngIf="modalService.searchModal" id="modal" class="modal opened fadeIn">
+    <div id="container" class="container slideIn">
+        <form (submit)="search()">
+            <div class="header">
+                <h3>Buscar por precio</h3>
+            </div>
+            <div class="body price">
+                <p>Ingrese el precio límite</p>
+                <p>
+                    <input type="number" name="price" [(ngModel)]="data.price">
+                    <select name="category" [(ngModel)]="data.type">
+                        <option value="kiosko">Kiosko</option>
+                        <option value="libreria">Librería</option>
+                        <option value="electronica">Electrónica</option>
+                    </select>
+                </p>
+            </div>
+            <div class="footer">
+                <button type="submit">Confirmar</button>
+                <button type="button" (click)="closeModal('#modal', '#container')">Cancelar</button>
+            </div>
+        </form>
+    </div>
+</div>

@@ -10,6 +10,7 @@ export class ModalService {
   public confirmationModal: boolean = false;
   public confirmButton: boolean = true;
   public addModal: boolean = false;
+  public searchModal: boolean = false;
   public callback: any;
 
   constructor() { }

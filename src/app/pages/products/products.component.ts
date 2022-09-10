@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { faChevronLeft, faChevronRight, faClipboard, faEdit, faPlus, faRedoAlt, faSort, faTrash } from '@fortawesome/free-solid-svg-icons';
+import { faChevronLeft, faChevronRight, faClipboard, faEdit, faPlus, faRedoAlt, faSearchDollar, faSort, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { ToastrService } from 'ngx-toastr';
 import { Product } from 'src/app/interfaces/product.response';
 import { ModalService } from 'src/app/services/modal.service';
@@ -20,7 +20,7 @@ type TableRow = [string, string, string, number, string, string, string];
 })
 export class ProductsComponent implements OnInit, OnDestroy {
   
-  public icons = [faPlus, faEdit, faTrash, faChevronLeft, faChevronRight, faSort, faRedoAlt, faClipboard];
+  public icons = [faPlus, faEdit, faTrash, faChevronLeft, faChevronRight, faSort, faRedoAlt, faClipboard, faSearchDollar];
   public isOpen: boolean = false;
   public admin = false;
   public products: Product[] = [];
@@ -31,7 +31,9 @@ export class ProductsComponent implements OnInit, OnDestroy {
   private next: boolean = true;
   private total!: number;
   private searchMode: boolean = false;
+  private searchPriceMode: boolean = false;
   private searchParams: string[] = [];
+  private dataSearch: any = { price: 0, category: 'kiosko' };
   private position: number = 0;
 
 
@@ -91,7 +93,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
     if (this.searchMode) {
       this.searchFor(this.searchParams);
     } else {
-      this.loadProducts();
+      this.searchPriceMode ? this.searchPrice() : this.loadProducts();
     }
   }
 
@@ -102,7 +104,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
     if (this.searchMode) {
       this.searchFor(this.searchParams);
     } else {
-      this.loadProducts();
+      this.searchPriceMode ? this.searchPrice() : this.loadProducts();
     }
   }
 
@@ -120,7 +122,6 @@ export class ProductsComponent implements OnInit, OnDestroy {
     this.modalService.execCallback(() => {
       this.productService.loading = true;
       this.productService.deleteProduct(id).subscribe(resp => {
-        console.log(resp);
         this.toastService.success('Se eliminó el producto correctamente', 'Información');
         this.products.splice(pos, 1);
         this.productService.loading = false;
@@ -173,19 +174,20 @@ export class ProductsComponent implements OnInit, OnDestroy {
     this.productService.loading = false;
     if (err.status === 401) {
       this.toastService.error('Problemas de autorizacion. Cerrar sesión y volver a iniciar!', 'Error!', { timeOut: 7000 });
-      console.log(err.error);
+      console.error(err.error);
     } 
     if (err.status === 403) {
       this.toastService.error('Problemas de autorizacion. El usuario no tiene permisos!', 'Error!', { timeOut: 7000 });
-      console.log(err.error);
+      console.error(err.error);
     } else {
       this.toastService.error('Problemas con el servidor', 'Error!', { timeOut: 7000 });
-      console.log(err);
+      console.error(err);
     }
   }
 
   searchFor($event: any): void {
     this.searchMode = true;
+    this.searchPriceMode = false;
     this.searchParams = $event;
     this.productService.loading = true;
     this.productService.searchProducts(this.from, this.limit, $event[0], $event[1]).subscribe(resp => {
@@ -201,6 +203,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
 
   reloadList(): void {
     this.searchMode = false;
+    this.searchPriceMode = false;
     this.productService.search = false;
     this.productService.paramsSearch = [];
     this.from = 0;
@@ -211,7 +214,6 @@ export class ProductsComponent implements OnInit, OnDestroy {
 
   generatePdf(): void {
     this.productService.getProducts(0, 5000, 'description').subscribe(resp => {
-      console.log(resp);
       const product = resp.listProducts;
       const pdf = new PdfMakeWrapper();
       pdf.add(new Txt(new Date().toLocaleDateString()).alignment('right').end);
@@ -246,6 +248,31 @@ export class ProductsComponent implements OnInit, OnDestroy {
       if (row.percent_profit) { profit = `% ${row.percent_profit}` } else { profit = '-' }
       const cat = row.category.charAt(0).toUpperCase() + row.category.slice(1);
       return [row.barcode, row.description, cat, row.quantity, cost, profit, `$ ${row.price}`];
+    });
+  }
+
+  execSearchPrice() {
+    this.modalService.searchModal = true;
+    this.modalService.execCallback((data: any) => {
+      if (!data || data.price === null) { return; }
+      this.dataSearch.price = data.price;
+      this.dataSearch.category = data.category;
+      this.searchPrice();
+      data.price = null;
+    });
+  }
+
+  searchPrice() {
+    this.searchPriceMode = true;
+    this.productService.loading = true;
+    this.productService.searchPrice(this.from, this.limit, this.dataSearch.price, this.dataSearch.category).subscribe(resp => {
+      this.products = resp.listProducts
+      if (this.products.length === this.limit && this.total != resp.total) {
+        this.next = true;
+      } else {
+        this.next = false;
+      }
+      this.productService.loading = false;
     });
   }
 

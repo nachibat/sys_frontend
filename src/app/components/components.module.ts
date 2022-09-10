@@ -16,6 +16,7 @@ import { ReportSalesComponent } from './report-sales/report-sales.component';
 import { CigarettesComponent } from './cigarettes/cigarettes.component';
 import { SalesRangeComponent } from './sales-range/sales-range.component';
 import { SalesDetailsComponent } from './sales-details/sales-details.component';
+import { ModalSearchComponent } from './modal-search/modal-search.component';
 
 
 
@@ -26,6 +27,7 @@ import { SalesDetailsComponent } from './sales-details/sales-details.component';
     SalesChartComponent,
     FormProductComponent,
     ModalComponent,
+    ModalSearchComponent,
     ReportStockComponent,
     ReportSalesComponent,
     CigarettesComponent,
@@ -46,6 +48,7 @@ import { SalesDetailsComponent } from './sales-details/sales-details.component';
     SalesChartComponent,
     FormProductComponent,
     ModalComponent,
+    ModalSearchComponent,
     ReportStockComponent,
     ReportSalesComponent,
     CigarettesComponent,

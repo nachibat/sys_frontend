@@ -39,11 +39,20 @@
     text-align: center;
 }
 
+.modal .container .body p select,
 .modal .container .body p:last-child input {
     width: 100px;
     padding: 5px 10px;
     border-radius: 40px;
     border: 1px solid var(--black2);
+}
+
+.modal .container .body.price p:nth-child(2) {
+    margin-top: 20px;
+}
+
+.modal .container .body.price input {
+    margin-right: 10px;
 }
 
 .modal .container .footer {

@@ -8,6 +8,7 @@
                 <div class="card-header">
                     <h2>Listado de productos</h2>
                     <div class="buttons">
+                        <a title="Buscar productos por precios" (click)="execSearchPrice()" class="link-btn"><fa-icon [icon]="icons[8]"></fa-icon><span> Buscar</span></a>
                         <a title="Generar PDF de todos los productos registrados" (click)="generatePdf()" class="link-btn"><fa-icon [icon]="icons[7]"></fa-icon><span> Generar PDF</span></a>
                         <a title="Recargar listado" (click)="reloadList()" class="link-btn"><fa-icon [icon]="icons[6]"></fa-icon><span> Recargar</span></a>
                         <a title="Agregar producto" (click)="addProduct()" class="link-btn" [ngClass]="{'cursor-denied': !admin}"><fa-icon [icon]="icons[0]"></fa-icon><span> Agregar</span></a>
@@ -56,4 +57,4 @@
 </div>
 <app-form-product *ngIf="productService.openForm" (reloadEvent)="receiveMessage($event)"></app-form-product>
 <app-modal></app-modal>
-
+<app-modal-search></app-modal-search>

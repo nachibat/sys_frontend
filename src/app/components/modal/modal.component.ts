@@ -30,6 +30,7 @@ export class ModalComponent implements OnInit {
     setTimeout(() => {
       this.modalService.confirmationModal = false;
       this.modalService.addModal = false;
+      this.modalService.searchModal = false;
       this.focusEvent.emit();
     }, 450);  
   }

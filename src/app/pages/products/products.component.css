@@ -36,7 +36,8 @@
 }
 
 .tables .list .card-header .buttons a:nth-child(1),
-.tables .list .card-header .buttons a:nth-child(2) {
+.tables .list .card-header .buttons a:nth-child(2),
+.tables .list .card-header .buttons a:nth-child(3) {
     margin-right: 5px;
 }
 
