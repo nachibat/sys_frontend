@@ -256,7 +256,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
     this.modalService.execCallback((data: any) => {
       if (!data || data.price === null) { return; }
       this.dataSearch.price = data.price;
-      this.dataSearch.category = data.category;
+      this.dataSearch.category = data.type;
       this.searchPrice();
       data.price = null;
     });

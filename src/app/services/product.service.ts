@@ -34,7 +34,7 @@ export class ProductService {
   searchPrice(from: number = 0, limit: number = 11, price: number = 0, category: string = 'kiosko'): Observable<ProductListResponse> {
     const token = localStorage.getItem('token') || '';
     const headers = new HttpHeaders({ Authorization: token });
-    return this.http.get<ProductListResponse>(`${this.url}/product/search-price?from=${from}&limit=${limit}&price=${price}&category${category}`, { headers })
+    return this.http.get<ProductListResponse>(`${this.url}/product/search-price?from=${from}&limit=${limit}&price=${price}&category=${category}`, { headers })
   }
 
   stockProducts(from: number = 0, limit: number = 10, order: string = 'quantity', category: string = 'kiosko'): Observable<ProductListResponse> {
