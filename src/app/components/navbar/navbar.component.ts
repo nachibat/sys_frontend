@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { faBookOpen, faHome, faArchive, faMoneyBillAlt, faClipboardList, faUserAlt, faSignOutAlt, faTruck, faCashRegister } from '@fortawesome/free-solid-svg-icons';
+import { faBookOpen, faHome, faArchive, faMoneyBillAlt, faClipboardList, faUserAlt, faSignOutAlt, faTruck, faCashRegister, faInbox } from '@fortawesome/free-solid-svg-icons';
 import { NavbarService } from 'src/app/services/navbar.service';
 import { UserService } from 'src/app/services/user.service';
 
@@ -11,7 +11,7 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class NavbarComponent implements OnInit {
 
-  icons = [faBookOpen, faHome, faArchive, faMoneyBillAlt, faClipboardList, faUserAlt, faSignOutAlt, faTruck, faCashRegister];
+  icons = [faBookOpen, faHome, faArchive, faMoneyBillAlt, faClipboardList, faUserAlt, faSignOutAlt, faTruck, faCashRegister, faInbox];
   isOpen: boolean = false;
 
   constructor(private navbarService: NavbarService,
