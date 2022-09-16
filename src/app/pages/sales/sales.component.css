@@ -211,7 +211,6 @@
     border-radius: 10px;
     background-color: var(--danger);
     color: var(--white);
-    animation: blink 1.5s linear infinite;
 }
 
 /**** Responsive design ****/
@@ -232,22 +231,5 @@
     }
     .header {
         text-align: center;
-    }
-}
-
-/**** Animations ****/
-
-@keyframes blink {
-    0% {
-        background-color: var(--danger);
-        color: var(--white);
-    }
-    50% {
-        background-color: var(--white);
-        color: var(--white);
-    }
-    100% {
-        background-color: var(--danger);
-        color: var(--white);
     }
 }
