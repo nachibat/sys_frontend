@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { UserGuard } from './guards/user.guard';
 import { CashRegisterComponent } from './pages/cash-register/cash-register.component';
+import { FundsComponent } from './pages/funds/funds.component';
 import { HomeComponent } from './pages/home/home.component';
 import { LoginComponent } from './pages/login/login.component';
 import { ProductsComponent } from './pages/products/products.component';
@@ -38,6 +39,11 @@ const routes: Routes = [
   {
     path: 'suppliers',
     component: SuppliersComponent,
+    canActivate: [UserGuard]
+  },
+  {
+    path: 'funds',
+    component: FundsComponent,
     canActivate: [UserGuard]
   },
   {

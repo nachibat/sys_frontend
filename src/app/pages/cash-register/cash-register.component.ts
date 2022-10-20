@@ -6,6 +6,7 @@ import { Cash } from 'src/app/interfaces/cash.response';
 import { CashService } from 'src/app/services/cash.service';
 import { NavbarService } from 'src/app/services/navbar.service';
 import { SaleService } from 'src/app/services/sale.service';
+import { FundsService } from 'src/app/services/funds.service';
 
 @Component({
   selector: 'app-cash-register',
@@ -36,6 +37,7 @@ export class CashRegisterComponent implements OnInit {
               private formBuilder: FormBuilder,
               private saleService: SaleService,
               private cashService: CashService,
+              private fundService: FundsService,
               private toastService: ToastrService) {
 
     this.formCashRegister = this.formBuilder.group({
@@ -162,9 +164,16 @@ export class CashRegisterComponent implements OnInit {
     this.disabledForm();
     this.cashService.createCash(this.formCashRegister.value).subscribe(resp => {
       this.success('Se registró caja correctamente');
+      this.addFund(resp.cashCreated.withdrawals);
     }, err => {
       this.handleError(err);
     });
+  }
+
+  addFund(withdrawal: number) {
+    this.fundService.createFund({ cash_withdraw: withdrawal }).subscribe(resp => {
+      this.toastService.success('Se registro retiro correctamente', 'Información');
+    }, err => this.handleError(err));
   }
 
   public search(): void {
