@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { faChevronLeft, faPlus, faSearch, faTimes } from '@fortawesome/free-solid-svg-icons';
+import { faChevronLeft, faPlus, faSearch, faSearchDollar, faTimes } from '@fortawesome/free-solid-svg-icons';
 import { ToastrService } from 'ngx-toastr';
 import { TopbarComponent } from 'src/app/components/topbar/topbar.component';
 
@@ -21,9 +21,10 @@ export class SalesComponent implements OnInit, OnDestroy {
 
   private field: string = 'barcode';
   private subtotal: number = 0;
+  private dataSearch: any = { price: 0, category: 'kiosko' };
 
   isOpen: boolean = false;
-  public icons = [faPlus, faTimes, faChevronLeft, faSearch];
+  public icons = [faPlus, faTimes, faChevronLeft, faSearch, faSearchDollar];
   public date!: Date;
   public message: string = 'No se buscaron productos';
   public productsFound: Product[] = [];
@@ -168,6 +169,25 @@ export class SalesComponent implements OnInit, OnDestroy {
 
   focusSearch(): void {
     this.topbar.focus();
+  }
+
+  modalSearchPrice() {
+    this.modalService.searchModal = true;
+    this.modalService.execCallback((data: any) => {
+      if (!data || data.price === null) { return; }
+      this.dataSearch.price = data.price;
+      this.dataSearch.category = data.type;
+      this.searchPrice();
+      data.price = null;
+    });
+  }
+
+  searchPrice() {
+    this.productService.loading = true;
+    this.productService.searchPrice(0, 1000, this.dataSearch.price, this.dataSearch.category).subscribe(resp => {
+      this.productsFound = resp.listProducts
+      this.productService.loading = false;
+    });
   }
 
 }

@@ -18,6 +18,7 @@ import { FormProductComponent } from '../components/form-product/form-product.co
 import { RouterModule } from '@angular/router';
 import { SuppliersComponent } from './suppliers/suppliers.component';
 import { CashRegisterComponent } from './cash-register/cash-register.component';
+import { FundsComponent } from './funds/funds.component';
 
 
 
@@ -30,7 +31,8 @@ import { CashRegisterComponent } from './cash-register/cash-register.component';
     ReportsComponent,
     ProfileComponent,
     SuppliersComponent,
-    CashRegisterComponent
+    CashRegisterComponent,
+    FundsComponent
   ],
   imports: [
     CommonModule,

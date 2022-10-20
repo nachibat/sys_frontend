@@ -48,6 +48,7 @@
             <div class="products">
                 <div class="card-header">
                     <h2>Productos encontrados</h2>
+                    <a title="Buscar productos por precios" (click)="modalSearchPrice()" class="link-btn"><fa-icon [icon]="icons[4]"></fa-icon><span> Buscar</span></a>
                 </div>
                 <div class="custom-scrollbar">
                     <table>
@@ -64,7 +65,9 @@
                             <tr *ngFor="let product of productsFound; let i = index" title="{{ product.description }}">
                                 <td><button (click)="selectItem(i)" title="Añadir {{ product.description }} al listado"><fa-icon [icon]="icons[2]"></fa-icon></button></td>
                                 <td>{{ product.description }}</td>
-                                <td>{{ product.quantity }}</td>
+                                <td>
+                                    <div [ngClass]="{danger: product.quantity < 1}">{{ product.quantity }}</div>
+                                </td>
                                 <td>$ {{ product.price }}</td>
                             </tr>                        
                         </tbody>
@@ -87,3 +90,4 @@
 </div>
 
 <app-modal (focusEvent)="focusSearch()"></app-modal>
+<app-modal-search></app-modal-search>

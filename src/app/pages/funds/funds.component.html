@@ -1,0 +1,72 @@
+<app-navbar></app-navbar>
+<div class="main" [ngClass]="{'wide-main': isOpen}">
+    <app-topbar></app-topbar>
+    <div class="container">
+        <div class="actions">
+            <div class="card-header">
+                <h2>Listado de fondos</h2>
+            </div>
+            <div class="button">
+                <button type="button" (click)="openModalWithData()">Registrar gasto</button>
+            </div>
+        </div>
+        <div class="list">
+            <div class="header">
+                <div class="total">
+                    <h4>Total de fondos guardados: $ {{ totalFunds }}</h4>
+                </div>
+                <div class="buttons">
+                    <label for="from">Desde: <input type="date" name="from" [(ngModel)]="dateFrom"></label>
+                    <label for="from">Hasta: <input type="date" name="to" [(ngModel)]="dateTo"></label>
+                    <a (click)="search()" class="link-btn"><fa-icon [icon]="icons[0]"></fa-icon> Buscar</a>
+                </div>
+            </div>
+            <div *ngIf="loading" class="loading">
+                <div class="spinner"></div>
+            </div>
+            <div class="table">
+                <table *ngIf="!loading">
+                    <thead>
+                        <tr>
+                            <th>Usuario</th>
+                            <th>Fecha</th>
+                            <th title="Retiros al registrar caja">Retiros</th>
+                            <th>Gastos</th>
+                            <th title="Descripción de los gastos registrados">Descripción</th>
+                            <th title="Total de los fondos a la fecha del registro">Total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let fund of fundRegister">
+                            <td *ngIf="fund.user">{{ fund.user.username }}</td>
+                            <td *ngIf="!fund.user">-</td>
+                            <td>{{ fund.createdAt | date: 'd/M/yyyy - HH:mm' }}</td>
+                            <td>$ {{ fund.cash_withdraw }}</td>
+                            <td>$ {{ fund.expenses }}</td>
+                            <td>{{ fund.description }}</td>
+                            <td>$ {{ fund.total }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="modal" class="modal opened fadeIn" *ngIf="openModal">
+    <div id="container" class="container slideIn">
+        <div class="header">
+            <h2>Registrar Gasto</h2>
+        </div>
+        <div class="body">
+            <form [formGroup]="formFundRegister">
+                <label [class.error]="validate.expense" for="expenses">Gasto <input type="number" name="expenses" formControlName="expenses" (change)="validate.expense=false"></label>
+                <label [class.error]="validate.description" for="description">Descripción <input type="text" name="description" formControlName="description" (change)="validate.description=false"></label>
+                <div class="buttons">
+                    <button [disabled]="disabledButton" type="submit" (click)="registerExpense()">Registrar</button>
+                    <button [disabled]="disabledButton" type="button" (click)="closeModal()">Cancelar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

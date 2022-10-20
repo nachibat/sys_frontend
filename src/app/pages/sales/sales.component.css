@@ -206,6 +206,13 @@
     cursor: pointer;
 }
 
+.danger {
+    margin: 0 8px;
+    border-radius: 10px;
+    background-color: var(--danger);
+    color: var(--white);
+}
+
 /**** Responsive design ****/
 
 @media (max-width: 1024px) {
