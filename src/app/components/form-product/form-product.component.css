@@ -11,7 +11,7 @@
 
 .modal .container {
     position: fixed;
-    width: 400px;
+    /* width: 400px; */
     /* height: 400px; */
     padding: 20px;
     background: var(--white);

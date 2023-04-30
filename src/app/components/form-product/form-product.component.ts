@@ -18,6 +18,7 @@ export class FormProductComponent implements OnInit {
     desc: false,
     quan: false,
     cost: false,
+    iva: false,
     prof: false,
     pric: false
   };
@@ -25,6 +26,7 @@ export class FormProductComponent implements OnInit {
   public disBtn = false;
   public icons = [faCalculator, faSave, faTimes, faSyncAlt];
   public formProduct: FormGroup;
+  public subtotal = 0;
 
   constructor(public productService: ProductService,
               private formBuilder: FormBuilder,
@@ -38,6 +40,7 @@ export class FormProductComponent implements OnInit {
       category: [{ value: 'kiosko', disabled: false }, Validators.required],
       quantity: [{ value: null, disabled: false }, Validators.required],
       cost_price: [{ value: null, disabled: false }],
+      iva: [{ value: 21, disabled: false }, Validators.required],
       percent_profit: [{ value: null, disabled: false }],
       price: [{ value: null, disabled: false }, Validators.required],
     });
@@ -64,18 +67,23 @@ export class FormProductComponent implements OnInit {
 
   public calculatePrice(): void {
     const cost = this.formProduct.controls.cost_price.value;
+    const subt = this.subtotal;
     const per_profit = this.formProduct.controls.percent_profit.value;
     if ( cost === null) {
       this.validate.cost = true;
+      return;
+    }
+    if (subt === null) {
+      this.validate.iva = true;
       return;
     }
     if (per_profit === null) {
       this.validate.prof = true;
       return;
     }
-    const profit = (cost * per_profit) / 100;
+    const profit = (subt * per_profit) / 100;
     this.validate.pric = false;
-    this.formProduct.controls.price.setValue(cost + profit);
+    this.formProduct.controls.price.setValue(subt + profit);
   }
 
   private cleanForm(): void {
@@ -84,6 +92,7 @@ export class FormProductComponent implements OnInit {
     this.formProduct.controls.category.setValue('kiosko');
     this.formProduct.controls.quantity.setValue(null);
     this.formProduct.controls.cost_price.setValue(null);
+    this.formProduct.controls.iva.setValue(null);
     this.formProduct.controls.percent_profit.setValue(null);
     this.formProduct.controls.price.setValue(null);
   }
@@ -95,6 +104,7 @@ export class FormProductComponent implements OnInit {
     this.formProduct.controls.category.enable();
     this.formProduct.controls.quantity.enable();
     this.formProduct.controls.cost_price.enable();
+    this.formProduct.controls.iva.enable();
     this.formProduct.controls.percent_profit.enable();
     this.formProduct.controls.price.enable();
   }
@@ -106,6 +116,7 @@ export class FormProductComponent implements OnInit {
     this.formProduct.controls.category.disable();
     this.formProduct.controls.quantity.disable();
     this.formProduct.controls.cost_price.disable();
+    this.formProduct.controls.iva.disable();
     this.formProduct.controls.percent_profit.disable();
     this.formProduct.controls.price.disable();
   }
@@ -115,6 +126,7 @@ export class FormProductComponent implements OnInit {
       if (this.formProduct.controls.barcode.errors) { this.validate.code = true; }
       if (this.formProduct.controls.description.errors) { this.validate.desc = true; }
       if (this.formProduct.controls.quantity.errors) { this.validate.quan = true; }
+      if (this.formProduct.controls.iva.errors) { this.validate.iva = true; }
       if (this.formProduct.controls.price.errors) { this.validate.pric = true; }
       return;
     }
@@ -145,8 +157,10 @@ export class FormProductComponent implements OnInit {
     this.formProduct.controls['category'].setValue(this.productService.product.category);
     this.formProduct.controls['quantity'].setValue(this.productService.product.quantity);
     this.formProduct.controls['cost_price'].setValue(this.productService.product.cost_price);
+    this.formProduct.controls['iva'].setValue(this.productService.product.iva ? this.productService.product.iva : 21);
     this.formProduct.controls['percent_profit'].setValue(this.productService.product.percent_profit);
     this.formProduct.controls['price'].setValue(this.productService.product.price);
+    this.subtotal = this.formProduct.controls['cost_price'].value + (this.formProduct.controls['cost_price'].value * this.formProduct.controls['iva'].value / 100);
   }
 
   success(): void {
@@ -183,6 +197,10 @@ export class FormProductComponent implements OnInit {
         console.log(err);
       }
     }
+  }
+
+  calcSubtotal() {
+    this.subtotal = this.formProduct.controls['cost_price'].value + (this.formProduct.controls['cost_price'].value * this.formProduct.controls['iva'].value / 100);
   }
 
 }
