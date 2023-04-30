@@ -16,7 +16,9 @@
                 </select>
             </label>
             <label [class.error]="validate.quan" for="quantity">Cantidad<input (change)="validate.quan=false" type="number" name="quantity" formControlName="quantity"></label>
-            <label [class.error]="validate.cost" for="cost_price">Precio Costo $<input (change)="validate.cost=false" type="number" name="cost_price" formControlName="cost_price"></label>
+            <label [class.error]="validate.cost" for="cost_price">Precio Costo $<input (change)="validate.cost=false; calcSubtotal()" type="number" name="cost_price" formControlName="cost_price"></label>
+            <label [class.error]="validate.iva" for="iva">IVA %<input (change)="validate.iva=false; calcSubtotal()" type="number" name="iva" formControlName="iva"></label>
+            <label for="subtotal">Subtotal<input type="number" name="subtotal" disabled [value]="subtotal"></label>
             <label [class.error]="validate.prof" for="percent_profit">Ganancia %<input (change)="validate.prof=false" type="number" name="percent_profit" formControlName="percent_profit"><span>(1 - 100)</span></label>
             <label [class.error]="validate.pric" for="price">
                 Precio final $
