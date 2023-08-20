@@ -26,6 +26,7 @@ export interface Product {
     category: string;
     quantity: number;
     cost_price: number;
+    percent_increase: number;
     iva?: number;
     percent_profit: number;
     price: number;
