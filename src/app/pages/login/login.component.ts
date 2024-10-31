@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { faLock, faSignInAlt, faUser } from '@fortawesome/free-solid-svg-icons';
+import { faLock, faSignInAlt, faUser, faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import { ToastrService } from 'ngx-toastr';
 import { UserService } from 'src/app/services/user.service';
 
@@ -19,8 +19,9 @@ export class LoginComponent implements OnInit {
   };
 
   public btnLogin = false;
-  public icons = [faUser, faLock, faSignInAlt];
+  public icons = [faUser, faLock, faSignInAlt, faEye];
   public formLogin: FormGroup;
+  public showPassword = false;
 
   constructor(private formBuilder: FormBuilder,
               private toastrService: ToastrService,
@@ -82,6 +83,14 @@ export class LoginComponent implements OnInit {
     });
   }
 
-
+  togglePass() {
+    if (this.icons[3] === faEye) {
+      this.showPassword = true;
+      this.icons[3] = faEyeSlash;
+    } else {
+      this.showPassword = false;
+      this.icons[3] = faEye;
+    }
+  }
 
 }
