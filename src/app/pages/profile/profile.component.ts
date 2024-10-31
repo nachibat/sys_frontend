@@ -1,6 +1,6 @@
 import { Component, ElementRef, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { faKey, faSave, faTimes } from '@fortawesome/free-solid-svg-icons';
+import { faEye, faEyeSlash, faKey, faSave, faTimes } from '@fortawesome/free-solid-svg-icons';
 import { ToastrService } from 'ngx-toastr';
 import { User } from 'src/app/interfaces/user.response';
 import { NavbarService } from 'src/app/services/navbar.service';
@@ -14,7 +14,7 @@ import { UserService } from 'src/app/services/user.service';
 export class ProfileComponent implements OnInit {
 
   isOpen: boolean = false;
-  public icons = [faSave, faTimes, faKey]
+  public icons = [faSave, faTimes, faKey, faEye, faEye, faEye];
   public loading: boolean = false;
   public user!: User;
   public modalEdit: boolean = false;
@@ -31,6 +31,7 @@ export class ProfileComponent implements OnInit {
     newpass: false,
     retrypass: false
   };
+  public showPassword = [false, false, false];
 
   constructor(private navbarService: NavbarService,
               private userService: UserService,
@@ -142,6 +143,17 @@ export class ProfileComponent implements OnInit {
       }
     });
     this.cleanError();
+  }
+
+  togglePass(data: number) {
+    const pos = data + 2;
+    if (this.icons[pos] === faEye) {
+      this.showPassword[data - 1] = true;
+      this.icons[pos] = faEyeSlash;
+    } else {
+      this.showPassword[data - 1] = false;
+      this.icons[pos] = faEye;
+    }
   }
 
 }

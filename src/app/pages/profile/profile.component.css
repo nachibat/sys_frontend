@@ -159,6 +159,18 @@
     width: 100%;
 }
 
+.modal .container form.pass label {
+    position: relative;
+}
+
+.modal .container form.pass label fa-icon {
+    cursor: pointer;
+    color: gray;
+    position: absolute;
+    top: 28px;
+    right: 10px;
+}
+
 .error input {
     border: 2px solid var(--danger) !important;
 }

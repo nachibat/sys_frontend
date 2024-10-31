@@ -65,9 +65,21 @@
             <h2>Cambiar contraseña</h2>
         </div>
         <form [formGroup]="formPass" class="pass" (ngSubmit)="changePass()">
-            <label [class.error]="validatedError.pass || badlogin" for="pass">Contraseña actual<input (focus)="cleanError()" type="password" name="pass" formControlName="pass"></label>
-            <label [class.error]="validatedError.newpass || different" for="newpass">Contraseña nueva<input (focus)="cleanError()" type="password" name="newpass" formControlName="newpass"></label>
-            <label [class.error]="validatedError.retrypass || different" for="retrypass">Repetir contraseña nueva<input (focus)="cleanError()" type="password" name="retrypass" formControlName="retrypass"></label>
+            <label [class.error]="validatedError.pass || badlogin" for="pass">
+                Contraseña actual
+                <input (focus)="cleanError()" [type]="showPassword[0] ? 'text' : 'password'" name="pass" formControlName="pass">
+                <fa-icon [icon]="icons[3]" (click)="togglePass(1)"></fa-icon>
+            </label>
+            <label [class.error]="validatedError.newpass || different" for="newpass">
+                Contraseña nueva
+                <input (focus)="cleanError()" [type]="showPassword[1] ? 'text' : 'password'" name="newpass" formControlName="newpass">
+                <fa-icon [icon]="icons[4]" (click)="togglePass(2)"></fa-icon>
+            </label>
+            <label [class.error]="validatedError.retrypass || different" for="retrypass">
+                Repetir contraseña nueva
+                <input (focus)="cleanError()" [type]="showPassword[2] ? 'text' : 'password'" name="retrypass" formControlName="retrypass">
+                <fa-icon [icon]="icons[5]" (click)="togglePass(3)"></fa-icon>
+            </label>
             <div class="validate">
                 <p *ngIf="required">Los campos son obligatorios</p>
                 <p *ngIf="validatedLength">La contraseña debe ser de mas de 6 caracteres</p>
