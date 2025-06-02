@@ -83,9 +83,10 @@ export class FormProductComponent implements OnInit {
       this.validate.prof = true;
       return;
     }
-    const profit = (subt * per_profit) / 100;
+    const finalPrice = subt / (1 - (per_profit / 100));
+    // const profit = (subt * per_profit) / 100;
     this.validate.pric = false;
-    this.formProduct.controls.price.setValue(subt + profit);
+    this.formProduct.controls.price.setValue(finalPrice.toFixed(2));
   }
 
   private cleanForm(): void {
